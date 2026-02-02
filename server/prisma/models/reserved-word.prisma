@@ -1,0 +1,10 @@
+model ReservedWord {
+  id String @id @default(uuid())
+
+  word String @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("reserved_words")
+}

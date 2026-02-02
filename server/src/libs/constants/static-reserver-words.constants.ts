@@ -1,0 +1,9 @@
+export const STATIC_RESERVED_WORDS = [
+	'admin',
+	'login',
+	'signup',
+	'api',
+	'dashboard',
+	'user',
+	'settings',
+];

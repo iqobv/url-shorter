@@ -1,14 +1,35 @@
 import { INestApplication } from '@nestjs/common';
-import { SwaggerModule } from '@nestjs/swagger';
-import { getSwaggerConfig } from 'src/config';
+import {
+	OpenAPIObject,
+	SwaggerCustomOptions,
+	SwaggerDocumentOptions,
+	SwaggerModule,
+} from '@nestjs/swagger';
 
-export const setupSwagger = (app: INestApplication) => {
-	const config = getSwaggerConfig();
+interface SetupSwaggerParams {
+	app: INestApplication;
+	config: Omit<OpenAPIObject, 'paths'>;
+	include?: SwaggerDocumentOptions['include'];
+	path: string;
+	options?: SwaggerCustomOptions;
+}
 
-	const documentFactory = () => SwaggerModule.createDocument(app, config);
-	SwaggerModule.setup('/docs', app, documentFactory, {
-		customSiteTitle: 'URL Shortener API',
-		jsonDocumentUrl: '/docs/json',
-		yamlDocumentUrl: '/docs/yaml',
+export const setupSwagger = ({
+	app,
+	config,
+	include,
+	path,
+	options,
+}: SetupSwaggerParams) => {
+	const documentFactory = () =>
+		SwaggerModule.createDocument(app, config, {
+			include,
+			deepScanRoutes: true,
+		});
+	SwaggerModule.setup(path, app, documentFactory, {
+		jsonDocumentUrl: options?.jsonDocumentUrl || `${path}/json`,
+		yamlDocumentUrl: options?.yamlDocumentUrl || `${path}/yaml`,
+		customSiteTitle: options?.customSiteTitle || config.info.title,
+		...options,
 	});
 };

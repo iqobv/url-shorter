@@ -1,21 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { TokenModule } from './token/token.module';
-import { LinkModule } from './link/link.module';
-import { ClickModule } from './click/click.module';
-import { AnalyticsModule } from './analytics/analytics.module';
-import { UserProviderModule } from './user-provider/user-provider.module';
+import { AdminModule } from './admin/admin.module';
+import { PublicModule } from './public/public.module';
 
 @Module({
-	imports: [
-		UserModule,
-		AuthModule,
-		TokenModule,
-		LinkModule,
-		ClickModule,
-		AnalyticsModule,
-		UserProviderModule,
-	],
+	imports: [PublicModule, AdminModule],
 })
 export class ApiModule {}
