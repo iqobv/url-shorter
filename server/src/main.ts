@@ -15,7 +15,7 @@ async function bootstrap() {
 
 	const config = app.get(ConfigService);
 
-	app.use(cookieParser(config.getOrThrow<string>('COOKIE_SECRET')));
+	app.use(cookieParser());
 
 	app.set('trust proxy', true);
 

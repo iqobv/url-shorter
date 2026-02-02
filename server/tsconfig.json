@@ -1,6 +1,10 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"resolvePackageJsonExports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
 		"declaration": true,
 		"removeComments": true,
 		"emitDecoratorMetadata": true,
@@ -17,7 +21,7 @@
 		"noImplicitAny": false,
 		"strictBindCallApply": false,
 		"noFallthroughCasesInSwitch": false,
-		"esModuleInterop": true,
+		"jsx": "react",
 		"types": ["node"]
 	}
 }

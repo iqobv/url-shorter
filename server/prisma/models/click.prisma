@@ -1,0 +1,17 @@
+model Click {
+  id String @id @default(uuid())
+
+  linkId String @map("link_id")
+
+  referrer String?
+  country  String?
+  os       String?
+  device   String?
+  browser  String?
+
+  clickedAt DateTime @default(now()) @map("clicked_at")
+
+  link Link @relation(fields: [linkId], references: [id], onDelete: Cascade)
+
+  @@map("clicks")
+}
