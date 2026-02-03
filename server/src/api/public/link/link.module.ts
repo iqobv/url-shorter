@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
-import { LinkService } from './link.service';
+import { IsNotReservedConstraint } from 'src/api/public/link/validators';
+import { ClickModule } from '../click/click.module';
+import { ReservedWordModule } from '../reserved-word/reserved-word.module';
 import { LinkController } from './link.controller';
+import { LinkService } from './link.service';
 
 @Module({
 	controllers: [LinkController],
-	providers: [LinkService],
+	providers: [LinkService, IsNotReservedConstraint],
+	imports: [ReservedWordModule, ClickModule],
 })
 export class LinkModule {}

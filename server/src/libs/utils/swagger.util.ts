@@ -1,10 +1,11 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, Type } from '@nestjs/common';
 import {
 	OpenAPIObject,
 	SwaggerCustomOptions,
 	SwaggerDocumentOptions,
 	SwaggerModule,
 } from '@nestjs/swagger';
+import { getDeepModules } from './get-deep-modules.util';
 
 interface SetupSwaggerParams {
 	app: INestApplication;
@@ -23,7 +24,7 @@ export const setupSwagger = ({
 }: SetupSwaggerParams) => {
 	const documentFactory = () =>
 		SwaggerModule.createDocument(app, config, {
-			include,
+			include: include ? getDeepModules(include as Type<unknown>[]) : undefined,
 			deepScanRoutes: true,
 		});
 	SwaggerModule.setup(path, app, documentFactory, {

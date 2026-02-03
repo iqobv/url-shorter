@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { useContainer } from 'class-validator';
 import cookieParser from 'cookie-parser';
 import basicAuth from 'express-basic-auth';
 import { AdminModule } from './api/admin/admin.module';
@@ -27,6 +28,8 @@ async function bootstrap() {
 	app.enableCors(getCorsConfig(config));
 	app.useGlobalPipes(getValidationPipeConfig());
 	app.enableVersioning(getApiVersioningConfig());
+
+	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
 	app.use(
 		'/docs-admin',

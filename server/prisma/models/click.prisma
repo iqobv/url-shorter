@@ -3,6 +3,10 @@ model Click {
 
   linkId String @map("link_id")
 
+  isUnique Boolean @default(false) @map("is_unique")
+
+  fingerprint String?
+
   referrer String?
   country  String?
   os       String?

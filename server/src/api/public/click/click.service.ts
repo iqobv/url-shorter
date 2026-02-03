@@ -1,4 +1,46 @@
 import { Injectable } from '@nestjs/common';
+import { createHash } from 'crypto';
+import { lookup } from 'geoip-country';
+import { PrismaService } from 'src/infra/prisma/prisma.service';
+import { UAParser } from 'ua-parser-js';
+import { CreateClickDto } from './dto';
 
 @Injectable()
-export class ClickService {}
+export class ClickService {
+	constructor(private readonly prismaService: PrismaService) {}
+
+	async createClick(dto: CreateClickDto) {
+		const { linkId, ip, userAgent, referer } = dto;
+
+		const fingerprint = createHash('sha256')
+			.update(`${ip}-${userAgent}`)
+			.digest('hex');
+
+		const existingClick = await this.prismaService.click.findFirst({
+			where: {
+				linkId,
+				fingerprint,
+			},
+		});
+
+		const isUnique = !existingClick;
+
+		const { browser, device, os } = UAParser(userAgent);
+
+		const geo = lookup(ip!);
+
+		return await this.prismaService.click.create({
+			data: {
+				fingerprint,
+				country: geo?.country || null,
+				browser: browser?.name || null,
+				device: device?.type || null,
+				os: os?.name || null,
+				referrer: referer || null,
+				isUnique,
+				clickedAt: new Date(),
+				link: { connect: { id: linkId } },
+			},
+		});
+	}
+}
