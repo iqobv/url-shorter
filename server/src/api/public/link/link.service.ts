@@ -164,6 +164,13 @@ export class LinkService {
 		return link;
 	}
 
+	async getUserLinks(userId: string) {
+		return await this.prismaService.link.findMany({
+			where: { userId },
+			orderBy: { createdAt: 'desc' },
+		});
+	}
+
 	async removeLink(id: string, userId: string) {
 		const link = await this.findById(id);
 

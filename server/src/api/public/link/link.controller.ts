@@ -68,4 +68,12 @@ export class LinkController {
 
 		return res.redirect(link.originalUrl);
 	}
+
+	@Auth()
+	@ApiOperation({ summary: 'Get all links for the authenticated user' })
+	@ApiOkResponse({ type: [LinkDto] })
+	@Get('me')
+	async getUserLinks(@Authorized('id') userId: string) {
+		return await this.linkService.getUserLinks(userId);
+	}
 }
