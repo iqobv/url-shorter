@@ -1,0 +1,81 @@
+{
+	"Home": {
+		"title": "URL Shortener",
+		"description": "Shorten your URLs with ease and share them with the world."
+	},
+	"Header": {
+		"Public": {
+			"login": "Login",
+			"register": "Join Now"
+		}
+	},
+	"ShortenInput": {
+		"placeholder": "Enter your long URL here",
+		"button": "Shorten"
+	},
+	"Form": {
+		"errors": {
+			"email": {
+				"invalidEmail": "Invalid email"
+			},
+			"password": {
+				"required": "Password is required",
+				"tooShort": "Password is too short",
+				"mustContainUppercase": "Password must contain at least one uppercase letter",
+				"mustContainLowercase": "Password must contain at least one lowercase letter",
+				"mustContainNumber": "Password must contain at least one number"
+			},
+			"confirmPassword": {
+				"required": "Confirm Password is required",
+				"mustMatch": "Passwords do not match"
+			}
+		}
+	},
+	"Auth": {
+		"Login": {
+			"title": "Login to Your Account",
+			"submit": "Login",
+			"bottomText": "Don't have an account?",
+			"bottomLink": "Register",
+			"forgotPassword": "Forgot Password?",
+			"forgotPasswordLink": "Reset it",
+			"fields": {
+				"email": {
+					"label": "Enter your email",
+					"placeholder": "Email"
+				},
+				"password": {
+					"label": "Enter your password",
+					"placeholder": "Password"
+				}
+			}
+		},
+		"Register": {
+			"title": "Create Your Account",
+			"submit": "Register",
+			"bottomText": "Already have an account?",
+			"bottomLink": "Login",
+			"fields": {
+				"email": {
+					"label": "Enter your email",
+					"placeholder": "Email"
+				},
+				"password": {
+					"label": "Create a password",
+					"placeholder": "Password"
+				},
+				"confirmPassword": {
+					"label": "Confirm your password",
+					"placeholder": "Confirm Password"
+				}
+			}
+		}
+	},
+	"ApiResponse": {
+		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Account created. Please verify your email.",
+		"USER_ALREADY_EXISTS": "User with this email already exists",
+		"USER_NOT_FOUND": "User not found",
+		"SERVER_ERROR": "An unexpected error occurred",
+		"INVALID_CREDENTIALS": "Invalid email or password"
+	}
+}

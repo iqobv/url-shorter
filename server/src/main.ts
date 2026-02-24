@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { useContainer } from 'class-validator';
 import cookieParser from 'cookie-parser';
+import type { NextFunction, Request, Response } from 'express';
 import basicAuth from 'express-basic-auth';
 import { AdminModule } from './api/admin/admin.module';
 import { PublicModule } from './api/public/public.module';
@@ -20,6 +21,20 @@ async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
 	const config = app.get(ConfigService);
+
+	app.use((req: Request, _res: Response, next: NextFunction) => {
+		const host = req.hostname;
+
+		if (host.startsWith('api.')) {
+			req['domainType'] = 'api';
+		} else if (host.startsWith('s.')) {
+			req['domainType'] = 'short';
+		} else {
+			req['domainType'] = 'web';
+		}
+
+		next();
+	});
 
 	app.use(cookieParser());
 
@@ -62,7 +77,7 @@ async function bootstrap() {
 		},
 	});
 
-	await app.listen(process.env.PORT ?? 5000);
+	await app.listen(process.env.PORT ?? 5000, '0.0.0.0');
 }
 
 bootstrap().catch((err) => {

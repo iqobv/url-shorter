@@ -1,0 +1,11 @@
+.bottom-text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&__link {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+}

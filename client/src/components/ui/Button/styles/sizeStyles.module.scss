@@ -1,0 +1,39 @@
+.size {
+	&--sm {
+		font-size: 12px;
+	}
+
+	&--md {
+		font-size: 16px;
+	}
+
+	&--lg {
+		font-size: 20px;
+	}
+}
+
+.padding {
+	&--sm {
+		padding: 4px 8px;
+	}
+
+	&--md {
+		padding: 8px 16px;
+	}
+
+	&--lg {
+		padding: 12px 24px;
+	}
+
+	&--sm-icon {
+		padding: 4px;
+	}
+
+	&--md-icon {
+		padding: 8px;
+	}
+
+	&--lg-icon {
+		padding: 12px;
+	}
+}

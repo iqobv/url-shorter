@@ -1,3 +1,10 @@
+@use './variables' as *;
+@use './mixins' as *;
+@use './themes/dark';
+@use './themes/light';
+@use './variables' as *;
+@use 'sass:map';
+
 html,
 body {
 	max-width: 100vw;
@@ -21,4 +28,69 @@ body {
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+li,
+ul,
+ol {
+	list-style: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	-webkit-transition: background-color 99999s ease-out;
+	-webkit-transition-delay: 99999s;
+	background-color: transparent !important;
+	-webkit-text-fill-color: unset !important;
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 12px;
+
+	@include respond-to(sm) {
+		max-width: map.get($breakpoints, 'sm');
+		padding: 0 16px;
+	}
+
+	@include respond-to(md) {
+		max-width: map.get($breakpoints, 'md');
+	}
+
+	@include respond-to(lg) {
+		max-width: map.get($breakpoints, 'lg');
+		padding: 0 20px;
+	}
+
+	@include respond-to(xl) {
+		max-width: map.get($breakpoints, 'xl');
+	}
+
+	@include respond-to(xxl) {
+		max-width: map.get($breakpoints, 'xxl');
+	}
+}
+
+.page {
+	min-height: 100vh;
+	min-height: 100dvh;
+
+	body:has(> header) & {
+		min-height: calc(100vh - $header-height);
+		min-height: calc(100dvh - $header-height);
+	}
+}
+
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

@@ -1,0 +1,35 @@
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: transparent;
+	color: inherit;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	width: fit-content;
+	user-select: none;
+	transition:
+		background-color 0.2s ease-in-out,
+		border-color 0.2s ease-in-out,
+		text-decoration 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+
+	&--rounded {
+		border-radius: 9999px;
+	}
+
+	&--full-width {
+		width: 100%;
+	}
+
+	&--disabled,
+	&--loading,
+	&:disabled {
+		cursor: default;
+		opacity: 0.6;
+		pointer-events: none;
+	}
+}

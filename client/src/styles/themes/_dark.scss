@@ -1,4 +1,41 @@
 html.dark {
 	--background: #121212;
 	--foreground: #e0e0e0;
+
+	--header-bg: #1e1e1e;
+
+	/* Logo */
+	--logo-color: #e0e0e0;
+
+	/* Auth */
+	--auth-bg: #1e1e1e;
+
+	/* Loader */
+	--loader-color: #e0e0e0;
+	--inverse-loader-color: #1e1e1e;
+
+	/* Input */
+	--input-border-color: #333;
+	--input-bg-color: #101010;
+	--input-focus-border-color: #a8a8a8;
+	--input-error-border-color: #ff4d4d;
+	--input-error-text-color: #ff4d4d;
+
+	/* Button */
+	--btn-bg-primary: #e0e0e0;
+	--btn-color-primary: #1e1e1e;
+	--btn-bg-primary-hover: #c0c0c0;
+
+	--btn-bg-secondary: #1e1e1e;
+	--btn-color-secondary: #e0e0e0;
+	--btn-bg-secondary-hover: #2c2c2c;
+
+	--btn-border-outline: #4b4b4b;
+	--btn-bg-outline-hover: #2c2c2c;
+	--btn-border-outline-hover: #616161;
+
+	--btn-color-ghost: #e0e0e0;
+	--btn-bg-ghost-hover: #242424;
+
+	--btn-color-link: #e0e0e0;
 }

@@ -1,0 +1,22 @@
+.header-auth {
+	width: 100vw;
+	width: 100dvw;
+	padding-top: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__logo {
+		font-size: 32px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 6px;
+	}
+}

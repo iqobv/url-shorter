@@ -1,13 +1,4 @@
-import {
-	Body,
-	Controller,
-	Get,
-	Ip,
-	Param,
-	Post,
-	Req,
-	Res,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import {
 	ApiConflictResponse,
 	ApiForbiddenResponse,
@@ -15,7 +6,6 @@ import {
 	ApiOkResponse,
 	ApiOperation,
 } from '@nestjs/swagger';
-import type { Request, Response } from 'express';
 import { Auth, Authorized, OptionalAuth } from 'src/libs/decorators';
 import { BulkClaimLinksDto, CreateLinkDto, LinkDto } from './dto';
 import { LinkService } from './link.service';
@@ -47,26 +37,12 @@ export class LinkController {
 		return await this.linkService.claimLinks(userId, dto);
 	}
 
-	@ApiOperation({ summary: 'Redirect to original URL by slug' })
-	@ApiOkResponse({ description: 'Redirects to the original URL' })
+	@ApiOperation({ summary: 'Get link by slug' })
+	@ApiOkResponse({ type: LinkDto })
 	@ApiNotFoundResponse({ description: 'Link not found.' })
 	@Get('slug/:slug')
-	async getBySlug(
-		@Ip() ip: string,
-		@Param('slug') slug: string,
-		@Res() res: Response,
-		@Req() req: Request,
-	) {
-		const userAgent = req.get('user-agent') || '';
-		const referer = req.get('referer') || '';
-
-		const link = await this.linkService.getBySlug(slug, {
-			ip,
-			userAgent,
-			referer,
-		});
-
-		return res.redirect(link.originalUrl);
+	async getBySlug(@Param('slug') slug: string) {
+		return await this.linkService.getBySlugWithoutTracking(slug);
 	}
 
 	@Auth()

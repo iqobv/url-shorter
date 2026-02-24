@@ -7,6 +7,7 @@ import { ReservedWordModule } from './reserved-word/reserved-word.module';
 import { TokenModule } from './token/token.module';
 import { UserProviderModule } from './user-provider/user-provider.module';
 import { UserModule } from './user/user.module';
+import { RedirectModule } from './redirect/redirect.module';
 
 @Module({
 	imports: [
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
 		AnalyticsModule,
 		UserProviderModule,
 		ReservedWordModule,
+		RedirectModule,
 	],
 })
 export class PublicModule {}

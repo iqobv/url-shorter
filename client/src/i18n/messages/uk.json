@@ -1,0 +1,80 @@
+{
+	"Home": {
+		"title": "Скорочувач URL",
+		"description": "Скорочуйте ваші URL легко та діліться ними з усім світом."
+	},
+	"Header": {
+		"Public": {
+			"login": "Увійти",
+			"register": "Приєднатися"
+		}
+	},
+	"ShortenInput": {
+		"placeholder": "Введіть ваш довгий URL тут",
+		"button": "Скоротити"
+	},
+	"Form": {
+		"errors": {
+			"email": {
+				"invalidEmail": "Некоректна електронна пошта"
+			},
+			"password": {
+				"required": "Пароль обов'язковий",
+				"tooShort": "Пароль занадто короткий",
+				"mustContainUppercase": "Пароль повинен містити принаймні одну велику літеру",
+				"mustContainLowercase": "Пароль повинен містити принаймні одну малу літеру",
+				"mustContainNumber": "Пароль повинен містити принаймні одну цифру"
+			},
+			"confirmPassword": {
+				"required": "Підтвердження пароля обов'язкове",
+				"mustMatch": "Паролі не збігаються"
+			}
+		}
+	},
+	"Auth": {
+		"Login": {
+			"title": "Увійдіть у свій обліковий запис",
+			"submit": "Увійти",
+			"bottomText": "Немає облікового запису?",
+			"bottomLink": "Зареєструватися",
+			"forgotPassword": "Забули пароль?",
+			"fields": {
+				"email": {
+					"label": "Введіть свою електронну пошту",
+					"placeholder": "Електронна пошта"
+				},
+				"password": {
+					"label": "Введіть свій пароль",
+					"placeholder": "Пароль"
+				}
+			}
+		},
+		"Register": {
+			"title": "Створіть свій обліковий запис",
+			"submit": "Зареєструватися",
+			"bottomText": "Вже є обліковий запис?",
+			"bottomLink": "Увійти",
+			"fields": {
+				"email": {
+					"label": "Введіть свою електронну пошту",
+					"placeholder": "Електронна пошта"
+				},
+				"password": {
+					"label": "Придумайте пароль",
+					"placeholder": "Пароль"
+				},
+				"confirmPassword": {
+					"label": "Підтвердіть пароль",
+					"placeholder": "Підтвердіть пароль"
+				}
+			}
+		}
+	},
+	"ApiResponse": {
+		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Обліковий запис створено. Будь ласка, підтвердіть вашу електронну пошту.",
+		"USER_ALREADY_EXISTS": "Користувач з цією електронною поштою вже існує",
+		"USER_NOT_FOUND": "Користувача не знайдено",
+		"SERVER_ERROR": "Сталася непередбачена помилка",
+		"INVALID_CREDENTIALS": "Неправильна електронна пошта або пароль"
+	}
+}

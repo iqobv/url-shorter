@@ -19,7 +19,10 @@ export class UserService {
 		const alreadyExists = await this.findByEmail(email);
 
 		if (alreadyExists) {
-			throw new ConflictException('User with this email already exists');
+			throw new ConflictException({
+				code: 'USER_ALREADY_EXISTS',
+				message: 'User with this email already exists',
+			});
 		}
 
 		const count = await this.prismaService.user.count();
@@ -46,7 +49,10 @@ export class UserService {
 		});
 
 		if (!user) {
-			throw new NotFoundException('User not found');
+			throw new NotFoundException({
+				code: 'USER_NOT_FOUND',
+				message: 'User not found',
+			});
 		}
 
 		return user;
@@ -68,7 +74,10 @@ export class UserService {
 			const existingUser = await this.findByEmail(email);
 
 			if (existingUser && existingUser.id !== id) {
-				throw new ConflictException('User with this email already exists');
+				throw new ConflictException({
+					code: 'USER_ALREADY_EXISTS',
+					message: 'User with this email already exists',
+				});
 			}
 		}
 

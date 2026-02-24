@@ -130,11 +130,7 @@ export class LinkService {
 	async getBySlug(slug: string, metaDto: GetBySlugMetaDto) {
 		const { ip, userAgent, referer } = metaDto;
 
-		const link = await this.prismaService.link.findUnique({
-			where: { slug },
-		});
-
-		if (!link) throw new NotFoundException('Link not found.');
+		const link = await this.getBySlugWithoutTracking(slug);
 
 		const click = await this.clickService.createClick({
 			linkId: link.id,
@@ -150,6 +146,16 @@ export class LinkService {
 				uniqueClicks: click.isUnique ? { increment: 1 } : undefined,
 			},
 		});
+
+		return link;
+	}
+
+	async getBySlugWithoutTracking(slug: string) {
+		const link = await this.prismaService.link.findUnique({
+			where: { slug },
+		});
+
+		if (!link) throw new NotFoundException('Link not found.');
 
 		return link;
 	}

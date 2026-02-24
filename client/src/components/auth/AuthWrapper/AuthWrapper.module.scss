@@ -1,0 +1,29 @@
+.auth-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	gap: 30px;
+	padding-top: 80px;
+
+	&__container {
+		border-radius: 10px;
+		padding: 40px 20px;
+		background-color: var(--auth-bg);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 30px;
+		width: 100%;
+		max-width: 600px;
+	}
+
+	&__title {
+		padding-bottom: 30px;
+		font-size: 32px;
+		font-weight: 600;
+		text-align: center;
+	}
+}

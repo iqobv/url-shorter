@@ -1,0 +1,14 @@
+.bottom-node {
+	display: flex;
+	justify-content: start;
+	flex-direction: column;
+	width: 100%;
+	max-width: 500px;
+}
+
+.forgot-password-link {
+	padding: 0;
+	font-size: 14px;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}

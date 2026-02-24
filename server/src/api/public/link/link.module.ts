@@ -8,6 +8,7 @@ import { LinkService } from './link.service';
 @Module({
 	controllers: [LinkController],
 	providers: [LinkService, IsNotReservedConstraint],
+	exports: [LinkService],
 	imports: [ReservedWordModule, ClickModule],
 })
 export class LinkModule {}

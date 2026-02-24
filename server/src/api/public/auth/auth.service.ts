@@ -48,7 +48,7 @@ export class AuthService {
 
 		await this.mailerService.sendVerificationEmail(user.email, token);
 
-		return { message: 'Account created. Please verify your email.' };
+		return { success: true, code: 'REGISTRATION_SUCCESS_CONFIRM_EMAIL' };
 	}
 
 	async login(dto: LoginDto, res: Response) {
@@ -88,7 +88,10 @@ export class AuthService {
 		const user = await this.userService.findByEmail(dto.email, true);
 
 		if (!user || !user.password) {
-			throw new UnauthorizedException('Invalid credentials');
+			throw new UnauthorizedException({
+				message: 'Invalid email or password',
+				code: 'INVALID_CREDENTIALS',
+			});
 		}
 
 		const isPasswordValid = await this.userService.comparePassword(
@@ -97,7 +100,10 @@ export class AuthService {
 		);
 
 		if (!isPasswordValid) {
-			throw new UnauthorizedException('Invalid credentials');
+			throw new UnauthorizedException({
+				message: 'Invalid email or password',
+				code: 'INVALID_CREDENTIALS',
+			});
 		}
 
 		return user;

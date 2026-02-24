@@ -1,0 +1,44 @@
+$breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px,
+);
+
+$header-height: 60px;
+
+$button-variants: (
+	'primary': (
+		'bg': var(--btn-bg-primary),
+		'color': var(--btn-color-primary),
+		'border': transparent,
+		'bg-hover': var(--btn-bg-primary-hover),
+	),
+	'outline': (
+		'bg': transparent,
+		'border': var(--btn-border-outline),
+		'bg-hover': var(--btn-bg-outline-hover),
+		'border-hover': var(--btn-border-outline-hover),
+	),
+	'ghost': (
+		'bg': transparent,
+		'border': transparent,
+		'color': var(--btn-color-ghost),
+		'bg-hover': var(--btn-bg-ghost-hover),
+	),
+	'link': (
+		'bg': transparent,
+		'border': transparent,
+		'color': var(--btn-color-link),
+		'text-decoration': none,
+		'text-underline-offset': 6px,
+		'text-decoration-hover': underline,
+	),
+	'secondary': (
+		'bg': var(--btn-bg-secondary),
+		'color': var(--btn-color-secondary),
+		'border': transparent,
+		'bg-hover': var(--btn-bg-secondary-hover),
+	),
+);
