@@ -1,0 +1,27 @@
+.social-auth {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	width: 100%;
+}
+
+.divider {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	user-select: none;
+
+	&__text {
+		font-size: 14px;
+		color: var(--diver-text-color);
+	}
+
+	&__line {
+		flex: 1;
+		height: 1px;
+		background-color: var(--divider-color);
+	}
+}

@@ -2,7 +2,7 @@
 
 import { login } from '@/api';
 import { Button } from '@/components/ui';
-import { PAGES, QUERY_KEYS } from '@/config';
+import { PRIVATE_PAGES, PUBLIC_PAGES, QUERY_KEYS } from '@/config';
 import { LoginDto } from '@/dto';
 import { baseAuthSchema } from '@/schemas';
 import { IUser } from '@/types';
@@ -31,12 +31,12 @@ const LoginForm = () => {
 					buttonText={t('submit')}
 					onSuccess={() => {
 						router.refresh();
-						router.push(PAGES.DASHBOARD);
+						router.push(PRIVATE_PAGES.DASHBOARD);
 					}}
 					bottomNode={
 						<Button
 							variant="link"
-							href={PAGES.FORGOT_PASSWORD}
+							href={PUBLIC_PAGES.FORGOT_PASSWORD}
 							className={styles['forgot-password-link']}
 						>
 							{t('forgotPassword')}
@@ -49,7 +49,7 @@ const LoginForm = () => {
 					<BottomText
 						text={t('bottomText')}
 						linkText={t('bottomLink')}
-						href={PAGES.REGISTER}
+						href={PUBLIC_PAGES.REGISTER}
 					/>
 				</div>
 			}

@@ -69,7 +69,9 @@ export class AuthService {
 
 		this.setTokensToCookies('', '', res, true);
 
-		await this.tokenService.removeToken(user.id, token, TokenType.REFRESH);
+		await this.tokenService
+			.removeToken(user.id, token, TokenType.REFRESH)
+			.catch(() => null);
 
 		return true;
 	}
@@ -122,8 +124,10 @@ export class AuthService {
 		);
 
 		if (!storedToken) {
+			await this.logout(req, res);
 			throw new UnauthorizedException('Invalid refresh token');
 		}
+
 		const user = await this.userService.findById(storedToken.userId);
 
 		if (!user) {

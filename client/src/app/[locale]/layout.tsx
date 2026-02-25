@@ -1,8 +1,10 @@
+import { getServerUser } from '@/api';
 import { MainProvider } from '@/providers';
 import type { Metadata } from 'next';
 import { Locale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { cookies } from 'next/headers';
 import '../index.scss';
 
 const geistSans = Geist({
@@ -33,10 +35,25 @@ export default async function RootLayout({
 	const { locale } = await params;
 	const messages = await getMessages();
 
+	const cookieStore = await cookies();
+	const cookieString = cookieStore.toString();
+	const hasRefreshToken = cookieStore.has('refreshToken');
+
+	let initialUser = null;
+
+	if (hasRefreshToken) {
+		initialUser = await getServerUser(cookieString).catch(() => null);
+	}
+
 	return (
 		<html lang={locale} suppressHydrationWarning>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<MainProvider messages={messages} locale={locale}>
+				<MainProvider
+					messages={messages}
+					locale={locale}
+					initialUser={initialUser}
+					hasRefreshToken={hasRefreshToken}
+				>
 					{children}
 				</MainProvider>
 			</body>

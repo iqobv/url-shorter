@@ -65,7 +65,7 @@ export class TokenService {
 		return !!tokenRecord;
 	}
 
-	async removeToken(userId: string, token: string, type: TokenType) {
+	async removeToken(userId: string, token: string, type?: TokenType) {
 		const hashedToken = this.hashToken(token);
 
 		await this.prismaService.token.deleteMany({

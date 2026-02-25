@@ -1,6 +1,5 @@
-export const PAGES = {
+export const PUBLIC_PAGES = {
 	HOME: '/',
-	DASHBOARD: '/dashboard',
 	LOGIN: '/login',
 	REGISTER: '/register',
 	FORGOT_PASSWORD: '/forgot-password',

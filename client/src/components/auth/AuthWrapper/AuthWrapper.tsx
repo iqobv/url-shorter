@@ -1,5 +1,6 @@
 'use client';
 
+import SocialAuth from '../SocialAuth/SocialAuth';
 import styles from './AuthWrapper.module.scss';
 
 interface AuthWrapperProps {
@@ -14,6 +15,7 @@ const AuthWrapper = ({ title, form, bottomNode }: AuthWrapperProps) => {
 			<div className={styles['auth-wrapper__container']}>
 				<h1 className={styles['auth-wrapper__title']}>{title}</h1>
 				{form}
+				<SocialAuth />
 			</div>
 			{bottomNode}
 		</div>

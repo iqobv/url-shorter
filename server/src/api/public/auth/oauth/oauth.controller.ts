@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Query, Req, Res } from '@nestjs/common';
 import { ApiExcludeEndpoint, ApiOperation, ApiTags } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
 import { User } from 'generated/prisma/client';
@@ -23,20 +23,15 @@ export class OauthController {
 	async googleAuthCallback(
 		@Req() req: Request,
 		@Res({ passthrough: true }) res: Response,
+		@Query('state') state: string,
 	) {
 		const user = req.user as User;
-		const session = await this.oauthService.login(user, res);
+		await this.oauthService.login(user, res);
 
-		res.send(`
-			<script>
-				window.opener.postMessage(
-					{
-						user: ${JSON.stringify(session.user)}
-					},
-					'${process.env.GOOGLE_REDIRECT_ORIGIN}'
-				);
-				window.close();
-			</script>
-		`);
+		const frontendOrigin = process.env.CLIENT_URL || 'http://localhost:3000';
+
+		const redirectUrl = new URL(state || '/', frontendOrigin).toString();
+
+		return res.redirect(redirectUrl);
 	}
 }

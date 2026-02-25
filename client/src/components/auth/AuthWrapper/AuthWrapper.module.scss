@@ -1,3 +1,5 @@
+@use '../../../styles/mixins' as *;
+
 .auth-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -5,19 +7,29 @@
 	justify-content: center;
 	width: 100%;
 	gap: 30px;
-	padding-top: 80px;
+	padding-top: 40px;
+	padding-bottom: 60px;
+
+	@include respond-to(md) {
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
 
 	&__container {
-		border-radius: 10px;
 		padding: 40px 20px;
+		border-radius: 10px;
 		background-color: var(--auth-bg);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 30px;
-		width: 100%;
 		max-width: 600px;
+		width: 100%;
+
+		@include respond-to(md) {
+			padding: 40px;
+		}
 	}
 
 	&__title {

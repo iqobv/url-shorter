@@ -19,7 +19,7 @@ model Link {
 
   clicks Click[]
 
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@map("links")
 }

@@ -1,3 +1,4 @@
+import { useUserStore } from '@/stores';
 import { IApiErrorResponse } from '@/types';
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
@@ -60,7 +61,7 @@ api.interceptors.response.use(
 
 			try {
 				await axios.post(
-					`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+					`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/refresh`,
 					{},
 					{ withCredentials: true },
 				);
@@ -77,8 +78,10 @@ api.interceptors.response.use(
 						: new Error('Refresh failed'),
 				);
 
+				useUserStore.getState().logout();
+
 				if (typeof window !== 'undefined') {
-					window.location.href = '/login';
+					window.dispatchEvent(new Event('unauthorized'));
 				}
 				return Promise.reject(refreshError);
 			}

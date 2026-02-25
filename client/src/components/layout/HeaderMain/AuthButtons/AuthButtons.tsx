@@ -1,19 +1,31 @@
 'use client';
 
 import { Button } from '@/components/ui';
-import { PAGES } from '@/config';
+import { PRIVATE_PAGES, PUBLIC_PAGES } from '@/config';
+import { useGetUser } from '@/stores';
 import { useTranslations } from 'next-intl';
 import styles from './AuthButtons.module.scss';
 
 const AuthButtons = () => {
+	const user = useGetUser();
+	const isAuthenticated = !!user;
+
 	const t = useTranslations('Header.Public');
 
 	return (
 		<div className={styles['auth-buttons']}>
-			<Button href={PAGES.LOGIN} variant="ghost">
-				{t('login')}
-			</Button>
-			<Button href={PAGES.REGISTER}>{t('register')}</Button>
+			{isAuthenticated ? (
+				<Button href={PRIVATE_PAGES.DASHBOARD} variant="primary">
+					{t('dashboardButton')}
+				</Button>
+			) : (
+				<>
+					<Button href={PUBLIC_PAGES.LOGIN} variant="ghost">
+						{t('login')}
+					</Button>
+					<Button href={PUBLIC_PAGES.REGISTER}>{t('register')}</Button>
+				</>
+			)}
 		</div>
 	);
 };

@@ -4,7 +4,7 @@ import { createLink } from '@/api';
 import { Button, Input } from '@/components/ui';
 import { CreateLinkDto } from '@/dto';
 import { createLinkSchema } from '@/schemas';
-import { useAddLink } from '@/stores';
+import { useAddLink, useGetUser } from '@/stores';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
@@ -15,6 +15,7 @@ const CreateLink = () => {
 	const t = useTranslations('ShortenInput');
 
 	const addLink = useAddLink();
+	const user = useGetUser();
 
 	const {
 		register,
@@ -30,13 +31,15 @@ const CreateLink = () => {
 	const { mutate, isPending } = useMutation({
 		mutationFn: (dto: CreateLinkDto) => createLink(dto),
 		onSuccess: (data) => {
-			addLink({
-				id: data.id,
-				originalUrl: data.originalUrl,
-				slug: data.slug,
-				claimToken: data.claimToken,
-				createdAt: new Date(data.createdAt),
-			});
+			if (!user) {
+				addLink({
+					id: data.id,
+					originalUrl: data.originalUrl,
+					slug: data.slug,
+					claimToken: data.claimToken,
+					createdAt: new Date(data.createdAt),
+				});
+			}
 		},
 	});
 

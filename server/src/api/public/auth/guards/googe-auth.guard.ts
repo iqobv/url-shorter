@@ -1,5 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import type { Request } from 'express';
 
 @Injectable()
-export class GoogleAuthGuard extends AuthGuard('google') {}
+export class GoogleAuthGuard extends AuthGuard('google') {
+	getAuthenticateOptions(context: ExecutionContext) {
+		const request: Request = context.switchToHttp().getRequest();
+		const returnTo = request.query.returnTo || '/';
+
+		return {
+			scope: ['email', 'profile'],
+			state: returnTo,
+			prompt: 'select_account',
+		};
+	}
+}
