@@ -1,4 +1,5 @@
 import { ILinkLocal } from '@/types';
+import { PaginationState, SortingState } from '@tanstack/react-table';
 
 export const QUERY_KEYS = {
 	AUTH: {
@@ -7,7 +8,11 @@ export const QUERY_KEYS = {
 		USER: ['auth', 'user'],
 	},
 	LINK: {
-		ALL: (userId: string) => ['links', userId],
+		ALL: (
+			userId: string,
+			pagination: PaginationState,
+			sorting: SortingState,
+		) => ['links', userId, pagination, sorting],
 		CLAIM_LINKS: (links?: ILinkLocal[], userId?: string) => [
 			'links',
 			links,

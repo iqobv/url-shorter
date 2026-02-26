@@ -100,7 +100,7 @@ api.interceptors.response.use(
 
 		return Promise.reject({
 			code: 'SERVER_ERROR',
-			message: 'An unexpected error occurred',
+			message: error.message || 'An unexpected error occurred',
 			statusCode: 500,
 		});
 	},

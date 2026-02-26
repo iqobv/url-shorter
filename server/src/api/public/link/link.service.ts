@@ -10,7 +10,12 @@ import { PrismaClientKnownRequestError } from 'generated/prisma/internal/prismaN
 import { customAlphabet } from 'nanoid';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { ClickService } from '../click/click.service';
-import { BulkClaimLinksDto, CreateLinkDto, GetBySlugMetaDto } from './dto';
+import {
+	BulkClaimLinksDto,
+	CreateLinkDto,
+	GetAllLinksDto,
+	GetBySlugMetaDto,
+} from './dto';
 
 @Injectable()
 export class LinkService {
@@ -170,11 +175,37 @@ export class LinkService {
 		return link;
 	}
 
-	async getUserLinks(userId: string) {
-		return await this.prismaService.link.findMany({
-			where: { userId },
-			orderBy: { createdAt: 'desc' },
-		});
+	async getUserLinks(userId: string, query: GetAllLinksDto) {
+		const {
+			page = 1,
+			limit = 20,
+			sortBy = 'createdAt',
+			sortOrder = 'desc',
+		} = query;
+
+		const safePage = Math.max(Number(page), 1);
+		const safeSize = Math.max(Number(limit), 1);
+		const offset = (safePage - 1) * safeSize;
+
+		const [total, links] = await this.prismaService.$transaction([
+			this.prismaService.link.count({ where: { userId } }),
+			this.prismaService.link.findMany({
+				where: { userId },
+				orderBy: { [sortBy]: sortOrder },
+				skip: offset,
+				take: safeSize,
+			}),
+		]);
+
+		return {
+			meta: {
+				total,
+				page: safePage,
+				limit: safeSize,
+				totalPages: Math.ceil(total / safeSize),
+			},
+			items: links,
+		};
 	}
 
 	async removeLink(id: string, userId: string) {

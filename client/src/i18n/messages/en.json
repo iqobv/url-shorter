@@ -75,6 +75,20 @@
 			"google": "Continue with Google"
 		}
 	},
+	"Dashboard": {
+		"title": "My Links",
+		"emptyState": {
+			"title": "No links yet",
+			"description": "Start shortening your URLs to see them here!"
+		},
+		"columns": {
+			"slug": "Short URL",
+			"originalUrl": "Original URL",
+			"totalClicks": "Clicks",
+			"uniqueClicks": "Unique Clicks",
+			"createdAt": "Created At"
+		}
+	},
 	"ApiResponse": {
 		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Account created. Please verify your email.",
 		"USER_ALREADY_EXISTS": "User with this email already exists",

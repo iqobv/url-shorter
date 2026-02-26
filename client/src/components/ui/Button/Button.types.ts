@@ -18,6 +18,7 @@ export interface ButtonBaseProps {
 	disabled?: boolean;
 	className?: string;
 	contentClassName?: string;
+	tooltip?: React.ReactNode;
 }
 
 interface AnchorButtonProps

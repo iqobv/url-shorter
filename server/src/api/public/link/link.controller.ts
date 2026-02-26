@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import {
 	ApiConflictResponse,
 	ApiForbiddenResponse,
@@ -7,7 +7,13 @@ import {
 	ApiOperation,
 } from '@nestjs/swagger';
 import { Auth, Authorized, OptionalAuth } from 'src/libs/decorators';
-import { BulkClaimLinksDto, CreateLinkDto, LinkDto } from './dto';
+import {
+	BulkClaimLinksDto,
+	CreateLinkDto,
+	GetAllLinksDto,
+	LinkDto,
+	PaginatedLinksDto,
+} from './dto';
 import { LinkService } from './link.service';
 
 @Controller('links')
@@ -47,9 +53,12 @@ export class LinkController {
 
 	@Auth()
 	@ApiOperation({ summary: 'Get all links for the authenticated user' })
-	@ApiOkResponse({ type: [LinkDto] })
+	@ApiOkResponse({ type: [PaginatedLinksDto] })
 	@Get('me')
-	async getUserLinks(@Authorized('id') userId: string) {
-		return await this.linkService.getUserLinks(userId);
+	async getUserLinks(
+		@Authorized('id') userId: string,
+		@Query() query: GetAllLinksDto,
+	) {
+		return await this.linkService.getUserLinks(userId, query);
 	}
 }

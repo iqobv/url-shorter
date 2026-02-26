@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useRef } from 'react';
+import Tooltip from '../Tooltip/Tooltip';
 import { buttonStyles } from './Button.styles';
 import { ButtonProps } from './Button.types';
 import ButtonContent from './ButtonContent/ButtonContent';
@@ -15,8 +19,11 @@ const Button = ({
 	disabled = false,
 	className = '',
 	contentClassName = '',
+	tooltip,
 	...rest
 }: ButtonProps) => {
+	const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+
 	const isLink = !!href && !disabled && !isLoading;
 
 	const styles = buttonStyles({
@@ -34,6 +41,7 @@ const Button = ({
 		<>
 			{isLink ? (
 				<Link
+					ref={ref as React.RefObject<HTMLAnchorElement>}
 					href={href}
 					className={`${styles} ${className}`}
 					{...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
@@ -48,6 +56,7 @@ const Button = ({
 				</Link>
 			) : (
 				<button
+					ref={ref as React.RefObject<HTMLButtonElement>}
 					className={`${styles} ${className}`}
 					disabled={disabled || isLoading}
 					{...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
@@ -61,6 +70,7 @@ const Button = ({
 					</ButtonContent>
 				</button>
 			)}
+			{tooltip && <Tooltip targetRef={ref}>{tooltip}</Tooltip>}
 		</>
 	);
 };

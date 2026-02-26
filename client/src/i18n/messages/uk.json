@@ -74,6 +74,20 @@
 			"google": "Продовжити з Google"
 		}
 	},
+	"Dashboard": {
+		"title": "Мої посилання",
+		"emptyState": {
+			"title": "Посилань ще немає",
+			"description": "Почніть скорочувати ваші URL, щоб побачити їх тут!"
+		},
+		"columns": {
+			"slug": "Короткий URL",
+			"originalUrl": "Оригінальний URL",
+			"totalClicks": "Кліки",
+			"uniqueClicks": "Унікальні кліки",
+			"createdAt": "Створено"
+		}
+	},
 	"ApiResponse": {
 		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Обліковий запис створено. Будь ласка, підтвердіть вашу електронну пошту.",
 		"USER_ALREADY_EXISTS": "Користувач з цією електронною поштою вже існує",

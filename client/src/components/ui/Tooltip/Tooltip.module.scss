@@ -1,0 +1,18 @@
+.tooltip {
+	--top: 0;
+	--left: 0;
+	--visible: hidden;
+
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	visibility: var(--visible);
+	white-space: nowrap;
+	background-color: var(--tooltip-bg);
+	border: 1px solid var(--tooltip-border);
+	color: var(--tooltip-color);
+	padding: 5px 10px;
+	border-radius: 4px;
+	top: var(--top);
+	left: var(--left);
+}
