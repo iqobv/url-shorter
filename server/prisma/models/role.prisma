@@ -1,0 +1,23 @@
+model Role {
+  id String @id @default(uuid())
+
+  workspaceId String @map("workspace_id")
+
+  name        String
+  description String?
+
+  permissions String[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  inviteLinks InviteLink[]
+  memberRoles MemberRole[]
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([deletedAt])
+  @@map("roles")
+}

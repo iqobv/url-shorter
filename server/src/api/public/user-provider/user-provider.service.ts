@@ -1,5 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
+import { ERRORS } from 'src/libs/constants';
 import { userSelect } from 'src/libs/prisma';
 import { CreateUserProviderDto } from './dto';
 
@@ -13,7 +14,9 @@ export class UserProviderService {
 		const exists = await this.getByProviderId(provider, providerId);
 
 		if (exists) {
-			throw new ConflictException('User provider already exists');
+			throw new ConflictException(
+				ERRORS.USER_PROVIDER.USER_PROVIDER_ALREADY_EXISTS,
+			);
 		}
 
 		return await this.prismaService.userProvider.create({

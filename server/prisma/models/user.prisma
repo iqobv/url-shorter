@@ -6,6 +6,9 @@ model User {
 
   emailVerified Boolean @default(false) @map("email_verified")
 
+  username    String  @unique
+  displayName String? @map("display_name")
+
   role UserRole @default(USER)
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -14,6 +17,14 @@ model User {
   tokens        Token[]
   links         Link[]
   userProviders UserProvider[]
+  inviteLinks   InviteLink[]
+  workspaces    Workspace[]
+
+  workspaceMemberships          WorkspaceMember[] @relation("workspaceMembers")
+  invitedByWorkspaceMemberships WorkspaceMember[] @relation("invitedByWorkspaceMembers")
+
+  auditLogs       AuditLog[] @relation("user")
+  targetAuditLogs AuditLog[] @relation("targetUser")
 
   @@map("users")
 }

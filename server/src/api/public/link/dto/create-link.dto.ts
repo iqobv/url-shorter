@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString, IsUrl, Matches } from 'class-validator';
+import { IsOptional, IsString, IsUrl, IsUUID, Matches } from 'class-validator';
 import { IsNotReserved } from '../decorators';
 
 export class CreateLinkDto {
@@ -25,4 +25,12 @@ export class CreateLinkDto {
 	@Matches(/^[a-zA-Z0-9_-]*$/)
 	@IsNotReserved()
 	customAlias?: string;
+
+	@ApiProperty({
+		example: '550e8400-e29b-41d4-a716-446655440000',
+		required: false,
+	})
+	@IsOptional()
+	@IsUUID('4')
+	workspaceId?: string;
 }

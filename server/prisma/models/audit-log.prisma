@@ -1,0 +1,22 @@
+model AuditLog {
+  id String @id @default(uuid())
+
+  workspaceId  String  @map("workspace_id")
+  userId       String? @map("user_id")
+  targetUserId String? @map("target_user_id")
+
+  actionKey String  @map("action_key")
+  metadata  Json?   @map("metadata")
+  actorName String? @map("actor_name")
+
+  entityId   String?     @map("entity_id")
+  entityType EntityType? @map("entity_type")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  workspace  Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user       User?     @relation("user", fields: [userId], references: [id], onDelete: SetNull)
+  targetUser User?     @relation("targetUser", fields: [targetUserId], references: [id], onDelete: SetNull)
+
+  @@map("audit_logs")
+}

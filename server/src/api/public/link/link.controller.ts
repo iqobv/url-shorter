@@ -6,7 +6,14 @@ import {
 	ApiOkResponse,
 	ApiOperation,
 } from '@nestjs/swagger';
-import { Auth, Authorized, OptionalAuth } from 'src/libs/decorators';
+import { ERRORS } from 'src/libs/constants';
+import {
+	Auth,
+	Authorized,
+	OptionalAuth,
+	Permissions,
+} from 'src/libs/decorators';
+import { createCustomMessageDto } from 'src/libs/utils';
 import {
 	BulkClaimLinksDto,
 	CreateLinkDto,
@@ -23,9 +30,11 @@ export class LinkController {
 	@ApiOperation({ summary: 'Create a short link' })
 	@OptionalAuth()
 	@ApiOkResponse({ type: LinkDto })
-	@ApiConflictResponse({ description: 'Custom alias is already in use.' })
+	@ApiConflictResponse({
+		type: createCustomMessageDto(ERRORS.LINK.CUSTOM_ALIAS_ALREADY_EXISTS),
+	})
 	@ApiForbiddenResponse({
-		description: 'Custom alias can only be set by authenticated users.',
+		type: createCustomMessageDto(ERRORS.LINK.CUSTOM_ALIAS_NOT_AUTHENTICATED),
 	})
 	@Post()
 	async create(@Body() dto: CreateLinkDto, @Authorized('id') userId: string) {
@@ -45,10 +54,23 @@ export class LinkController {
 
 	@ApiOperation({ summary: 'Get link by slug' })
 	@ApiOkResponse({ type: LinkDto })
-	@ApiNotFoundResponse({ description: 'Link not found.' })
+	@ApiNotFoundResponse({
+		type: createCustomMessageDto(ERRORS.LINK.LINK_NOT_FOUND),
+	})
 	@Get('slug/:slug')
 	async getBySlug(@Param('slug') slug: string) {
 		return await this.linkService.getBySlugWithoutTracking(slug);
+	}
+
+	@Permissions()
+	@ApiOperation({ summary: 'Get all links for a workspace' })
+	@ApiOkResponse({ type: PaginatedLinksDto })
+	@Get('workspace/:workspaceId')
+	async getWorkspaceLinks(
+		@Param('workspaceId') workspaceId: string,
+		@Query() query: GetAllLinksDto,
+	) {
+		return await this.linkService.getAllWorkspaceLinks(workspaceId, query);
 	}
 
 	@Auth()

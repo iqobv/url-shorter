@@ -6,4 +6,9 @@ export const STATIC_RESERVED_WORDS = [
 	'dashboard',
 	'user',
 	'settings',
+	'register',
+	'forgot-password',
+	'email-verify',
+	'workspace',
+	'workspaces',
 ];

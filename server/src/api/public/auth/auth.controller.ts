@@ -1,23 +1,22 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import {
 	ApiConflictResponse,
+	ApiExtraModels,
 	ApiForbiddenResponse,
 	ApiNotFoundResponse,
 	ApiOkResponse,
 	ApiOperation,
 	ApiUnauthorizedResponse,
+	getSchemaPath,
 } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
+import { ERRORS } from 'src/libs/constants';
 import { Auth, Authorized } from 'src/libs/decorators';
+import { createCustomMessageDto } from 'src/libs/utils';
 import { UserSwaggerDto } from '../user/dto';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
-import {
-	LoginDto,
-	LoginResultDto,
-	RegisterDto,
-	RegisterResultDto,
-} from './dto';
+import { LoginDto, LoginResultDto, RegisterDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
@@ -27,9 +26,13 @@ export class AuthController {
 	) {}
 
 	@ApiOperation({ summary: 'Register a new user' })
-	@ApiOkResponse({ type: RegisterResultDto })
+	@ApiOkResponse({
+		type: createCustomMessageDto(
+			ERRORS.AUTH.REGISTRATION_SUCCESS_CONFIRM_EMAIL,
+		),
+	})
 	@ApiConflictResponse({
-		description: 'User with this email already exists',
+		type: createCustomMessageDto(ERRORS.USER.USER_ALREADY_EXISTS),
 	})
 	@Post('register')
 	async register(@Body() dto: RegisterDto) {
@@ -38,7 +41,9 @@ export class AuthController {
 
 	@ApiOperation({ summary: 'Login user and create session' })
 	@ApiOkResponse({ type: LoginResultDto })
-	@ApiForbiddenResponse({ description: 'Email not verified' })
+	@ApiForbiddenResponse({
+		type: createCustomMessageDto(ERRORS.AUTH.EMAIL_NOT_VERIFIED),
+	})
 	@Post('login')
 	async login(
 		@Body() dto: LoginDto,
@@ -57,10 +62,30 @@ export class AuthController {
 
 	@ApiOperation({ summary: 'Refresh access and refresh tokens' })
 	@ApiOkResponse({ type: LoginResultDto })
+	@ApiExtraModels(
+		createCustomMessageDto(ERRORS.AUTH.NO_REFRESH_TOKEN),
+		createCustomMessageDto(ERRORS.AUTH.INVALID_REFRESH_TOKEN),
+	)
 	@ApiUnauthorizedResponse({
-		description: 'No refresh token provided<br/>Invalid refresh token',
+		description: 'No refresh token or invalid refresh token',
+		schema: {
+			oneOf: [
+				{
+					$ref: getSchemaPath(
+						createCustomMessageDto(ERRORS.AUTH.NO_REFRESH_TOKEN),
+					),
+				},
+				{
+					$ref: getSchemaPath(
+						createCustomMessageDto(ERRORS.AUTH.INVALID_REFRESH_TOKEN),
+					),
+				},
+			],
+		},
 	})
-	@ApiNotFoundResponse({ description: 'User not found' })
+	@ApiNotFoundResponse({
+		type: createCustomMessageDto(ERRORS.USER.USER_NOT_FOUND),
+	})
 	@Post('refresh')
 	async refreshToken(
 		@Req() req: Request,
@@ -72,7 +97,9 @@ export class AuthController {
 	@Auth()
 	@ApiOperation({ summary: 'Get current logged in user' })
 	@ApiOkResponse({ type: UserSwaggerDto })
-	@ApiNotFoundResponse({ description: 'User not found' })
+	@ApiNotFoundResponse({
+		type: createCustomMessageDto(ERRORS.USER.USER_NOT_FOUND),
+	})
 	@Get('me')
 	async me(@Authorized('id') userId: string) {
 		return await this.userService.findById(userId);

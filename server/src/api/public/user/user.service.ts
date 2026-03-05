@@ -6,6 +6,7 @@ import {
 import { hash, verify } from 'argon2';
 import { UserRole } from 'generated/prisma/enums';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
+import { ERRORS } from 'src/libs/constants';
 import { userSelect } from 'src/libs/prisma';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
@@ -14,15 +15,12 @@ export class UserService {
 	constructor(private readonly prismaService: PrismaService) {}
 
 	async createUser(dto: CreateUserDto) {
-		const { email, password, emailVerified } = dto;
+		const { email, password, emailVerified, username, displayName } = dto;
 
 		const alreadyExists = await this.findByEmail(email);
 
 		if (alreadyExists) {
-			throw new ConflictException({
-				code: 'USER_ALREADY_EXISTS',
-				message: 'User with this email already exists',
-			});
+			throw new ConflictException(ERRORS.USER.USER_ALREADY_EXISTS);
 		}
 
 		const count = await this.prismaService.user.count();
@@ -35,6 +33,8 @@ export class UserService {
 				password: passwordToStore,
 				emailVerified: emailVerified,
 				role: count === 0 ? UserRole.ADMIN : UserRole.USER,
+				username,
+				displayName,
 			},
 			select: userSelect,
 		});
@@ -49,10 +49,7 @@ export class UserService {
 		});
 
 		if (!user) {
-			throw new NotFoundException({
-				code: 'USER_NOT_FOUND',
-				message: 'User not found',
-			});
+			throw new NotFoundException(ERRORS.USER.USER_NOT_FOUND);
 		}
 
 		return user;
@@ -61,6 +58,13 @@ export class UserService {
 	async findByEmail(email: string, full: boolean = false) {
 		return await this.prismaService.user.findUnique({
 			where: { email },
+			select: full ? undefined : userSelect,
+		});
+	}
+
+	async findByUsername(username: string, full: boolean = false) {
+		return await this.prismaService.user.findUnique({
+			where: { username },
 			select: full ? undefined : userSelect,
 		});
 	}
@@ -74,10 +78,7 @@ export class UserService {
 			const existingUser = await this.findByEmail(email);
 
 			if (existingUser && existingUser.id !== id) {
-				throw new ConflictException({
-					code: 'USER_ALREADY_EXISTS',
-					message: 'User with this email already exists',
-				});
+				throw new ConflictException(ERRORS.USER.USER_ALREADY_EXISTS);
 			}
 		}
 

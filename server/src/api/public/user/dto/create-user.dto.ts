@@ -6,6 +6,7 @@ import {
 	IsOptional,
 	IsString,
 	IsStrongPassword,
+	Min,
 } from 'class-validator';
 import { UserRole } from 'generated/prisma/enums';
 
@@ -31,6 +32,22 @@ export class CreateUserDto {
 		minSymbols: 0,
 	})
 	password?: string;
+
+	@ApiProperty({
+		example: 'exampleuser',
+	})
+	@IsString()
+	@Min(4)
+	username: string;
+
+	@ApiProperty({
+		example: 'Example User',
+		required: false,
+	})
+	@IsOptional()
+	@IsString()
+	@Min(4)
+	displayName?: string;
 
 	@ApiProperty({
 		example: UserRole.USER,

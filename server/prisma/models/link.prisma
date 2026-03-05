@@ -1,7 +1,8 @@
 model Link {
   id String @id @default(uuid())
 
-  userId String? @map("user_id")
+  userId      String? @map("user_id")
+  workspaceId String? @map("workspace_id")
 
   originalUrl String @map("original_url")
 
@@ -14,12 +15,20 @@ model Link {
 
   claimToken String? @map("claim_token")
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  favicon  String? @map("favicon")
+  title    String? @map("title")
+  siteName String? @map("site_name")
+
+  tags String[] @map("tags")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
 
   clicks Click[]
 
-  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
 
   @@map("links")
 }

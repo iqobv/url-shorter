@@ -1,0 +1,7 @@
+enum EntityType {
+  WORKSPACE
+  ROLE
+  WORKSPACE_MEMBER
+  LINK
+  INVITE_LINK
+}

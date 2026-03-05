@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Click } from 'generated/prisma/client';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
+import { ERRORS } from 'src/libs/constants';
 import { AnalyticsQueryDto, ClickMetricsDto, DailyAnalyticsDto } from './dto';
 
 @Injectable()
@@ -24,7 +25,7 @@ export class AnalyticsService {
 			},
 		});
 
-		if (!link) throw new NotFoundException('Link not found.');
+		if (!link) throw new NotFoundException(ERRORS.LINK.LINK_NOT_FOUND);
 
 		const { clicks, ...rest } = link;
 

@@ -10,7 +10,9 @@ import type { Request, Response } from 'express';
 import { User } from 'generated/prisma/client';
 import { TokenType } from 'generated/prisma/enums';
 import ms, { StringValue } from 'ms';
+import slugify from 'slugify';
 import { MailerService } from 'src/infra/mailer/mailer.service';
+import { ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
 import { parseBoolean } from 'src/libs/utils';
 import { TokenService } from '../token/token.service';
 import { UserService } from '../user/user.service';
@@ -48,14 +50,14 @@ export class AuthService {
 
 		await this.mailerService.sendVerificationEmail(user.email, token);
 
-		return { success: true, code: 'REGISTRATION_SUCCESS_CONFIRM_EMAIL' };
+		return SUCCESS_MESSAGES.AUTH.REGISTRATION_SUCCESS_CONFIRM_EMAIL;
 	}
 
 	async login(dto: LoginDto, res: Response) {
 		const user = await this.validateUser(dto);
 
 		if (!user.emailVerified) {
-			throw new ForbiddenException('Email not verified');
+			throw new ForbiddenException(ERRORS.AUTH.EMAIL_NOT_VERIFIED);
 		}
 
 		return await this.createSession(user, res);
@@ -90,10 +92,7 @@ export class AuthService {
 		const user = await this.userService.findByEmail(dto.email, true);
 
 		if (!user || !user.password) {
-			throw new UnauthorizedException({
-				message: 'Invalid email or password',
-				code: 'INVALID_CREDENTIALS',
-			});
+			throw new UnauthorizedException(ERRORS.AUTH.INVALID_CREDENTIALS);
 		}
 
 		const isPasswordValid = await this.userService.comparePassword(
@@ -102,10 +101,7 @@ export class AuthService {
 		);
 
 		if (!isPasswordValid) {
-			throw new UnauthorizedException({
-				message: 'Invalid email or password',
-				code: 'INVALID_CREDENTIALS',
-			});
+			throw new UnauthorizedException(ERRORS.AUTH.INVALID_CREDENTIALS);
 		}
 
 		return user;
@@ -115,7 +111,7 @@ export class AuthService {
 		const oldRefreshToken = req.cookies['refreshToken'] as string;
 
 		if (!oldRefreshToken) {
-			throw new UnauthorizedException('No refresh token provided');
+			throw new UnauthorizedException(ERRORS.AUTH.NO_REFRESH_TOKEN);
 		}
 
 		const storedToken = await this.tokenService.getByToken(
@@ -125,13 +121,13 @@ export class AuthService {
 
 		if (!storedToken) {
 			await this.logout(req, res);
-			throw new UnauthorizedException('Invalid refresh token');
+			throw new UnauthorizedException(ERRORS.AUTH.INVALID_REFRESH_TOKEN);
 		}
 
 		const user = await this.userService.findById(storedToken.userId);
 
 		if (!user) {
-			throw new NotFoundException('User not found');
+			throw new NotFoundException(ERRORS.USER.USER_NOT_FOUND);
 		}
 
 		await this.tokenService.removeToken(
@@ -161,6 +157,35 @@ export class AuthService {
 		);
 
 		return token.token;
+	}
+
+	async generateUsername(username: string) {
+		const baseName = slugify(username, {
+			lower: true,
+			strict: true,
+			trim: true,
+			remove: /[*+~.()'"!:@]/g,
+		});
+
+		let finalUsername = '';
+		let isUnique = false;
+		let attempts = 0;
+
+		while (!isUnique && attempts < 5) {
+			const suffix =
+				attempts === 0 ? '' : `_${Math.floor(1000 + Math.random() * 90000)}`;
+			finalUsername = `${baseName}${suffix}`;
+
+			const existingUser = await this.userService.findByUsername(finalUsername);
+
+			if (!existingUser) {
+				isUnique = true;
+			} else {
+				attempts++;
+			}
+		}
+
+		return finalUsername;
 	}
 
 	private setTokensToCookies(

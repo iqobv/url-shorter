@@ -1,0 +1,28 @@
+model WorkspaceMember {
+  id String @id @default(uuid())
+
+  userId      String @map("user_id")
+  workspaceId String @map("workspace_id")
+
+  invitedByUserId       String? @map("invited_by_user_id")
+  invitedByInviteLinkId String? @map("invited_by_invite_link_id")
+
+  displayName String? @map("display_name")
+
+  roles       MemberRole[]
+  permissions String[]     @default([])
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  user          User        @relation("workspaceMembers", fields: [userId], references: [id], onDelete: Cascade)
+  workspace     Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  invitedByUser User?       @relation("invitedByWorkspaceMembers", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  inviteLink    InviteLink? @relation(fields: [invitedByInviteLinkId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, workspaceId])
+  @@index([workspaceId])
+  @@index([deletedAt])
+  @@map("workspace_members")
+}

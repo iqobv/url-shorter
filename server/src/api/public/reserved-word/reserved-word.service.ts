@@ -1,6 +1,15 @@
-import { ConflictException, Injectable, OnModuleInit } from '@nestjs/common';
+import {
+	ConflictException,
+	Injectable,
+	NotFoundException,
+	OnModuleInit,
+} from '@nestjs/common';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { STATIC_RESERVED_WORDS } from 'src/libs/constants';
+import {
+	ERRORS,
+	STATIC_RESERVED_WORDS,
+	SUCCESS_MESSAGES,
+} from 'src/libs/constants';
 import { AddReservedWordDto } from './dto';
 
 @Injectable()
@@ -27,7 +36,10 @@ export class ReservedWordService implements OnModuleInit {
 			where: { word: lowerWord },
 		});
 
-		if (existing) throw new ConflictException('Reserved word already exists');
+		if (existing)
+			throw new ConflictException(
+				ERRORS.RESERVED_WORDS.RESERVED_WORD_ALREADY_EXISTS,
+			);
 
 		const created = await this.prismaService.reservedWord.create({
 			data: { word: lowerWord },
@@ -40,6 +52,23 @@ export class ReservedWordService implements OnModuleInit {
 
 	async getAllWords() {
 		return await this.prismaService.reservedWord.findMany();
+	}
+
+	async deleteWord(id: string) {
+		const word = await this.prismaService.reservedWord.findUnique({
+			where: { id },
+		});
+
+		if (!word)
+			throw new NotFoundException(
+				ERRORS.RESERVED_WORDS.RESERVED_WORD_NOT_FOUND,
+			);
+
+		await this.prismaService.reservedWord.delete({ where: { id } });
+
+		await this.refreshCache();
+
+		return SUCCESS_MESSAGES.RESERVED_WORDS.RESERVED_WORD_DELETED;
 	}
 
 	isReserved(word: string): boolean {

@@ -4,6 +4,7 @@ import { User } from 'generated/prisma/client';
 import { UserProviderService } from '../../user-provider/user-provider.service';
 import { UserService } from '../../user/user.service';
 import { AuthService } from '../auth.service';
+import { ValidateUserDto } from './dto';
 
 @Injectable()
 export class OauthService {
@@ -17,9 +18,11 @@ export class OauthService {
 		return await this.authService.createSession(user, res);
 	}
 
-	async validateOAuthUser(email: string, providerId: string) {
+	async validateOAuthUser(dto: ValidateUserDto) {
+		const { email, username, displayName, providerId, provider } = dto;
+
 		const userProvider = await this.userProviderService.getByProviderId(
-			'google',
+			provider,
 			providerId,
 		);
 
@@ -30,7 +33,12 @@ export class OauthService {
 		let user = await this.userService.findByEmail(email);
 
 		if (!user) {
-			user = await this.userService.createUser({ email, emailVerified: true });
+			user = await this.userService.createUser({
+				email,
+				emailVerified: true,
+				username,
+				displayName,
+			});
 		} else if (!user.emailVerified) {
 			user = await this.userService.updateUser(user.id, {
 				emailVerified: true,
@@ -39,7 +47,7 @@ export class OauthService {
 
 		await this.userProviderService.createUserProvider({
 			userId: user.id,
-			provider: 'google',
+			provider,
 			providerId,
 		});
 

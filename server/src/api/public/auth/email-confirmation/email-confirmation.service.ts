@@ -7,6 +7,7 @@ import {
 import type { Response } from 'express';
 import { TokenType } from 'generated/prisma/enums';
 import { MailerService } from 'src/infra/mailer/mailer.service';
+import { ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
 import { TokenService } from '../../token/token.service';
 import { UserService } from '../../user/user.service';
 import { AuthService } from '../auth.service';
@@ -29,7 +30,7 @@ export class EmailConfirmationService {
 		);
 
 		if (!tokenRecord) {
-			throw new BadRequestException('Invalid or expired token');
+			throw new BadRequestException(ERRORS.EMAIL_CONFIRMATION.INVALID_TOKEN);
 		}
 
 		await this.userService.updateUser(tokenRecord.user.id, {
@@ -39,7 +40,7 @@ export class EmailConfirmationService {
 
 		await this.authService.createSession(user, res);
 
-		return { message: 'Email verified successfully' };
+		return SUCCESS_MESSAGES.EMAIL_CONFIRMATION.EMAIL_CONFIRMED;
 	}
 
 	async resendVerificationEmail(dto: ResendEmailDto) {
@@ -52,9 +53,6 @@ export class EmailConfirmationService {
 			await this.mailerService.sendVerificationEmail(user.email, token);
 		}
 
-		return {
-			message:
-				'If a matching account was found, a verification email has been sent.',
-		};
+		return SUCCESS_MESSAGES.EMAIL_CONFIRMATION.EMAIL_RESENT;
 	}
 }
