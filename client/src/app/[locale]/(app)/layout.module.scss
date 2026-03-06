@@ -1,0 +1,21 @@
+@use '../../../styles/variables' as *;
+
+.dashboard-layout {
+	display: flex;
+	flex-direction: row;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-width: 0;
+	}
+
+	&__main {
+		flex: 1;
+		padding: 10px 20px;
+		padding-top: calc($header-height + 20px);
+		transition: padding 0.3s ease;
+		transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+}

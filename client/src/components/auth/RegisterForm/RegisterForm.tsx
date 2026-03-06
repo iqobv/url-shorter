@@ -14,7 +14,7 @@ import { REGISTER_FORM_FIELDS } from './RegisterFormFields';
 
 const RegisterForm = () => {
 	const router = useRouter();
-	const t = useTranslations('Auth.Register');
+	const t = useTranslations('auth.register');
 
 	return (
 		<AuthWrapper

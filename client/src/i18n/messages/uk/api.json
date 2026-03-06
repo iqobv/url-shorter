@@ -1,0 +1,69 @@
+{
+	"apiResponse": {
+		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Обліковий запис створено. Будь ласка, підтвердіть вашу електронну пошту.",
+		"USER_ALREADY_EXISTS": "Користувач з цією електронною поштою вже існує",
+		"USER_NOT_FOUND": "Користувача не знайдено",
+		"SERVER_ERROR": "Сталася непередбачена помилка",
+		"INVALID_CREDENTIALS": "Неправильна електронна пошта або пароль"
+	},
+	"apiErrors": {
+		"auth": {
+			"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Реєстрація успішна, будь ласка, перевірте вашу електронну пошту для підтвердження облікового запису",
+			"EMAIL_NOT_VERIFIED": "Електронна пошта не підтверджена",
+			"INVALID_CREDENTIALS": "Недійсні облікові дані",
+			"NO_REFRESH_TOKEN": "Не надано токен оновлення",
+			"INVALID_REFRESH_TOKEN": "Недійсний токен оновлення",
+			"UNAUTHORIZED": "Не авторизовано"
+		},
+		"emailConfirmation": {
+			"INVALID_TOKEN": "Недійсний або застарілий токен підтвердження електронної пошти"
+		},
+		"user": {
+			"USER_NOT_FOUND": "Користувача не знайдено",
+			"USER_ALREADY_EXISTS": "Користувач з цією електронною поштою вже існує"
+		},
+		"userProvider": {
+			"USER_PROVIDER_ALREADY_EXISTS": "Постачальник користувача вже існує"
+		},
+		"link": {
+			"CUSTOM_ALIAS_ALREADY_EXISTS": "Користувацький псевдонім вже використовується",
+			"CUSTOM_ALIAS_NOT_AUTHENTICATED": "Користувацький псевдонім може бути встановлений лише автентифікованими користувачами",
+			"LINK_NOT_FOUND": "Посилання не знайдено",
+			"USER_DOES_NOT_HAVE_PERMISSION_TO_DELETE_LINK": "У вас немає дозволу на видалення цього посилання",
+			"WORKSPACE_ID_REQUIRED_FOR_CUSTOM_ALIAS": "ID робочого простору обов'язковий при встановленні користувацького псевдоніма",
+			"LINK_NOT_FOUND_IN_WORKSPACE": "Посилання не знайдено в зазначеному робочому просторі",
+			"WORKSPACE_ID_NOT_ALLOWED_FOR_GUEST": "ID робочого простору не може бути встановлено для гостьових користувачів",
+			"USER_DOES_NOT_HAVE_PERMISSION_TO_CREATE_LINK": "У вас немає дозволу на створення посилання в цьому робочому просторі"
+		},
+		"reservedWords": {
+			"RESERVED_WORD_ALREADY_EXISTS": "Зарезервоване слово вже існує",
+			"RESERVED_WORD_NOT_FOUND": "Зарезервоване слово не знайдено"
+		},
+		"workspace": {
+			"WORKSPACE_NOT_FOUND_OR_NO_PERMISSION": "Робочий простір не знайдено або у вас немає дозволу на доступ до нього",
+			"PERSONAL_WORKSPACE": "Особистий робочий простір не підтримує цієї дії",
+			"DEFAULT_WORKSPACE_NOT_FOUND": "Типовий робочий простір не знайдено для користувача",
+			"NO_PERMISSION": "У вас немає дозволу на виконання цієї дії"
+		},
+		"workspaceMember": {
+			"WORKSPACE_MEMBER_NOT_FOUND": "Член робочого простору не знайдено",
+			"CANNOT_REMOVE_SELF": "Ви не можете видалити себе з робочого простору",
+			"USER_ALREADY_MEMBER": "Користувач вже є членом робочого простору",
+			"USER_NOT_MEMBER": "Користувач не є членом робочого простору",
+			"WORKSPACE_OWNER_CANNOT_BE_REMOVED": "Власник робочого простору не може бути видалений"
+		},
+		"role": {
+			"ROLE_NOT_FOUND": "Роль не знайдено",
+			"CANNOT_DELETE_ROLE_ASSIGNED_TO_MEMBERS": "Не можна видалити роль, яка призначена членам",
+			"NO_PERMISSION_TO_MANAGE_ROLE": "У вас немає дозволу на керування цією роллю",
+			"NO_PERMISSION_TO_ASSIGN_ROLE": "У вас немає дозволу на призначення цієї ролі членам",
+			"NO_PERMISSION_TO_REMOVE_ROLE": "У вас немає дозволу на видалення цієї ролі з членів",
+			"NO_PERMISSION_TO_ADD_ADMIN_PERMISSIONS": "Ви не можете призначити права адміністратора ролі, якщо ви не є власником робочого простору"
+		},
+		"inviteLink": {
+			"INVITE_LINK_NOT_FOUND": "Посилання для запрошення не знайдено",
+			"INVITE_LINK_EXPIRED": "Посилання для запрошення застаріло",
+			"INVITE_LINK_ALREADY_USED": "Посилання для запрошення вже використано"
+		}
+	}
+}

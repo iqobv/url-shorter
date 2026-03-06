@@ -21,7 +21,7 @@ const LinksTable = () => {
 	const searchParams = useSearchParams();
 
 	const user = useGetUser();
-	const t = useTranslations('Dashboard.columns');
+	const t = useTranslations('dashboard.columns');
 	const pageFromUrl = Number(searchParams.get('page')) || 1;
 
 	const [sorting, setSorting] = useState<SortingState>([

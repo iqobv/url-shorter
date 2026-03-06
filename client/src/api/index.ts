@@ -7,3 +7,5 @@ export * from './link/allLinks.api';
 export * from './link/claimLinks.api';
 export * from './link/link.api';
 export * from './user/user.api';
+export * from './workpsace/allWorkspaces.api';
+export * from './workpsace/defaultWorkspace.api';

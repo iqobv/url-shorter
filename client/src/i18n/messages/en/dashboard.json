@@ -1,0 +1,27 @@
+{
+	"title": "My Links",
+	"emptyState": {
+		"title": "No links yet",
+		"description": "Start shortening your URLs to see them here!"
+	},
+	"columns": {
+		"slug": "Short URL",
+		"originalUrl": "Original URL",
+		"totalClicks": "Clicks",
+		"uniqueClicks": "Unique Clicks",
+		"createdAt": "Created At"
+	},
+	"sidebar": {
+		"links": {
+			"home": "Home",
+			"links": "Links",
+			"members": "Members",
+			"roles": "Roles"
+		},
+		"workspaces": {
+			"own": "My Workspaces",
+			"shared": "Shared with Me",
+			"create": "Create Workspace"
+		}
+	}
+}

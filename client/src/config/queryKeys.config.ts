@@ -6,7 +6,7 @@ export const QUERY_KEYS = {
 		LOGIN: ['auth', 'login'],
 		REGISTER: ['auth', 'register'],
 		USER: ['auth', 'user'],
-	},
+	} as const,
 	LINK: {
 		ALL: (
 			userId: string,
@@ -19,5 +19,9 @@ export const QUERY_KEYS = {
 			userId,
 			'claim',
 		],
-	},
-};
+	} as const,
+	WORKSPACE: {
+		DEFAULT: (userId: string) => ['workspace', userId],
+		ALL_WORKSPACES: (userId: string) => ['workspaces', userId],
+	} as const,
+} as const;

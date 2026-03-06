@@ -31,9 +31,9 @@ const AuthForm = <T extends FieldValues, R>({
 	onSuccess,
 	bottomNode,
 }: AuthFormProps<T, R>) => {
-	const formT = useTranslations('Form.errors');
-	const authT = useTranslations('Auth');
-	const apiT = useTranslations('ApiResponse');
+	const formT = useTranslations('form.errors');
+	const authT = useTranslations('auth');
+	const apiT = useTranslations('api.apiResponse');
 
 	const {
 		register,

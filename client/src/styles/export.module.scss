@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use './variables' as *;
+
+:export {
+	headerheight: $header-height;
+	sidebarwidth: $sidebar-width;
+	breakpointSm: map.get($breakpoints, sm);
+	breakpointMd: map.get($breakpoints, md);
+	breakpointLg: map.get($breakpoints, lg);
+	breakpointXl: map.get($breakpoints, xl);
+	breakpointXxl: map.get($breakpoints, xxl);
+}

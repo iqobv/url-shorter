@@ -2,7 +2,9 @@ html.dark {
 	--background: #121212;
 	--foreground: #e0e0e0;
 
-	--header-bg: #1e1e1e;
+	/* Header */
+	--header-bg: #181818;
+	--header-border-color: #333;
 
 	/* Logo */
 	--logo-color: #e0e0e0;
@@ -45,4 +47,16 @@ html.dark {
 	--btn-bg-ghost-hover: #242424;
 
 	--btn-color-link: #e0e0e0;
+
+	/* Sidebar */
+	--sidebar-bg: #181818;
+	--sidebar-border-color: #333;
+	--sidebar-color: #e0e0e0;
+	--sidebar-workspaces-bg: #1e1e1e;
+	--sidebar-workspaces-hover-bg: #242424;
+	--sidebar-workspaces-border-color: #333;
+	--sidebar-workspaces-border-hover-color: #4b4b4b;
+	--sidebar-workspaces-description-color: #a5a5a5;
+	--sidebar-link-hover-bg: #242424;
+	--sidebar-link-active-bg: #242424;
 }

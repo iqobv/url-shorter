@@ -1,0 +1,17 @@
+.sidebar-user {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-top: 1px solid var(--sidebar-border-color);
+	padding: 20px 15px 0 15px;
+	justify-content: space-between;
+
+	&__username {
+		font-size: 1rem;
+		font-weight: 500;
+		max-width: calc(100% - 40px);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

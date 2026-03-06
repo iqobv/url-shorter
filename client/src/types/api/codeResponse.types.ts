@@ -1,4 +1,4 @@
 export interface ICodeResponse {
-	success: boolean;
 	code: string;
+	message: string;
 }

@@ -1,0 +1,27 @@
+{
+	"title": "Мої посилання",
+	"emptyState": {
+		"title": "Посилань ще немає",
+		"description": "Почніть скорочувати ваші URL, щоб побачити їх тут!"
+	},
+	"columns": {
+		"slug": "Короткий URL",
+		"originalUrl": "Оригінальний URL",
+		"totalClicks": "Кліки",
+		"uniqueClicks": "Унікальні кліки",
+		"createdAt": "Створено"
+	},
+	"sidebar": {
+		"links": {
+			"home": "Головна",
+			"links": "Посилання",
+			"members": "Учасники",
+			"roles": "Ролі"
+		},
+		"workspaces": {
+			"own": "Мої робочі простори",
+			"shared": "Поділені зі мною",
+			"create": "Створити робочий простір"
+		}
+	}
+}

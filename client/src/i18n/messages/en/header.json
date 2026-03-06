@@ -1,0 +1,12 @@
+{
+	"public": {
+		"login": "Login",
+		"register": "Join Now",
+		"dashboardButton": "My Links"
+	},
+	"dashboard": {
+		"search": {
+			"placeholder": "Search for resources..."
+		}
+	}
+}

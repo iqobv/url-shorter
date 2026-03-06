@@ -6,7 +6,7 @@ import { FcGoogle } from 'react-icons/fc';
 import SocialButton from '../SocialButton/SocialButton';
 
 const Google = () => {
-	const t = useTranslations('Auth.Provider');
+	const t = useTranslations('auth.provider');
 
 	const onClick = () => {
 		const returnTo = PRIVATE_PAGES.DASHBOARD;

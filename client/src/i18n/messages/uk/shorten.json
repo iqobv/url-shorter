@@ -1,0 +1,6 @@
+{
+	"shortenInput": {
+		"placeholder": "Введіть ваш довгий URL тут",
+		"button": "Скоротити"
+	}
+}

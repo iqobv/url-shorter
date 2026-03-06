@@ -14,6 +14,9 @@ const Input = ({
 	label,
 	type = 'text',
 	ref,
+	containerClassName,
+	inputClassName,
+
 	...rest
 }: InputProps) => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -42,7 +45,7 @@ const Input = ({
 		: type;
 
 	return (
-		<div className={styles['input-container']}>
+		<div className={`${styles['input-container']} ${containerClassName}`}>
 			{!!label && (
 				<label htmlFor={id} className={styles['input-label']}>
 					{label}
@@ -68,7 +71,7 @@ const Input = ({
 						}
 					}}
 					id={id}
-					className={`${styles['input']} ${rest.className}`}
+					className={`${styles['input']} ${inputClassName}`}
 					type={finalType}
 					{...rest}
 				/>

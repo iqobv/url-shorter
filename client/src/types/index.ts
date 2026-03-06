@@ -5,5 +5,8 @@ export * from './link/allLinks.types';
 export * from './link/link.types';
 export * from './link/linkLocal.types';
 export * from './ui/formField.types';
+export * from './ui/sidebarLink.types';
 export * from './user/user.types';
 export * from './user/userRole.types';
+export * from './workspace/userWorkspaces.types';
+export * from './workspace/workpsace.types';

@@ -17,7 +17,7 @@ import styles from './LoginForm.module.scss';
 const LoginForm = () => {
 	const router = useRouter();
 
-	const t = useTranslations('Auth.Login');
+	const t = useTranslations('auth.login');
 
 	return (
 		<AuthWrapper

@@ -1,0 +1,69 @@
+{
+	"apiResponse": {
+		"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Account created. Please verify your email.",
+		"USER_ALREADY_EXISTS": "User with this email already exists",
+		"USER_NOT_FOUND": "User not found",
+		"SERVER_ERROR": "An unexpected error occurred",
+		"INVALID_CREDENTIALS": "Invalid email or password"
+	},
+	"apiErrors": {
+		"auth": {
+			"REGISTRATION_SUCCESS_CONFIRM_EMAIL": "Registration successful, please check your email to verify your account",
+			"EMAIL_NOT_VERIFIED": "Email not verified",
+			"INVALID_CREDENTIALS": "Invalid credentials",
+			"NO_REFRESH_TOKEN": "No refresh token provided",
+			"INVALID_REFRESH_TOKEN": "Invalid refresh token",
+			"UNAUTHORIZED": "Unauthorized"
+		},
+		"emailConfirmation": {
+			"INVALID_TOKEN": "Invalid or expired email confirmation token"
+		},
+		"user": {
+			"USER_NOT_FOUND": "User not found",
+			"USER_ALREADY_EXISTS": "User with this email already exists"
+		},
+		"userProvider": {
+			"USER_PROVIDER_ALREADY_EXISTS": "User provider already exists"
+		},
+		"link": {
+			"CUSTOM_ALIAS_ALREADY_EXISTS": "Custom alias is already in use",
+			"CUSTOM_ALIAS_NOT_AUTHENTICATED": "Custom alias can only be set by authenticated users",
+			"LINK_NOT_FOUND": "Link not found",
+			"USER_DOES_NOT_HAVE_PERMISSION_TO_DELETE_LINK": "You do not have permission to delete this link",
+			"WORKSPACE_ID_REQUIRED_FOR_CUSTOM_ALIAS": "Workspace ID is required when setting a custom alias",
+			"LINK_NOT_FOUND_IN_WORKSPACE": "Link not found in the specified workspace",
+			"WORKSPACE_ID_NOT_ALLOWED_FOR_GUEST": "Workspace ID cannot be set for guest users",
+			"USER_DOES_NOT_HAVE_PERMISSION_TO_CREATE_LINK": "You do not have permission to create a link in this workspace"
+		},
+		"reservedWords": {
+			"RESERVED_WORD_ALREADY_EXISTS": "Reserved word already exists",
+			"RESERVED_WORD_NOT_FOUND": "Reserved word not found"
+		},
+		"workspace": {
+			"WORKSPACE_NOT_FOUND_OR_NO_PERMISSION": "Workspace not found or you do not have permission to access it",
+			"PERSONAL_WORKSPACE": "Personal workspace does not support this action",
+			"DEFAULT_WORKSPACE_NOT_FOUND": "Default workspace not found for the user",
+			"NO_PERMISSION": "You do not have permission to perform this action"
+		},
+		"workspaceMember": {
+			"WORKSPACE_MEMBER_NOT_FOUND": "Workspace member not found",
+			"CANNOT_REMOVE_SELF": "You cannot remove yourself from the workspace",
+			"USER_ALREADY_MEMBER": "User is already a member of the workspace",
+			"USER_NOT_MEMBER": "User is not a member of the workspace",
+			"WORKSPACE_OWNER_CANNOT_BE_REMOVED": "The workspace owner cannot be removed"
+		},
+		"role": {
+			"ROLE_NOT_FOUND": "Role not found",
+			"CANNOT_DELETE_ROLE_ASSIGNED_TO_MEMBERS": "Cannot delete a role that is assigned to members",
+			"NO_PERMISSION_TO_MANAGE_ROLE": "You do not have permission to manage this role",
+			"NO_PERMISSION_TO_ASSIGN_ROLE": "You do not have permission to assign this role to members",
+			"NO_PERMISSION_TO_REMOVE_ROLE": "You do not have permission to remove this role from members",
+			"NO_PERMISSION_TO_ADD_ADMIN_PERMISSIONS": "You cannot assign admin permissions to a role if you are not the workspace owner"
+		},
+		"inviteLink": {
+			"INVITE_LINK_NOT_FOUND": "Invite link not found",
+			"INVITE_LINK_EXPIRED": "Invite link has expired",
+			"INVITE_LINK_ALREADY_USED": "Invite link has already been used"
+		}
+	}
+}

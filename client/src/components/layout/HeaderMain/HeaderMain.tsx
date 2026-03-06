@@ -12,7 +12,6 @@ const HeaderMain = () => {
 					<Logo width={25} height={25} />
 					<span>Shortly</span>
 				</Link>
-
 				<AuthButtons />
 			</div>
 		</header>

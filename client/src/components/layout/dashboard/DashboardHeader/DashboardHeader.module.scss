@@ -1,0 +1,40 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.dashboard-header {
+	background-color: var(--header-bg);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1100;
+	border-bottom: 1px solid var(--header-border-color);
+	height: $header-height;
+	padding: 10px 20px;
+	width: 100vw;
+	width: 100dvw;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		position: relative;
+
+		@include respond-to(xl) {
+			justify-content: center;
+		}
+	}
+
+	&__search-container {
+		max-width: 150px;
+		width: 100%;
+
+		@include respond-to(sm) {
+			max-width: 250px;
+		}
+
+		@include respond-to(md) {
+			max-width: 400px;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+.sidebar-link {
+	display: flex;
+	width: 100%;
+	padding: 10px 15px;
+	font-size: 1.1rem;
+	border-radius: 6px;
+	align-items: center;
+	gap: 8px;
+
+	&:hover {
+		background-color: var(--sidebar-link-hover-bg);
+	}
+}

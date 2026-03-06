@@ -1,0 +1,23 @@
+{
+	"errors": {
+		"email": {
+			"invalidEmail": "Invalid email"
+		},
+		"password": {
+			"required": "Password is required",
+			"tooShort": "Password is too short",
+			"mustContainUppercase": "Password must contain at least one uppercase letter",
+			"mustContainLowercase": "Password must contain at least one lowercase letter",
+			"mustContainNumber": "Password must contain at least one number"
+		},
+		"confirmPassword": {
+			"required": "Confirm Password is required",
+			"mustMatch": "Passwords do not match"
+		},
+		"username": {
+			"required": "Username is required",
+			"tooShort": "Username must be at least 4 characters",
+			"tooLong": "Username must be at most 40 characters"
+		}
+	}
+}

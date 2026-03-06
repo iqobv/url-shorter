@@ -1,0 +1,12 @@
+{
+	"public": {
+		"login": "Увійти",
+		"register": "Приєднатися",
+		"dashboardButton": "Мої посилання"
+	},
+	"dashboard": {
+		"search": {
+			"placeholder": "Шукати ресурси..."
+		}
+	}
+}

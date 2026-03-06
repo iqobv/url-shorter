@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { FaLink } from 'react-icons/fa';
 
 const CreateLink = () => {
-	const t = useTranslations('ShortenInput');
+	const t = useTranslations('shorten.shortenInput');
 
 	const addLink = useAddLink();
 	const user = useGetUser();

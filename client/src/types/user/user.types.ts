@@ -3,6 +3,7 @@ export interface IUser {
 	email: string;
 	emailVerified: boolean;
 	role: 'USER';
+	username: string;
 	createdAt: string;
 	updatedAt: string;
 }

@@ -10,7 +10,7 @@ const AuthButtons = () => {
 	const user = useGetUser();
 	const isAuthenticated = !!user;
 
-	const t = useTranslations('Header.Public');
+	const t = useTranslations('header.public');
 
 	return (
 		<div className={styles['auth-buttons']}>
