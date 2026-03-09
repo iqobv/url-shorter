@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { ERRORS } from 'src/libs/constants';
+import { publicUserSelect } from 'src/libs/prisma';
 
 @Injectable()
 export class WorkspaceCommonService {
@@ -24,6 +25,9 @@ export class WorkspaceCommonService {
 				members: {
 					where: { userId, deletedAt: null },
 					include: {
+						user: {
+							select: publicUserSelect,
+						},
 						roles: {
 							where: { deletedAt: null },
 							include: { role: true },

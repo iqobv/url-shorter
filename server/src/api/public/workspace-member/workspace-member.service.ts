@@ -6,8 +6,14 @@ import {
 } from '@nestjs/common';
 import { EntityType, Prisma } from 'generated/prisma/client';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ACTION_KEYS, ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
+import {
+	ACTION_KEYS,
+	ERRORS,
+	PERMISSIONS,
+	SUCCESS_MESSAGES,
+} from 'src/libs/constants';
 import { publicUserSelect } from 'src/libs/prisma';
+import { calculatePermissions } from 'src/libs/utils';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { CreateWorkspaceMemberDto, UpdateWorkspaceMemberDto } from './dto';
@@ -147,19 +153,7 @@ export class WorkspaceMemberService {
 			authUserId,
 		);
 
-		const member = await this.prismaService.workspaceMember.findFirst({
-			where: { workspaceId: workspace.id, userId },
-			include: {
-				user: {
-					select: publicUserSelect,
-				},
-				roles: {
-					include: {
-						role: true,
-					},
-				},
-			},
-		});
+		const member = workspace.members.find((m) => m.userId === userId);
 
 		if (!member || member.deletedAt)
 			throw new NotFoundException(
@@ -167,6 +161,35 @@ export class WorkspaceMemberService {
 			);
 
 		return member;
+	}
+
+	async getWorkspaceMemberPermissions(workspaceId: string, userId: string) {
+		const workspace = await this.workspaceCommonService.getWorkspaceById(
+			workspaceId,
+			userId,
+		);
+
+		const member = workspace.members.find((m) => m.userId === userId);
+
+		if (!member || member.deletedAt)
+			throw new NotFoundException(
+				ERRORS.WORKSPACE_MEMBER.WORKSPACE_MEMBER_NOT_FOUND,
+			);
+
+		const adminKey = PERMISSIONS.ADMIN.ALL;
+
+		const hasAdminRole =
+			member.permissions.includes(adminKey) &&
+			member.roles.map((r) => r.role.permissions.includes(adminKey));
+
+		const permissions =
+			workspace.ownerId === userId || workspace.isPersonal
+				? [adminKey]
+				: hasAdminRole
+					? [adminKey]
+					: calculatePermissions(member);
+
+		return permissions;
 	}
 
 	async updateWorkspaceMember(

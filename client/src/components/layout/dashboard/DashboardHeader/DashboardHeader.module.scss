@@ -13,16 +13,13 @@
 	width: 100vw;
 	width: 100dvw;
 
+	flex-direction: row;
 	&__container {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		height: 100%;
 		position: relative;
-
-		@include respond-to(xl) {
-			justify-content: center;
-		}
 	}
 
 	&__search-container {
@@ -37,4 +34,5 @@
 			max-width: 400px;
 		}
 	}
+
 }

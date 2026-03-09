@@ -16,12 +16,19 @@
 			"home": "Home",
 			"links": "Links",
 			"members": "Members",
-			"roles": "Roles"
+			"roles": "Roles",
+			"audit": "Audit Log"
 		},
 		"workspaces": {
-			"own": "My Workspaces",
-			"shared": "Shared with Me",
-			"create": "Create Workspace"
+			"dropdown": {
+				"own": "My Workspaces",
+				"shared": "Shared with Me",
+				"create": "Create Workspace"
+			},
+			"type": {
+				"personal": "Personal",
+				"shared": "Shared"
+			}
 		}
 	}
 }

@@ -1,8 +1,15 @@
 import { RegisterDto } from '@/dto';
 import { IFormField } from '@/types';
+import { messages } from '@/types/global';
+import { NestedKeyOf } from 'next-intl';
 import { MdKey, MdOutlineEmail, MdPersonOutline } from 'react-icons/md';
 
-export const REGISTER_FORM_FIELDS: IFormField<RegisterDto>[] = [
+export type RegisterFieldMessage = NestedKeyOf<typeof messages.auth>;
+
+export const REGISTER_FORM_FIELDS: IFormField<
+	RegisterDto,
+	RegisterFieldMessage
+>[] = [
 	{
 		name: 'email',
 		label: 'register.fields.email.label',

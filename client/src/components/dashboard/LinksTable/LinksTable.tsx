@@ -1,8 +1,9 @@
 'use client';
 
-import { getAllLinks } from '@/api';
+import { getWorkspaceLinks } from '@/api';
 import { Pagination } from '@/components/ui';
 import { QUERY_KEYS } from '@/config';
+import { useWorkspaceId } from '@/hooks';
 import { useGetUser } from '@/stores';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -19,6 +20,7 @@ import { useEffect, useState } from 'react';
 const LinksTable = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
+	const workspaceId = useWorkspaceId();
 
 	const user = useGetUser();
 	const t = useTranslations('dashboard.columns');
@@ -36,12 +38,18 @@ const LinksTable = () => {
 	});
 
 	const { data } = useQuery({
-		queryKey: QUERY_KEYS.LINK.ALL(user?.id || '', pagination, sorting),
+		queryKey: QUERY_KEYS.LINK.ALL(
+			user?.id || '',
+			workspaceId,
+			pagination,
+			sorting,
+		),
 		queryFn: () => {
 			const sortState = sorting[0];
 
-			return getAllLinks({
-				page: pagination.pageIndex + 1,
+			return getWorkspaceLinks(workspaceId, {
+				page: pagination.pageIndex >= 0 ? pagination.pageIndex + 1 : 1,
+				// page: 1,
 				limit: pagination.pageSize,
 				sortBy: sortState ? sortState.id : 'createdAt',
 				sortOrder: sortState ? (sortState.desc ? 'desc' : 'asc') : 'desc',
@@ -51,13 +59,27 @@ const LinksTable = () => {
 	});
 
 	useEffect(() => {
-		if (data && data.meta.totalPages < pageFromUrl) {
+		if (!data) return;
+
+		const totalPages = data.meta.totalPages;
+
+		if (totalPages > 0 && pageFromUrl > totalPages) {
 			setPagination((prev) => ({
 				...prev,
-				pageIndex: data.meta.totalPages - 1,
+				pageIndex: totalPages - 1,
 			}));
+
 			const newSearchParams = new URLSearchParams(searchParams.toString());
-			newSearchParams.set('page', data.meta.totalPages.toString());
+			newSearchParams.set('page', totalPages.toString());
+			router.push(`?${newSearchParams.toString()}`, { scroll: false });
+		} else if (totalPages === 0 && pageFromUrl !== 1) {
+			setPagination((prev) => ({
+				...prev,
+				pageIndex: 0,
+			}));
+
+			const newSearchParams = new URLSearchParams(searchParams.toString());
+			newSearchParams.delete('page');
 			router.push(`?${newSearchParams.toString()}`, { scroll: false });
 		}
 	}, [data, pageFromUrl, router, searchParams]);

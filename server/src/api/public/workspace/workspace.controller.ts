@@ -78,12 +78,12 @@ export class WorkspaceController {
 			ERRORS.WORKSPACE.WORKSPACE_NOT_FOUND_OR_NO_PERMISSION,
 		),
 	})
-	@Get('id/:id')
+	@Get('id/:workspaceId')
 	async getWorkspaceById(
 		@Authorized('id') userId: string,
-		@Param('id') workspaceId: string,
+		@Param('workspaceId') workspaceId: string,
 	) {
-		return this.workspaceCommonService.getWorkspaceById(workspaceId, userId);
+		return this.workspaceService.getWorkspaceById(workspaceId, userId);
 	}
 
 	@ApiOperation({ summary: 'Get all workspace permissions' })

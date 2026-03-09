@@ -16,7 +16,6 @@ const Input = ({
 	ref,
 	containerClassName,
 	inputClassName,
-
 	...rest
 }: InputProps) => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);

@@ -7,6 +7,7 @@
 	"dashboard": {
 		"search": {
 			"placeholder": "Шукати ресурси..."
-		}
+		},
+		"newButton": "Нове посилання"
 	}
 }

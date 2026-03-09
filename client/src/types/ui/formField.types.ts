@@ -1,10 +1,10 @@
 import { FieldValues, Path } from 'react-hook-form';
 import { IconType } from 'react-icons';
 
-export interface IFormField<T extends FieldValues> {
+export interface IFormField<T extends FieldValues, M extends string> {
 	name: Path<T>;
-	label: string;
-	placeholder?: string;
+	label: M;
+	placeholder?: M;
 	type: React.HTMLInputTypeAttribute;
 	autoComplete?: React.HTMLInputAutoCompleteAttribute;
 	icon?: IconType;

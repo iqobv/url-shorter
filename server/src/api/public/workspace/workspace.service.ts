@@ -215,6 +215,26 @@ export class WorkspaceService {
 		});
 	}
 
+	async getWorkspaceById(workspaceId: string, userId: string) {
+		const workspace = await this.prismaService.workspace.findFirst({
+			where: {
+				id: workspaceId,
+				deletedAt: null,
+				OR: [
+					{ ownerId: userId },
+					{ members: { some: { userId, deletedAt: null } }, isPersonal: false },
+				],
+			},
+		});
+
+		if (!workspace)
+			throw new NotFoundException(
+				ERRORS.WORKSPACE.WORKSPACE_NOT_FOUND_OR_NO_PERMISSION,
+			);
+
+		return workspace;
+	}
+
 	async deleteWorkspace(workspaceId: string, userId: string) {
 		const workspace = await this.getWorkspaceByOwnerId(workspaceId, userId);
 

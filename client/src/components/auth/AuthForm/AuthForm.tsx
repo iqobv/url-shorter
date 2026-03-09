@@ -14,7 +14,7 @@ import styles from './AuthForm.module.scss';
 interface AuthFormProps<T extends FieldValues, R> {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	schema: ZodType<T, any, any>;
-	fields: IFormField<T>[];
+	fields: IFormField<T, string>[];
 	mutatationFn: (dto: T) => Promise<R>;
 	mutationKey: string[];
 	buttonText?: string;

@@ -1,0 +1,18 @@
+{
+	"create": {
+		"fields": {
+			"originalUrl": {
+				"label": "Original URL",
+				"placeholder": "https://example.com"
+			},
+			"customAlias": {
+				"label": "Custom Alias",
+				"placeholder": "Enter a custom alias"
+			}
+		},
+		"createButton": "Create Link",
+		"cancelButton": "Cancel"
+	},
+	"deleteButton": "Delete Link",
+	"updateButton": "Update Link"
+}

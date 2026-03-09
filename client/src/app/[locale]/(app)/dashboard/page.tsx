@@ -1,14 +1,27 @@
-import { LinksTable } from '@/components/dashboard';
-import { Metadata } from 'next';
+import { getDefaultServerWorkspace } from '@/api';
+import { PRIVATE_PAGES, PUBLIC_PAGES } from '@/config';
+import { IApiErrorResponse } from '@/types';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-	title: 'Dashboard',
-};
+export default async function DashboardPage() {
+	const cookieStore = await cookies();
+	const cookieString = cookieStore.toString();
 
-export default function DashboardPage() {
-	return (
-		<div>
-			<LinksTable />
-		</div>
+	if (!cookieStore.has('refreshToken')) {
+		redirect(PUBLIC_PAGES.LOGIN);
+	}
+
+	const workspace = await getDefaultServerWorkspace(cookieString).catch(
+		(e: IApiErrorResponse) => {
+			if (e.code === 'DEFAULT_WORKSPACE_NOT_FOUND')
+				redirect(PRIVATE_PAGES.ONBOARDING);
+		},
 	);
+
+	if (!workspace) {
+		redirect(PRIVATE_PAGES.ONBOARDING);
+	}
+
+	redirect(PRIVATE_PAGES.DASHBOARD_WORKSPACE(workspace.id));
 }

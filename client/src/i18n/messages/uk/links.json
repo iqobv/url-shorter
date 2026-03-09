@@ -1,0 +1,18 @@
+{
+	"create": {
+		"fields": {
+			"originalUrl": {
+				"label": "Оригінальна URL",
+				"placeholder": "https://example.com"
+			},
+			"customAlias": {
+				"label": "Кастомний псевдонім",
+				"placeholder": "Введіть кастомний псевдонім"
+			}
+		},
+		"createButton": "Створити посилання",
+		"cancelButton": "Скасувати"
+	},
+	"deleteButton": "Видалити посилання",
+	"updateButton": "Оновити посилання"
+}

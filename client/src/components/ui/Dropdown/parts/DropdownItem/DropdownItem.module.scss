@@ -1,0 +1,28 @@
+.dropdown-item {
+	display: flex;
+	width: 100%;
+	padding: 8px;
+	border-radius: 4px;
+	justify-content: space-between;
+	align-items: center;
+
+	&__text {
+		flex: 1;
+	}
+
+	@media screen and (hover: hover) {
+		&--no-hover {
+			&:hover {
+				background-color: transparent;
+			}
+		}
+
+		&:hover {
+			background-color: var(--dropdown-hover-bg);
+		}
+	}
+
+	&--selected {
+		background-color: var(--dropdown-hover-bg);
+	}
+}

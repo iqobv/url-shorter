@@ -40,6 +40,19 @@ export class WorkspaceMemberController {
 		);
 	}
 
+	@Permissions()
+	@ApiOperation({ summary: 'Get workspace member permissions' })
+	@Get('workspace/:workspaceId/my-permissions')
+	async getWorkspaceMemberPermissions(
+		@Param('workspaceId') workspaceId: string,
+		@Authorized('id') userId: string,
+	) {
+		return await this.workspaceMemberService.getWorkspaceMemberPermissions(
+			workspaceId,
+			userId,
+		);
+	}
+
 	@Permissions(PERMISSIONS.MEMBERS.EDIT)
 	@ApiOperation({ summary: 'Update workspace member' })
 	@Patch('workspace/:workspaceId/user/:userId')

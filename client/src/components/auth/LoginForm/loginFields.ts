@@ -1,8 +1,12 @@
 import { LoginDto } from '@/dto';
 import { IFormField } from '@/types';
+import { messages } from '@/types/global';
+import { NestedKeyOf } from 'next-intl';
 import { MdKey, MdOutlineEmail } from 'react-icons/md';
 
-export const LOGIN_FIELDS: IFormField<LoginDto>[] = [
+export type LoginFieldMessage = NestedKeyOf<typeof messages.auth>;
+
+export const LOGIN_FIELDS: IFormField<LoginDto, LoginFieldMessage>[] = [
 	{
 		name: 'email',
 		label: 'login.fields.email.label',
