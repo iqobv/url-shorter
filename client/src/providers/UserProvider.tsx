@@ -1,8 +1,9 @@
 'use client';
 
 import { claimLinks, getUser } from '@/api';
-import { QUERY_KEYS } from '@/config';
+import { PUBLIC_PAGES, QUERY_KEYS } from '@/config';
 import { ClaimLinkDto } from '@/dto';
+import { useRouter } from '@/i18n';
 import { useClearLinks, useGetLinks, useSetUser } from '@/stores';
 import { IUser } from '@/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -19,6 +20,7 @@ const UserProvider = ({
 	children,
 }: UserProviderProps) => {
 	const setUser = useSetUser();
+	const router = useRouter();
 
 	const links = useGetLinks();
 	const clearLinks = useClearLinks();
@@ -54,6 +56,12 @@ const UserProvider = ({
 			}
 		}
 	}, [user, setUser, mutate, links]);
+
+	useEffect(() => {
+		const handleUnauthorized = () => router.push(PUBLIC_PAGES.LOGIN);
+		window.addEventListener('unauthorized', handleUnauthorized);
+		return () => window.removeEventListener('unauthorized', handleUnauthorized);
+	}, [router]);
 
 	return <>{children}</>;
 };

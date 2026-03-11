@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React, {
 	ComponentPropsWithRef,
 	ElementType,
@@ -36,6 +37,8 @@ const FormField = <T extends FieldValues>({
 		control,
 		formState: { errors },
 	} = useFormContext<T>();
+
+	const t = useTranslations();
 
 	const error = get(errors, name);
 
@@ -87,7 +90,7 @@ const FormField = <T extends FieldValues>({
 				{
 					...registerProps,
 					ref: ref,
-					error: error?.message,
+					error: error ? t(error.message) : undefined,
 				},
 			);
 		});

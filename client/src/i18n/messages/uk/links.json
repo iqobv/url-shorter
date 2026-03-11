@@ -6,12 +6,22 @@
 				"placeholder": "https://example.com"
 			},
 			"customAlias": {
-				"label": "Кастомний псевдонім",
-				"placeholder": "Введіть кастомний псевдонім"
+				"label": "Ваш варіант посилання",
+				"placeholder": "Введіть ваш варіант посилання"
 			}
 		},
 		"createButton": "Створити посилання",
 		"cancelButton": "Скасувати"
+	},
+	"errors": {
+		"originalUrl": {
+			"url": "Невірний формат URL",
+			"required": "Оригінальна URL є обов'язковою"
+		},
+		"customAlias": {
+			"minLength": "Варіант посилання повинен містити принаймні 3 символи",
+			"maxLength": "Варіант посилання може містити не більше 100 символів"
+		}
 	},
 	"deleteButton": "Видалити посилання",
 	"updateButton": "Оновити посилання"

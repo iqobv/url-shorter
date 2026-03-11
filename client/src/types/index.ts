@@ -6,7 +6,6 @@ export * from './link/allLinks.types';
 export * from './link/link.types';
 export * from './link/linkLocal.types';
 export * from './link/workspacesLinksQuery.types';
-export * from './nestedKeys.types';
 export * from './params/workspaceParams.types';
 export * from './permissions.types';
 export * from './ui/formField.types';

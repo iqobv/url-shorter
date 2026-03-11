@@ -1,15 +1,16 @@
 'use client';
 
 import { Input } from '@/components/ui';
-import { useWorkspaceId } from '@/hooks';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 import { MdOutlineSearch } from 'react-icons/md';
 import styles from './DashboardHeader.module.scss';
-import DashboardHeaderCreateLink from './DashboardHeaderCreateLink/DashboardHeaderCreateLink';
 
-const DashboardHeader = () => {
-	const workspaceId = useWorkspaceId();
+interface DashboardHeaderProps {
+	children: React.ReactNode;
+}
 
+const DashboardHeader = ({ children }: DashboardHeaderProps) => {
 	const t = useTranslations('header.dashboard');
 
 	return (
@@ -22,10 +23,7 @@ const DashboardHeader = () => {
 						placeholder={t('search.placeholder')}
 					/>
 				</div>
-				<DashboardHeaderCreateLink
-					label={t('newButton')}
-					workspaceId={workspaceId}
-				/>
+				<div>{children}</div>
 			</div>
 		</header>
 	);

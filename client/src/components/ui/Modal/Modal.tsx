@@ -11,13 +11,27 @@ import ModalTrigger from './parts/ModalTrigger';
 
 interface ModalProps {
 	children: React.ReactNode;
+	withoutTrigger?: boolean;
+	renderOnMount?: boolean;
+	onClose?: () => void;
 }
 
-const Modal = ({ children }: ModalProps) => {
-	const [open, setOpen] = useState(false);
+const Modal = ({
+	children,
+	withoutTrigger = false,
+	renderOnMount = false,
+	onClose,
+}: ModalProps) => {
+	const [open, setOpen] = useState(renderOnMount);
 
 	const openModal = () => setOpen(true);
-	const closeModal = () => setOpen(false);
+
+	const closeModal = () => {
+		setOpen(false);
+		if (onClose) {
+			onClose();
+		}
+	};
 
 	const childrenArray = React.Children.toArray(children) as ReactElement[];
 
@@ -26,7 +40,7 @@ const Modal = ({ children }: ModalProps) => {
 	const content = childrenArray.find((child) => child.type === ModalContent);
 
 	if (process.env.NODE_ENV === 'development') {
-		if (!trigger) {
+		if (!trigger && !withoutTrigger) {
 			throw new Error('Modal must have a Modal.Trigger component as a child.');
 		}
 
@@ -34,6 +48,8 @@ const Modal = ({ children }: ModalProps) => {
 			throw new Error('Modal must have a Modal.Content component as a child.');
 		}
 	}
+
+	console.log(renderOnMount, open);
 
 	return (
 		<ModalContext.Provider

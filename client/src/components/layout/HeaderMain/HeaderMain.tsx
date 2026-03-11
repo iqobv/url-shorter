@@ -1,6 +1,6 @@
 import { Logo } from '@/components/icons';
 import { PUBLIC_PAGES } from '@/config';
-import Link from 'next/link';
+import { Link } from '@/i18n';
 import AuthButtons from './AuthButtons/AuthButtons';
 import styles from './HeaderMain.module.scss';
 

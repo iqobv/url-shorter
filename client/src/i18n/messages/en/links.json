@@ -13,6 +13,16 @@
 		"createButton": "Create Link",
 		"cancelButton": "Cancel"
 	},
+	"errors": {
+		"originalUrl": {
+			"url": "Invalid URL format",
+			"required": "Original URL is required"
+		},
+		"customAlias": {
+			"minLength": "Custom alias must be at least 3 characters long",
+			"maxLength": "Custom alias can be at most 100 characters long"
+		}
+	},
 	"deleteButton": "Delete Link",
 	"updateButton": "Update Link"
 }

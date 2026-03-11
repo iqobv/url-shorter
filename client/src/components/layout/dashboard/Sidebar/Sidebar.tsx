@@ -2,12 +2,12 @@
 
 import Guard from '@/components/guard/Guard';
 import { Logo } from '@/components/icons';
-import { Button } from '@/components/ui';
+import { Button, Skeleton } from '@/components/ui';
 import { PRIVATE_PAGES } from '@/config';
 import { useWorkspaceId } from '@/hooks';
+import { Link } from '@/i18n';
 import { useGetExpanded, useSetExpanded, useToggleExpanded } from '@/stores';
 import vars from '@/styles/export.module.scss';
-import Link from 'next/link';
 import { useEffect } from 'react';
 import { TbLayoutSidebarRightCollapse } from 'react-icons/tb';
 import styles from './Sidebar.module.scss';
@@ -61,12 +61,14 @@ const Sidebar = () => {
 					</div>
 					<SidebarWorkspaces />
 					<nav className={styles['sidebar__nav']}>
-						<ul>
+						<ul className={styles['sidebar__links']}>
 							{SIDEBAR_LINKS(workspaceId).map((link) => (
 								<Guard
 									key={link.name}
 									permissions={link.permission ? [link.permission] : []}
-									loader={<p>Loading...</p>}
+									loader={
+										<Skeleton height={41} width="100%" borderRadius={6} />
+									}
 								>
 									<li key={link.name}>
 										<SidebarLink link={link} />

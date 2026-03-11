@@ -2,8 +2,8 @@
 
 import { Dropdown } from '@/components/ui';
 import { PRIVATE_PAGES } from '@/config';
+import { Link } from '@/i18n';
 import { IWorkspace } from '@/types';
-import Link from 'next/link';
 
 interface SidebarWorkspacesGroupProps {
 	workspaces: IWorkspace[];

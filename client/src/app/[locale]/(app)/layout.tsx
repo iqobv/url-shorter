@@ -4,7 +4,12 @@ import { DashboardHeader, DashboardSidebar } from '@/components/layout';
 import { useGetExpanded } from '@/stores';
 import styles from './layout.module.scss';
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+interface AppLayoutProps {
+	children: React.ReactNode;
+	header: React.ReactNode;
+}
+
+export default function AppLayout({ children, header }: AppLayoutProps) {
 	const expanded = useGetExpanded();
 
 	return (
@@ -14,7 +19,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 		>
 			<DashboardSidebar />
 			<div className={styles['dashboard-layout__content']}>
-				<DashboardHeader />
+				<DashboardHeader>{header}</DashboardHeader>
 				<main className={styles['dashboard-layout__main']}>{children}</main>
 			</div>
 		</div>

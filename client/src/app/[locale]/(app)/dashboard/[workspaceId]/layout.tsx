@@ -2,9 +2,17 @@
 
 import { useGetPermissions, useWorkspace } from '@/hooks';
 import { useSetWorkspace } from '@/stores';
-import { PropsWithChildren, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export default function WorkspaceLayout({ children }: PropsWithChildren) {
+interface WorkspaceLayoutProps {
+	children: React.ReactNode;
+	modal: React.ReactNode;
+}
+
+export default function WorkspaceLayout({
+	children,
+	modal,
+}: WorkspaceLayoutProps) {
 	const { data } = useWorkspace();
 	useGetPermissions();
 
@@ -14,5 +22,10 @@ export default function WorkspaceLayout({ children }: PropsWithChildren) {
 		if (data) setWorkspace(data);
 	}, [data, setWorkspace]);
 
-	return <>{children}</>;
+	return (
+		<>
+			{children}
+			{modal}
+		</>
+	);
 }

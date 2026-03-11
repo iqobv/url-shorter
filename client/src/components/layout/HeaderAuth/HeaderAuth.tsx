@@ -1,6 +1,6 @@
 import { Logo } from '@/components/icons';
 import { PUBLIC_PAGES } from '@/config';
-import Link from 'next/link';
+import { Link } from '@/i18n';
 import styles from './HeaderAuth.module.scss';
 
 const HeaderAuth = () => {

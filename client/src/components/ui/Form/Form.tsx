@@ -8,6 +8,7 @@ import {
 	UseFormReturn,
 } from 'react-hook-form';
 import { ZodType } from 'zod';
+import styles from './Form.module.scss';
 import FormActions from './parts/FormActions/FormActions';
 import FormField from './parts/FormField/FormField';
 import FormLabel from './parts/FormLabel/FormLabel';
@@ -33,7 +34,10 @@ const Form = <D extends FieldValues>({
 
 	return (
 		<FormProvider {...methods}>
-			<form onSubmit={onSubmit ? methods.handleSubmit(onSubmit) : undefined}>
+			<form
+				onSubmit={onSubmit ? methods.handleSubmit(onSubmit) : undefined}
+				className={styles['form']}
+			>
 				{typeof children === 'function' ? children(methods) : children}
 			</form>
 		</FormProvider>

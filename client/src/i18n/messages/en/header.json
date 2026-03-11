@@ -8,6 +8,10 @@
 		"search": {
 			"placeholder": "Search for resources..."
 		},
-		"newButton": "New Link"
+		"buttons": {
+			"newLink": "New Link",
+			"newRole": "Add Role",
+			"newMember": "Invite Members"
+		}
 	}
 }

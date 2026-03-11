@@ -1,7 +1,8 @@
 import { PRIVATE_PAGES } from '@/config';
 import { PERMISSIONS } from '@/constants';
+import { messages } from '@/i18n';
 import { ISidebarLink, Permissions } from '@/types';
-import { messages } from '@/types/global';
+import { NestedKeyOf } from 'next-intl';
 import {
 	MdDashboard,
 	MdGroup,
@@ -10,7 +11,9 @@ import {
 	MdShield,
 } from 'react-icons/md';
 
-export type SidebarLinkName = keyof typeof messages.dashboard.sidebar.links;
+export type SidebarLinkName = NestedKeyOf<
+	typeof messages.dashboard.sidebar.links
+>;
 
 export interface DashboardSidebarLink extends ISidebarLink<SidebarLinkName> {
 	permission?: Permissions;

@@ -1,4 +1,4 @@
-import CreateLink from '@/components/dashboard/links/CreateLink/CreateLink';
+import { CreateLink } from '@/components/dashboard';
 
 export default function NewLinkPage() {
 	return (

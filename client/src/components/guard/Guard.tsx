@@ -2,6 +2,7 @@
 
 import { useCanPerformAction } from '@/stores';
 import { Permissions } from '@/types';
+import React from 'react';
 
 interface GuardProps {
 	children: React.ReactNode;
@@ -14,22 +15,22 @@ interface GuardProps {
 const Guard = ({
 	children,
 	permissions,
-	fallback,
-	loader,
+	fallback = null,
+	loader = null,
 	showLoader = false,
 }: GuardProps) => {
 	const { can, isLoaded } = useCanPerformAction(permissions);
 
-	if (!isLoaded && !can && !showLoader) {
+	if (!isLoaded) {
+		if (loader || showLoader) {
+			return <>{loader}</>;
+		}
+
 		return null;
 	}
 
-	if (loader && !isLoaded && !can) {
-		return <>{loader}</>;
-	}
-
 	if (!can) {
-		return <>{fallback || null}</>;
+		return <>{fallback}</>;
 	}
 
 	return <>{children}</>;

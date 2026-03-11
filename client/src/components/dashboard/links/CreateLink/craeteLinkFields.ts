@@ -1,6 +1,6 @@
 import { CreateLinkDto } from '@/dto';
+import { messages } from '@/i18n';
 import { IFormField } from '@/types';
-import { messages } from '@/types/global';
 import { NestedKeyOf } from 'next-intl';
 
 export type CreateLinkFieldName = NestedKeyOf<typeof messages.links.create>;

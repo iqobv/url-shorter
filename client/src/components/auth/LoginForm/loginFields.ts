@@ -1,6 +1,6 @@
 import { LoginDto } from '@/dto';
+import { messages } from '@/i18n';
 import { IFormField } from '@/types';
-import { messages } from '@/types/global';
 import { NestedKeyOf } from 'next-intl';
 import { MdKey, MdOutlineEmail } from 'react-icons/md';
 

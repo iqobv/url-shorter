@@ -4,6 +4,7 @@ import { getWorkspaceLinks } from '@/api';
 import { Pagination } from '@/components/ui';
 import { QUERY_KEYS } from '@/config';
 import { useWorkspaceId } from '@/hooks';
+import { useRouter } from '@/i18n';
 import { useGetUser } from '@/stores';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -14,7 +15,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import { useTranslations } from 'next-intl';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const LinksTable = () => {

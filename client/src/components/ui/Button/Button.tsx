@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n';
 import { useRef } from 'react';
 import Tooltip from '../Tooltip/Tooltip';
 import { buttonStyles } from './Button.styles';

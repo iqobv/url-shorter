@@ -6,7 +6,7 @@ import { RegisterDto } from '@/dto';
 import { registerSchema } from '@/schemas';
 import { ICodeResponse } from '@/types';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/i18n';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthWrapper from '../AuthWrapper/AuthWrapper';
 import BottomText from '../BottomText/BottomText';

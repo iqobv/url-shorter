@@ -7,6 +7,10 @@
 	align-items: center;
 	gap: 8px;
 
+	&--active {
+		background-color: var(--sidebar-link-hover-bg);
+	}
+
 	&:hover {
 		background-color: var(--sidebar-link-hover-bg);
 	}

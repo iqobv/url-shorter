@@ -1,7 +1,7 @@
 'use client';
 
+import { Link } from '@/i18n';
 import { useGetLinks } from '@/stores';
-import Link from 'next/link';
 
 const LinksList = () => {
 	const links = useGetLinks();
