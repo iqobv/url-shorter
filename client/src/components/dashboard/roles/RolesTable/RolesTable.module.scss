@@ -1,0 +1,8 @@
+.member-cell,
+.actions-cell {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
+}

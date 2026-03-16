@@ -8,7 +8,7 @@ import { useWorkspaceId } from '@/hooks';
 import { Link } from '@/i18n';
 import { useGetExpanded, useSetExpanded, useToggleExpanded } from '@/stores';
 import vars from '@/styles/export.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { TbLayoutSidebarRightCollapse } from 'react-icons/tb';
 import styles from './Sidebar.module.scss';
 import SidebarLink from './SidebarLink/SidebarLink';
@@ -21,6 +21,7 @@ const Sidebar = () => {
 	const setExpanded = useSetExpanded();
 	const toggleExpanded = useToggleExpanded();
 	const workspaceId = useWorkspaceId();
+	const [isMobile, setIsMobile] = useState(true);
 
 	useEffect(() => {
 		const xlBreakpoint = parseInt(vars.breakpointXl);
@@ -28,10 +29,21 @@ const Sidebar = () => {
 		const handleResize = () => {
 			if (window.innerWidth >= xlBreakpoint) {
 				setExpanded(true);
+				setIsMobile(false);
+			} else {
+				setExpanded(false);
+				setIsMobile(true);
 			}
 		};
 
 		handleResize();
+
+		const resizeObserver = new ResizeObserver(handleResize);
+		resizeObserver.observe(document.body);
+
+		return () => {
+			resizeObserver.unobserve(document.body);
+		};
 	}, [setExpanded]);
 
 	const handleClose = () => toggleExpanded();
@@ -71,7 +83,11 @@ const Sidebar = () => {
 									}
 								>
 									<li key={link.name}>
-										<SidebarLink link={link} />
+										<SidebarLink
+											link={link}
+											onClick={handleClose}
+											isMobile={isMobile}
+										/>
 									</li>
 								</Guard>
 							))}

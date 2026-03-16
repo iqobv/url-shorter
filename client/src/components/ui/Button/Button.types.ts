@@ -21,7 +21,7 @@ export interface ButtonBaseProps {
 	tooltip?: React.ReactNode;
 }
 
-interface AnchorButtonProps
+export interface AnchorButtonProps
 	extends
 		Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof ButtonBaseProps>,
 		ButtonBaseProps {
@@ -29,7 +29,7 @@ interface AnchorButtonProps
 	type?: never;
 }
 
-interface NativeButtonProps
+export interface NativeButtonProps
 	extends
 		Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof ButtonBaseProps>,
 		ButtonBaseProps {

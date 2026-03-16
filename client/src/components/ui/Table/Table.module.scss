@@ -1,0 +1,21 @@
+.table {
+	border: 1px solid var(--table-border-color);
+	border-radius: 8px;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	width: 100%;
+
+	& th,
+	td {
+		padding: 10px 20px;
+		border-bottom: 1px solid var(--table-border-color);
+	}
+
+	& tr:last-child {
+		th,
+		td {
+			border-bottom: none;
+		}
+	}
+}

@@ -1,0 +1,147 @@
+{
+	"form": {
+		"fields": {
+			"name": {
+				"label": "Role name",
+				"placeholder": "Enter role name"
+			},
+			"permissions": {
+				"label": "Permissions"
+			}
+		},
+		"selectPermissions": "Select a permissions",
+		"create": {
+			"submit": "Create Role",
+			"cancel": "Cancel"
+		},
+		"update": {
+			"submit": "Update Role",
+			"cancel": "Cancel"
+		}
+	},
+	"groups": {
+		"ADMIN": "Administrator",
+		"WORKSPACE": "Workspace",
+		"ROLES": "Roles",
+		"MEMBERS": "Members",
+		"AUDIT_LOG": "Audit Log",
+		"LINKS": "Links",
+		"INVITE": "Invite"
+	},
+	"permissions": {
+		"admin": {
+			"all": {
+				"label": "Administrator",
+				"description": "Members with this permission can perform all actions. This is a powerful permission and should be used with caution."
+			}
+		},
+		"workspace": {
+			"edit": {
+				"label": "Edit Workspace",
+				"description": "Members with this permission can edit workspace settings."
+			},
+			"delete": {
+				"label": "Delete Workspace",
+				"description": "Members with this permission can delete workspace settings."
+			}
+		},
+		"roles": {
+			"view": {
+				"label": "View Roles",
+				"description": "Members with this permission can view all roles."
+			},
+			"create": {
+				"label": "Create Roles",
+				"description": "Members with this permission can create new roles."
+			},
+			"edit": {
+				"label": "Edit Roles",
+				"description": "Members with this permission can edit existing roles."
+			},
+			"delete": {
+				"label": "Delete Roles",
+				"description": "Members with this permission can delete roles."
+			}
+		},
+		"members": {
+			"view": {
+				"label": "View Members",
+				"description": "Members with this permission can view members."
+			},
+			"add": {
+				"label": "Add Members",
+				"description": "Members with this permission can add members."
+			},
+			"remove": {
+				"label": "Remove Members",
+				"description": "Members with this permission can remove members."
+			},
+			"edit": {
+				"label": "Edit Members",
+				"description": "Members with this permission can edit members."
+			}
+		},
+		"audit_log": {
+			"view": {
+				"label": "View Audit Log",
+				"description": "Members with this permission can view audit log."
+			}
+		},
+		"links": {
+			"view_all": {
+				"label": "View All Links",
+				"description": "Members with this permission can view all links."
+			},
+			"view_own": {
+				"label": "View Own Links",
+				"description": "Members with this permission can view own links."
+			},
+			"create": {
+				"label": "Create Links",
+				"description": "Members with this permission can create links."
+			},
+			"edit_all": {
+				"label": "Edit All Links",
+				"description": "Members with this permission can edit all links."
+			},
+			"edit_own": {
+				"label": "Edit Own Links",
+				"description": "Members with this permission can edit own links."
+			},
+			"delete_all": {
+				"label": "Delete All Links",
+				"description": "Members with this permission can delete all links."
+			},
+			"delete_own": {
+				"label": "Delete Own Links",
+				"description": "Members with this permission can delete own links."
+			}
+		},
+		"invite": {
+			"send": {
+				"label": "Send Invite",
+				"description": "Members with this permission can send invites."
+			},
+			"create_link": {
+				"label": "Create Invite Link",
+				"description": "Members with this permission can create invite links."
+			},
+			"view_links_all": {
+				"label": "View All Invite Links",
+				"description": "Members with this permission can view all invite links."
+			},
+			"view_links_own": {
+				"label": "View Own Invite Links",
+				"description": "Members with this permission can view own invite links."
+			},
+			"delete_link_all": {
+				"label": "Delete All Invite Links",
+				"description": "Members with this permission can delete all invite links."
+			},
+			"delete_link_own": {
+				"label": "Delete Own Invite Links",
+				"description": "Members with this permission can delete own invite links."
+			}
+		}
+	}
+}

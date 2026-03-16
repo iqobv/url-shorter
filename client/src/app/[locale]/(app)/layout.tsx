@@ -1,6 +1,7 @@
 'use client';
 
 import { DashboardHeader, DashboardSidebar } from '@/components/layout';
+import '@/config/zod.config';
 import { useGetExpanded } from '@/stores';
 import styles from './layout.module.scss';
 

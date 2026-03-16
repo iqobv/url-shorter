@@ -1,0 +1,10 @@
+{
+	"required": "{field} is required",
+	"too_small": "{field} must be at least {min} characters long",
+	"too_big": "{field} must be at most {max} characters long",
+	"custom": {
+		"uppercase": "{field} must contain uppercase letters",
+		"lowercase": "{field} must contain lowercase letters",
+		"number": "{field} must contain numbers"
+	}
+}

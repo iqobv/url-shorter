@@ -52,7 +52,7 @@
 	}
 
 	&__toggle-container {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: $header-height;
@@ -107,8 +107,11 @@
 		transform: translateX(0);
 		width: 0;
 		min-width: 0;
+		top: 0;
+		left: 0;
 		overflow: hidden;
 		border-right: 0 solid transparent;
+		align-self: flex-start;
 		transition:
 			width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
 			min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),

@@ -7,10 +7,10 @@ import {
 	Patch,
 	Post,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { PERMISSIONS } from 'src/libs/constants';
 import { Authorized, Permissions } from 'src/libs/decorators';
-import { CreateRoleDto, UpdateRoleDto } from './dto';
+import { CreateRoleDto, RoleDto, UpdateRoleDto } from './dto';
 import { RoleService } from './role.service';
 
 @Controller('roles')
@@ -19,6 +19,7 @@ export class RoleController {
 
 	@Permissions(PERMISSIONS.ROLES.CREATE)
 	@ApiOperation({ summary: 'Create a new role in the workspace' })
+	@ApiOkResponse({ type: RoleDto })
 	@Post('workspace/:workspaceId')
 	async createRole(
 		@Param('workspaceId') workspaceId: string,

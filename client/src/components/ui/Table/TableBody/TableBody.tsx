@@ -1,0 +1,7 @@
+'use client';
+
+const TableBody = () => {
+	return <div>TableBody</div>;
+};
+
+export default TableBody;

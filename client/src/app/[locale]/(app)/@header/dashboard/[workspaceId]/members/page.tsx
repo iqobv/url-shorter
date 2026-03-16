@@ -6,8 +6,6 @@ import { PERMISSIONS } from '@/constants';
 import { useWorkspaceId } from '@/hooks';
 
 export default function MembersPageButton() {
-	// const { workspaceId } = await params;
-
 	const workspaceId = useWorkspaceId();
 
 	return (

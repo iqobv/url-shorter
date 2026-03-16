@@ -1,0 +1,27 @@
+@use '../../../../styles/mixins' as *;
+
+.form-actions {
+	flex-direction: row;
+	position: sticky;
+	bottom: 20px;
+	padding: 20px;
+	background-color: var(--form-action-bg);
+	border: 1px solid var(--form-action-border);
+	box-shadow: 0 0 10px var(--form-action-box-shadow);
+	align-items: center;
+	width: 100%;
+	margin: 0 auto;
+	border-radius: var(--border-radius);
+	justify-content: flex-end;
+	gap: 16px;
+	margin-top: 20px;
+	display: flex;
+
+	&--active {
+		display: flex;
+	}
+
+	@include respond-to('md') {
+		width: 500px;
+	}
+}

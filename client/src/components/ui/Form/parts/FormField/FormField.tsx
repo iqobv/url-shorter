@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useZodErrorMap } from '@/hooks';
+import { TMessages } from '@/types';
 import React, {
 	ComponentPropsWithRef,
 	ElementType,
@@ -22,15 +23,17 @@ type ControlledRenderFn<T extends FieldValues> = (
 type FormChild<T extends FieldValues> = React.ReactNode | ControlledRenderFn<T>;
 
 interface FormFieldProps<T extends FieldValues> {
-	name: Path<T> | string;
+	name: Path<T>;
 	children: FormChild<T>;
 	isController?: boolean;
+	namespace?: TMessages;
 }
 
 const FormField = <T extends FieldValues>({
 	name,
 	children,
 	isController = false,
+	namespace,
 }: FormFieldProps<T>) => {
 	const {
 		register,
@@ -38,15 +41,14 @@ const FormField = <T extends FieldValues>({
 		formState: { errors },
 	} = useFormContext<T>();
 
-	const t = useTranslations();
-
+	const getErrorMessage = useZodErrorMap(namespace);
 	const error = get(errors, name);
 
 	const renderChildren = (child: FormChild<T>): React.ReactNode => {
 		if (typeof child === 'function') {
 			return (
 				<Controller
-					name={name as Path<T>}
+					name={name}
 					control={control}
 					render={(props) =>
 						(child as ControlledRenderFn<T>)(props) as React.ReactElement
@@ -59,7 +61,6 @@ const FormField = <T extends FieldValues>({
 			if (!isValidElement(item)) return item;
 
 			const itemType = item.type as ElementType;
-
 			const isLabel =
 				item.type === 'label' ||
 				(typeof itemType !== 'string' &&
@@ -68,17 +69,18 @@ const FormField = <T extends FieldValues>({
 
 			if (isLabel) return item;
 
-			const { ref, ...registerProps } = register(name as Path<T>);
+			const { ref, ...registerProps } = register(name);
+			const translatedError = getErrorMessage(error);
 
 			if (isController) {
 				return (
 					<Controller
-						name={name as Path<T>}
+						name={name}
 						control={control}
 						render={({ field }) =>
 							React.cloneElement(
 								item as React.ReactElement<ComponentPropsWithRef<ElementType>>,
-								{ ...field },
+								{ ...field, error: translatedError },
 							)
 						}
 					/>
@@ -89,8 +91,8 @@ const FormField = <T extends FieldValues>({
 				item as React.ReactElement<ComponentPropsWithRef<ElementType>>,
 				{
 					...registerProps,
-					ref: ref,
-					error: error ? t(error.message) : undefined,
+					ref,
+					error: translatedError,
 				},
 			);
 		});

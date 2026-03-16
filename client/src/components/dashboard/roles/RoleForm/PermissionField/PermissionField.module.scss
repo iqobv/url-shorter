@@ -1,0 +1,29 @@
+.permission-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	border-bottom: 1px solid var(--divider);
+	padding: 10px;
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__label {
+		font-size: 1.1rem;
+		font-weight: 500;
+		width: 100%;
+	}
+
+	&__description {
+		color: var(--secondary-foreground);
+		font-size: 0.95rem;
+	}
+}

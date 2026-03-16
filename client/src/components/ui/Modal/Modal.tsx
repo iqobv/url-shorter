@@ -2,7 +2,7 @@
 
 import React, { ReactElement, useState } from 'react';
 import { ModalContext } from './ModalContext';
-import ModalBody from './parts/ModalBody';
+import ModalBody from './parts/ModalBody/ModalBody';
 import ModalClose from './parts/ModalClose';
 import ModalContent from './parts/ModalContent/ModalContent';
 import ModalFooter from './parts/ModalFooter';
@@ -48,8 +48,6 @@ const Modal = ({
 			throw new Error('Modal must have a Modal.Content component as a child.');
 		}
 	}
-
-	console.log(renderOnMount, open);
 
 	return (
 		<ModalContext.Provider

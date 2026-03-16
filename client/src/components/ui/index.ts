@@ -6,4 +6,6 @@ export { default as Loader } from './Loader/Loader';
 export { default as Modal } from './Modal/Modal';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as Skeleton } from './Skeleton/Skeleton';
+export { default as Switchbox } from './Switchbox/Switchbox';
+export { default as Table } from './Table/Table';
 export { default as Tooltip } from './Tooltip/Tooltip';

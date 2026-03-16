@@ -1,6 +1,9 @@
 :root {
 	--background: #ffffff;
 	--foreground: #000000;
+	--secondary-foreground: #7a7a7a;
+	--border-radius: 8px;
+	--divider: #ccc;
 
 	/* Header */
 	--header-bg: #f5f5f5;
@@ -74,4 +77,21 @@
 	/* Skeleton */
 	--skeleton-color: #f0f0f0;
 	--skeleton-highlight-color: #e0e0e0;
+
+	/* Table */
+	--table-header-bg: #f5f5f5;
+	--table-body-bg: #ffffff;
+	--table-footer-bg: #f5f5f5;
+	--table-border-color: #ccc;
+
+	/* Switchbox */
+	--switchbox-bg: #ccc;
+	--switchbox-bg-slider: #fff;
+	--switchbox-active-bg: #1e1e1e;
+	--switchbox-active-bg-slider: #fff;
+
+	/* Form Actions */
+	--form-action-bg: #f5f5f5;
+	--form-action-border: #ccc;
+	--form-action-box-shadow: rgba(0, 0, 0, 0.2);
 }

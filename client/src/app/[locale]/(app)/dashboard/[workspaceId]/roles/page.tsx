@@ -1,3 +1,4 @@
+import { RolesTable } from '@/components/dashboard/roles';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function RolesPage() {
-	return <div></div>;
+	return (
+		<div>
+			<RolesTable />
+		</div>
+	);
 }

@@ -8,9 +8,11 @@ import styles from './SidebarLink.module.scss';
 
 interface SidebarLinkProps {
 	link: DashboardSidebarLink;
+	onClick?: () => void;
+	isMobile?: boolean;
 }
 
-const SidebarLink = ({ link }: SidebarLinkProps) => {
+const SidebarLink = ({ link, onClick, isMobile }: SidebarLinkProps) => {
 	const pathname = usePathname();
 
 	const t = useTranslations('dashboard.sidebar.links');
@@ -22,6 +24,9 @@ const SidebarLink = ({ link }: SidebarLinkProps) => {
 		<Link
 			className={`${styles['sidebar-link']} ${isActive ? styles['sidebar-link--active'] : ''}`.trim()}
 			href={link.href}
+			onClick={() => {
+				if (isMobile && onClick) onClick();
+			}}
 		>
 			{Icon && <Icon />}
 			<span>{t(link.name)}</span>

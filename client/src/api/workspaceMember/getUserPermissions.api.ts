@@ -7,3 +7,18 @@ export const getUserPermissions = async (workspaceId: string) =>
 			`/v1/workspace-members/workspace/${workspaceId}/my-permissions`,
 		)
 	).data;
+
+export const getServerUserPermissions = async (
+	workspaceId: string,
+	cookie: string,
+) =>
+	(
+		await api.get<TUserPermissions>(
+			`/v1/workspaces/${workspaceId}/my-permissions`,
+			{
+				headers: {
+					Cookies: cookie,
+				},
+			},
+		)
+	).data;

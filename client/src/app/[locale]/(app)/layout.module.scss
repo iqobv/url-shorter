@@ -3,6 +3,8 @@
 .dashboard-layout {
 	display: flex;
 	flex-direction: row;
+	min-height: 100vh;
+	min-height: 100dvh;
 
 	&__content {
 		display: flex;
@@ -15,7 +17,6 @@
 		flex: 1;
 		padding: 10px 20px;
 		padding-top: calc($header-height + 20px);
-		transition: padding 0.3s ease;
 		transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 }

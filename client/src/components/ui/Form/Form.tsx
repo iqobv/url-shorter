@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+	DefaultValues,
 	FieldValues,
 	FormProvider,
 	useForm,
@@ -21,15 +22,18 @@ interface FormProps<D extends FieldValues> {
 	schema: ZodType<D, any, any>;
 	children: React.ReactNode | ((methods: UseFormReturn<D>) => React.ReactNode);
 	onSubmit?: (data: D) => void;
+	defaultValues?: DefaultValues<D>;
 }
 
-const Form = <D extends FieldValues>({
+const Form = <D extends FieldValues = FieldValues>({
 	children,
 	schema,
 	onSubmit,
+	defaultValues,
 }: FormProps<D>) => {
 	const methods = useForm<D>({
 		resolver: zodResolver(schema),
+		defaultValues: defaultValues,
 	});
 
 	return (

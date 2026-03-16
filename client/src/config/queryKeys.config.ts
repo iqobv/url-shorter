@@ -33,4 +33,19 @@ export const QUERY_KEYS = {
 			'permissions',
 		],
 	},
+	ROLES: {
+		ALL_ROLES: (workspaceId: string) => ['roles', workspaceId],
+		ROLE: (workspaceId: string, roleId: string) => [
+			'roles',
+			workspaceId,
+			roleId,
+		],
+		CREATE_ROLE: (workspaceId: string) => ['roles', workspaceId, 'create'],
+		UPDATE_ROLE: (workspaceId: string, roleId: string) => [
+			'roles',
+			workspaceId,
+			roleId,
+			'update',
+		],
+	},
 };

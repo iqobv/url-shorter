@@ -1,6 +1,9 @@
 html.dark {
 	--background: #121212;
 	--foreground: #e0e0e0;
+	--secondary-foreground: #a5a5a5;
+	--border-radius: 8px;
+	--divider: #333;
 
 	/* Header */
 	--header-bg: #181818;
@@ -75,4 +78,21 @@ html.dark {
 	/* Skeleton */
 	--skeleton-color: #202020;
 	--skeleton-highlight-color: #444;
+
+	/* Table */
+	--table-header-bg: #202020;
+	--table-body-bg: red;
+	--table-footer-bg: green;
+	--table-border-color: #333;
+
+	/* Switchbox */
+	--switchbox-bg: #333;
+	--switchbox-bg-slider: #e0e0e0;
+	--switchbox-active-bg: #e0e0e0;
+	--switchbox-active-bg-slider: #333;
+
+	/* Form Actions */
+	--form-action-bg: #202020;
+	--form-action-border: #333;
+	--form-action-box-shadow: rgba(68, 68, 68, 0.2);
 }

@@ -99,9 +99,13 @@ export class RoleService {
 
 		const roles = await this.prismaService.role.findMany({
 			where: { workspaceId: workspace.id },
+			include: { _count: { select: { memberRoles: true } } },
 		});
 
-		return roles;
+		return roles.map(({ _count, ...role }) => ({
+			...role,
+			members: _count.memberRoles,
+		}));
 	}
 
 	async getRoleById(roleId: string, workspaceId: string, authUserId: string) {

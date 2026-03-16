@@ -4,9 +4,12 @@ export const PRIVATE_PAGES = {
 	LINKS: (workspaceId: string) => `/dashboard/${workspaceId}/links`,
 	MEMBERS: (workspaceId: string) => `/dashboard/${workspaceId}/members`,
 	ROLES: (workspaceId: string) => `/dashboard/${workspaceId}/roles`,
-	NEW_LINK: (workspaceId: string) => `/dashboard/${workspaceId}/links/new`,
+	NEW_ROLE: (workspaceId: string) => `/dashboard/${workspaceId}/roles/new`,
+	ROLE: (workspaceId: string, roleId: string) =>
+		`/dashboard/${workspaceId}/roles/${roleId}`,
 	LINK: (workspaceId: string, linkId: string) =>
 		`/dashboard/${workspaceId}/links/${linkId}`,
+	NEW_LINK: (workspaceId: string) => `/dashboard/${workspaceId}/links/new`,
 	AUDIT_LOG: (workspaceId: string) => `/dashboard/${workspaceId}/audit`,
 	SETTINGS: '/settings',
 	ONBOARDING: '/onboarding',
