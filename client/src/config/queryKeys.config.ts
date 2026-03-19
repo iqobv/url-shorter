@@ -6,6 +6,7 @@ export const QUERY_KEYS = {
 		LOGIN: ['auth', 'login'],
 		REGISTER: ['auth', 'register'],
 		USER: ['auth', 'user'],
+		LOGOUT: ['auth', 'logout'],
 	},
 	LINK: {
 		ALL: (
@@ -27,10 +28,22 @@ export const QUERY_KEYS = {
 		GET_WORKSPACE: (workspaceId: string) => ['workspace', workspaceId],
 	},
 	WORKSPACE_MEMBERS: {
+		GET_BY_ID: (workspaceId: string, memberId: string) => [
+			'workspace-members',
+			workspaceId,
+			memberId,
+		],
+		GET_ALL: (workspaceId: string) => ['workspace-members', workspaceId],
 		USER_PERMISSIONS: (workspaceId: string) => [
 			'workspace',
 			workspaceId,
 			'permissions',
+		],
+		UPDATE: (workspaceId: string, workspaceMemberId: string) => [
+			'workspace-members',
+			workspaceId,
+			workspaceMemberId,
+			'update',
 		],
 	},
 	ROLES: {

@@ -15,7 +15,13 @@ const Google = () => {
 		window.location.href = `${apiUrl}/v1/oauth/google?returnTo=${encodeURIComponent(returnTo)}`;
 	};
 
-	return <SocialButton onClick={onClick} icon={FcGoogle} text={t('google')} />;
+	return (
+		<SocialButton
+			onClick={onClick}
+			icon={FcGoogle}
+			text={t('google')}
+		/>
+	);
 };
 
 export default Google;

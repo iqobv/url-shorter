@@ -3,6 +3,8 @@ export const PRIVATE_PAGES = {
 	DASHBOARD_WORKSPACE: (workspaceId: string) => `/dashboard/${workspaceId}`,
 	LINKS: (workspaceId: string) => `/dashboard/${workspaceId}/links`,
 	MEMBERS: (workspaceId: string) => `/dashboard/${workspaceId}/members`,
+	MEMBER: (workspaceId: string, memberId: string) =>
+		`/dashboard/${workspaceId}/members/${memberId}`,
 	ROLES: (workspaceId: string) => `/dashboard/${workspaceId}/roles`,
 	NEW_ROLE: (workspaceId: string) => `/dashboard/${workspaceId}/roles/new`,
 	ROLE: (workspaceId: string, roleId: string) =>

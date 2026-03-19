@@ -46,7 +46,10 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang={locale} suppressHydrationWarning>
+		<html
+			lang={locale}
+			suppressHydrationWarning
+		>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<MainProvider
 					messages={messages}

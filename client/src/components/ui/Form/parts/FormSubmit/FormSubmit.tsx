@@ -15,7 +15,10 @@ interface FormSubmitProps {
 
 const FormSubmit = ({ children, buttonProps }: FormSubmitProps) => {
 	return (
-		<Button type="submit" {...buttonProps}>
+		<Button
+			type="submit"
+			{...buttonProps}
+		>
 			{children}
 		</Button>
 	);

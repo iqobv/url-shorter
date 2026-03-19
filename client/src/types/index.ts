@@ -16,5 +16,8 @@ export * from './user/user.types';
 export * from './user/userRole.types';
 export * from './workspace/userWorkspaces.types';
 export * from './workspace/workpsace.types';
+export * from './workspace/workspaceIdParams.types';
 export * from './workspaceMember/userPermissions.types';
+export * from './workspaceMember/workspaceMember.types';
+export * from './workspaceMember/workspaceMemberWithUser.types';
 export * from './zodCustomParams.types';

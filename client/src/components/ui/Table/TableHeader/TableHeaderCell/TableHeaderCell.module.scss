@@ -1,7 +1,9 @@
 .table-header-cell {
 	width: auto;
+	white-space: nowrap;
+
 	&--expanded {
-		width: 100%;
+		width: 99%;
 	}
 
 	&__inner {

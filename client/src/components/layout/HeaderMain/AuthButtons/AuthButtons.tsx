@@ -15,12 +15,18 @@ const AuthButtons = () => {
 	return (
 		<div className={styles['auth-buttons']}>
 			{isAuthenticated ? (
-				<Button href={PRIVATE_PAGES.DASHBOARD} variant="primary">
+				<Button
+					href={PRIVATE_PAGES.DASHBOARD}
+					variant="primary"
+				>
 					{t('dashboardButton')}
 				</Button>
 			) : (
 				<>
-					<Button href={PUBLIC_PAGES.LOGIN} variant="ghost">
+					<Button
+						href={PUBLIC_PAGES.LOGIN}
+						variant="ghost"
+					>
 						{t('login')}
 					</Button>
 					<Button href={PUBLIC_PAGES.REGISTER}>{t('register')}</Button>

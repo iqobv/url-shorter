@@ -16,3 +16,6 @@ export * from './workspace/allWorkspaces.api';
 export * from './workspace/defaultWorkspace.api';
 export * from './workspace/getWorkpsace.api';
 export * from './workspaceMember/getUserPermissions.api';
+export * from './workspaceMember/getWorkspaceMember.api';
+export * from './workspaceMember/getWorkspaceMembers.api';
+export * from './workspaceMember/updateWorkspaceMembers.api';

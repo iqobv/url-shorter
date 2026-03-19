@@ -11,6 +11,7 @@ interface DropdownItemProps<T> {
 	value?: T;
 	asChild?: boolean;
 	unstyled?: boolean;
+	closeOnClick?: boolean;
 }
 
 const DropdownItemInner = <T,>({
@@ -18,6 +19,7 @@ const DropdownItemInner = <T,>({
 	children,
 	asChild,
 	unstyled = false,
+	closeOnClick = true,
 }: DropdownItemProps<T>) => {
 	const { selectedValue, onChange, onClose } =
 		useDropdownContext<T>('DropdownItem');
@@ -26,7 +28,9 @@ const DropdownItemInner = <T,>({
 
 	const handleClick = () => {
 		if (value !== undefined) onChange?.(value);
-		onClose();
+		if (closeOnClick) {
+			onClose();
+		}
 	};
 
 	const itemClasses = unstyled
@@ -37,7 +41,10 @@ const DropdownItemInner = <T,>({
 		<>
 			<span className={styles['dropdown-item__text']}>{children}</span>
 			{isSelected && (
-				<MdCheck size={18} className={styles['dropdown-item__icon']} />
+				<MdCheck
+					size={18}
+					className={styles['dropdown-item__icon']}
+				/>
 			)}
 		</>
 	);

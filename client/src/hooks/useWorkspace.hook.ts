@@ -4,7 +4,6 @@ import { getWorkspaceById } from '@/api';
 import { QUERY_KEYS } from '@/config';
 import { IApiErrorResponse } from '@/types';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { useWorkspaceId } from './useWorkspaceId.hook';
 
 export const useWorkspace = () => {
@@ -21,12 +20,6 @@ export const useWorkspace = () => {
 			return failureCount < 3;
 		},
 	});
-
-	useEffect(() => {
-		if (query.error) {
-			console.log(query.error);
-		}
-	}, [query.error]);
 
 	return query;
 };

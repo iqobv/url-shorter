@@ -12,7 +12,12 @@ const SidebarUser = () => {
 	return (
 		<div className={styles['sidebar-user']}>
 			<p className={styles['sidebar-user__username']}>{user?.username}</p>
-			<Button variant="ghost" isIcon isRounded href={PRIVATE_PAGES.SETTINGS}>
+			<Button
+				variant="ghost"
+				isIcon
+				isRounded
+				href={PRIVATE_PAGES.SETTINGS}
+			>
 				<MdOutlineSettings size={20} />
 			</Button>
 		</div>

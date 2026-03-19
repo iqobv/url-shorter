@@ -9,7 +9,11 @@ interface FormLabelProps extends ComponentProps<'label'> {
 
 const FormLabel = ({ children, htmlFor, ...rest }: FormLabelProps) => {
 	return (
-		<label htmlFor={htmlFor} className={styles['form-label']} {...rest}>
+		<label
+			htmlFor={htmlFor}
+			className={styles['form-label']}
+			{...rest}
+		>
 			{children}
 		</label>
 	);

@@ -19,7 +19,10 @@ const TableHeaderCell = <T,>({ header }: TableHeaderCell<T>) => {
 	const innerClassName = `${styles['table-header-cell__inner']} ${header.column.getCanSort() ? styles['table-header-cell__inner--sortable'] : ''}`;
 
 	return (
-		<th colSpan={header.colSpan} className={cellClassName.trim()}>
+		<th
+			colSpan={header.colSpan}
+			className={cellClassName.trim()}
+		>
 			<div
 				onClick={header.column.getToggleSortingHandler()}
 				className={innerClassName.trim()}

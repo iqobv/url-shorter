@@ -51,7 +51,11 @@ const RoleForm = <T extends FieldValues>({
 	}, []);
 
 	return (
-		<Form<T> schema={schema} onSubmit={onSubmit} defaultValues={defaultValues}>
+		<Form<T>
+			schema={schema}
+			onSubmit={onSubmit}
+			defaultValues={defaultValues}
+		>
 			{({ watch, setValue, formState: { isDirty } }) => {
 				const selectedPermissions = watch('permissions' as Path<T>);
 
@@ -70,7 +74,10 @@ const RoleForm = <T extends FieldValues>({
 
 				return (
 					<>
-						<Form.Field<CreateRoleDto> name="name" namespace="role.form.fields">
+						<Form.Field<CreateRoleDto>
+							name="name"
+							namespace="role.form.fields"
+						>
 							<Input
 								label={t('fields.name.label')}
 								placeholder={t('fields.name.placeholder')}

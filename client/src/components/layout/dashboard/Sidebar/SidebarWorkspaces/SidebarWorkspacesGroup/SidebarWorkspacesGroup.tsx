@@ -20,7 +20,11 @@ const SidebarWorkspacesGroup = ({
 				<Dropdown.Group>
 					<Dropdown.Label>{label}</Dropdown.Label>
 					{workspaces.map((w) => (
-						<Dropdown.Item key={w.id} value={w.id} asChild>
+						<Dropdown.Item
+							key={w.id}
+							value={w.id}
+							asChild
+						>
 							<Link href={PRIVATE_PAGES.DASHBOARD_WORKSPACE(w.id)}>
 								{w.name}
 							</Link>

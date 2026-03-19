@@ -19,7 +19,10 @@ const PermissionField = ({
 	const t = useTranslations('role.permissions');
 
 	return (
-		<div key={permission} className={styles['permission-field']}>
+		<div
+			key={permission}
+			className={styles['permission-field']}
+		>
 			<div className={styles['permission-field__content']}>
 				<label
 					htmlFor={permission}

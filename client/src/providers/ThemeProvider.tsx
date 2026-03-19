@@ -5,7 +5,11 @@ import { PropsWithChildren } from 'react';
 
 const ThemeProvider = ({ children }: PropsWithChildren<unknown>) => {
 	return (
-		<NextThemesProvider enableSystem defaultTheme="system" attribute="class">
+		<NextThemesProvider
+			enableSystem
+			defaultTheme="system"
+			attribute="class"
+		>
 			{children}
 		</NextThemesProvider>
 	);

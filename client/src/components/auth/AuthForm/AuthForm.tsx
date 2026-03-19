@@ -63,7 +63,10 @@ const AuthForm = <T extends FieldValues, R>({
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className={styles['auth-form']}>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className={styles['auth-form']}
+		>
 			{errors.root && <p>{errors.root.message}</p>}
 			{fields.map((field) => (
 				<Input
@@ -81,7 +84,11 @@ const AuthForm = <T extends FieldValues, R>({
 					{...register(field.name)}
 				/>
 			))}
-			<Button type="submit" fullWidth isLoading={isPending}>
+			<Button
+				type="submit"
+				fullWidth
+				isLoading={isPending}
+			>
 				{buttonText}
 			</Button>
 			{bottomNode}

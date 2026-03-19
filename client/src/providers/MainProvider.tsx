@@ -24,7 +24,10 @@ const MainProvider = ({
 	hasRefreshToken,
 }: MainProviderProps) => {
 	return (
-		<TranslationsProvider messages={messages} locale={locale}>
+		<TranslationsProvider
+			messages={messages}
+			locale={locale}
+		>
 			<TanstackQueryProvider>
 				<UserProvider
 					initialUser={initialUser}

@@ -140,12 +140,20 @@ export class WorkspaceMemberService {
 			},
 		});
 
-		return members;
+		const mappedMembers = members.map(
+			({ roles, displayName, user, ...rest }) => ({
+				...rest,
+				displayName: displayName || user.displayName || user.username,
+				roles: roles.map((role) => role.role),
+			}),
+		);
+
+		return mappedMembers;
 	}
 
 	async getWorkspaceMember(
 		workspaceId: string,
-		userId: string,
+		memberId: string,
 		authUserId: string,
 	) {
 		const workspace = await this.workspaceCommonService.getWorkspace(
@@ -153,7 +161,17 @@ export class WorkspaceMemberService {
 			authUserId,
 		);
 
-		const member = workspace.members.find((m) => m.userId === userId);
+		const member = await this.prismaService.workspaceMember.findFirst({
+			where: { workspaceId: workspace.id, id: memberId },
+			include: {
+				user: { select: publicUserSelect },
+				roles: {
+					include: {
+						role: true,
+					},
+				},
+			},
+		});
 
 		if (!member || member.deletedAt)
 			throw new NotFoundException(
@@ -194,7 +212,7 @@ export class WorkspaceMemberService {
 
 	async updateWorkspaceMember(
 		workspaceId: string,
-		userId: string,
+		memberId: string,
 		authUserId: string,
 		dto: UpdateWorkspaceMemberDto,
 	) {
@@ -211,7 +229,7 @@ export class WorkspaceMemberService {
 		);
 		const member = await this.getWorkspaceMember(
 			workspaceId,
-			userId,
+			memberId,
 			authUserId,
 		);
 
@@ -275,7 +293,7 @@ export class WorkspaceMemberService {
 
 	async deleteWorkspaceMember(
 		workspaceId: string,
-		userId: string,
+		memberId: string,
 		authUserId: string,
 	) {
 		const workspace = await this.workspaceCommonService.getWorkspace(
@@ -284,14 +302,14 @@ export class WorkspaceMemberService {
 		);
 		const member = await this.getWorkspaceMember(
 			workspaceId,
-			userId,
+			memberId,
 			authUserId,
 		);
 
-		if (authUserId === userId)
+		if (authUserId === member.userId)
 			throw new ForbiddenException(ERRORS.WORKSPACE_MEMBER.CANNOT_REMOVE_SELF);
 
-		if (workspace.ownerId === userId)
+		if (workspace.ownerId === member.userId)
 			throw new ConflictException(
 				ERRORS.WORKSPACE_MEMBER.WORKSPACE_OWNER_CANNOT_BE_REMOVED,
 			);
@@ -299,7 +317,10 @@ export class WorkspaceMemberService {
 		await this.prismaService.workspaceMember.update({
 			where: {
 				id: member.id,
-				userId_workspaceId: { userId, workspaceId: workspace.id },
+				userId_workspaceId: {
+					userId: member.userId,
+					workspaceId: workspace.id,
+				},
 			},
 			data: { deletedAt: new Date() },
 		});

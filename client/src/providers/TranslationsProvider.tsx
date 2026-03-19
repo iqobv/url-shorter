@@ -18,7 +18,11 @@ const TranslationsProvider = ({
 	locale,
 }: TranslationsProviderProps) => {
 	return (
-		<NextIntlClientProvider messages={messages} locale={locale} timeZone="UTC">
+		<NextIntlClientProvider
+			messages={messages}
+			locale={locale}
+			timeZone="UTC"
+		>
 			{children}
 		</NextIntlClientProvider>
 	);

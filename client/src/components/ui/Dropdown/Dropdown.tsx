@@ -24,13 +24,22 @@ interface DropdownProps<T> {
 	children: React.ReactNode;
 	value?: T;
 	onChange?: (value: T) => void;
+	onClose?: () => void;
 }
 
-const Dropdown = <T,>({ children, value, onChange }: DropdownProps<T>) => {
+const Dropdown = <T,>({
+	children,
+	value,
+	onChange,
+	onClose: onCloseProp,
+}: DropdownProps<T>) => {
 	const [open, setOpen] = useState(false);
 
 	const onOpen = useCallback(() => setOpen(true), []);
-	const onClose = useCallback(() => setOpen(false), []);
+	const onClose = useCallback(() => {
+		setOpen(false);
+		onCloseProp?.();
+	}, [onCloseProp]);
 
 	const { refs, floatingStyles, elements } = useFloating({
 		open,

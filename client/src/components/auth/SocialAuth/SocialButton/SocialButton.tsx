@@ -11,7 +11,11 @@ interface SocialButtonProps {
 
 const SocialButton = ({ icon, onClick, text }: SocialButtonProps) => {
 	return (
-		<Button fullWidth onClick={onClick} variant="outline">
+		<Button
+			fullWidth
+			onClick={onClick}
+			variant="outline"
+		>
 			{icon({ size: 20 })}
 			{text}
 		</Button>

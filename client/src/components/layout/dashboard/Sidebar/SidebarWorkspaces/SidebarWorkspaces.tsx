@@ -64,8 +64,15 @@ const SidebarWorkspaces = () => {
 						</>
 					)}
 					<Dropdown.Divider />
-					<Dropdown.Item asChild unstyled>
-						<Button href={PRIVATE_PAGES.ONBOARDING} fullWidth variant="outline">
+					<Dropdown.Item
+						asChild
+						unstyled
+					>
+						<Button
+							href={PRIVATE_PAGES.ONBOARDING}
+							fullWidth
+							variant="outline"
+						>
 							{t('dropdown.create')}
 						</Button>
 					</Dropdown.Item>

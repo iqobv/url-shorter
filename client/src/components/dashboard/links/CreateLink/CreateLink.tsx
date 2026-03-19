@@ -16,7 +16,10 @@ const CreateLink = () => {
 				onSubmit={(data) => console.log(data)}
 			>
 				{CREATE_LINK_FIELDS.map((field) => (
-					<Form.Field<CreateLinkDto> name={field.name} key={field.name}>
+					<Form.Field<CreateLinkDto>
+						name={field.name}
+						key={field.name}
+					>
 						<Form.Label htmlFor={field.name}>
 							{t(field.label as never)}
 						</Form.Label>

@@ -4,5 +4,6 @@ export * from './auth/password.schema';
 export * from './auth/register.schema';
 export * from './link/claimLink.schema';
 export * from './link/createLink.schema';
+export * from './member/updateMember.schema';
 export * from './role/createRole.schema';
 export * from './role/updateRole.schema';

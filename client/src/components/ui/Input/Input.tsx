@@ -1,11 +1,10 @@
 'use client';
 
-import { InputProps } from './Input.types';
-
 import { useId, useRef, useState } from 'react';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import Button from '../Button/Button';
 import styles from './Input.module.scss';
+import { InputProps } from './Input.types';
 
 const Input = ({
 	error,
@@ -21,6 +20,7 @@ const Input = ({
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
 	const generatedId = useId();
+
 	const id = rest.id ?? generatedId;
 
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -44,25 +44,30 @@ const Input = ({
 		: type;
 
 	return (
-		<div className={`${styles['input-container']} ${containerClassName}`}>
+		<div className={`${styles['input-container']} ${containerClassName || ''}`}>
 			{!!label && (
-				<label htmlFor={id} className={styles['input-label']}>
+				<label
+					htmlFor={id}
+					className={styles['input-label']}
+				>
 					{label}
 				</label>
 			)}
 			<div
-				className={`${styles['input-wrapper']} ${!!error ? styles['input-wrapper--error'] : ''}`}
+				className={`${styles['input-wrapper']} ${error ? styles['input-wrapper--error'] : ''}`}
 				onClick={handleWrapperClick}
 			>
 				{leftSection && (
-					<label htmlFor={id} className={styles['section-left']}>
+					<label
+						htmlFor={id}
+						className={styles['section-left']}
+					>
 						{leftSection}
 					</label>
 				)}
 				<input
 					ref={(node) => {
 						inputRef.current = node;
-
 						if (typeof ref === 'function') {
 							ref(node);
 						} else if (ref) {
@@ -70,7 +75,7 @@ const Input = ({
 						}
 					}}
 					id={id}
-					className={`${styles['input']} ${inputClassName}`}
+					className={`${styles['input']} ${inputClassName || ''}`}
 					type={finalType}
 					{...rest}
 				/>

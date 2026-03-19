@@ -47,10 +47,18 @@ const RolesTable = () => {
 						accessorKey: 'actions',
 						cell: () => (
 							<div className={styles['actions-cell']}>
-								<Button isIcon isRounded variant="ghost">
+								<Button
+									isIcon
+									isRounded
+									variant="ghost"
+								>
 									<MdEdit />
 								</Button>
-								<Button isIcon isRounded variant="ghost">
+								<Button
+									isIcon
+									isRounded
+									variant="ghost"
+								>
 									<MdDelete />
 								</Button>
 							</div>

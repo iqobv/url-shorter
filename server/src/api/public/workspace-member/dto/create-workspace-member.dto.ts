@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+	ArrayMinSize,
 	IsArray,
 	IsOptional,
 	IsString,
 	IsUUID,
-	MinLength,
 } from 'class-validator';
 
 export class CreateWorkspaceMemberDto {
@@ -28,8 +28,8 @@ export class CreateWorkspaceMemberDto {
 		example: ['550e8400-e29b-41d4-a716-446655440000'],
 	})
 	@IsArray()
+	@ArrayMinSize(1)
 	@IsUUID('4', { each: true })
-	@MinLength(1)
 	roleIds: string[];
 
 	@IsOptional()

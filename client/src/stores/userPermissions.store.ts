@@ -30,7 +30,7 @@ export const useUserPermissionsStore = create<UserPermissionsStore>(
 
 			if (permissions.includes(PERMISSIONS.ADMIN.ALL)) return true;
 
-			return requiredPermissions.every((perm) => permissions.includes(perm));
+			return requiredPermissions.some((perm) => permissions.includes(perm));
 		},
 		clearPermissions: () => set({ permissions: [], isLoaded: false }),
 	}),

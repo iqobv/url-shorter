@@ -19,7 +19,11 @@ const FormReset = ({ children, buttonProps }: FormResetProps) => {
 	};
 
 	return (
-		<Button type="button" onClick={onClick} {...rest}>
+		<Button
+			type="button"
+			onClick={onClick}
+			{...rest}
+		>
 			{children}
 		</Button>
 	);

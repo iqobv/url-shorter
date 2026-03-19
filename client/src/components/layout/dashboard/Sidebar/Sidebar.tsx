@@ -67,7 +67,10 @@ const Sidebar = () => {
 							}
 							className={styles['sidebar__logo']}
 						>
-							<Logo width={32} height={32} />
+							<Logo
+								width={32}
+								height={32}
+							/>
 							<span>Shortly</span>
 						</Link>
 					</div>
@@ -79,7 +82,11 @@ const Sidebar = () => {
 									key={link.name}
 									permissions={link.permission ? [link.permission] : []}
 									loader={
-										<Skeleton height={41} width="100%" borderRadius={6} />
+										<Skeleton
+											height={41}
+											width="100%"
+											borderRadius={6}
+										/>
 									}
 								>
 									<li key={link.name}>

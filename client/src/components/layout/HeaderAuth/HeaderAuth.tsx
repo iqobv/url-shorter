@@ -7,8 +7,15 @@ const HeaderAuth = () => {
 	return (
 		<header className={styles['header-auth']}>
 			<div className={styles['header-auth__container']}>
-				<Link href={PUBLIC_PAGES.HOME} className={styles['header-auth__logo']}>
-					<Logo width={50} height={50} /> <span>Shortly</span>
+				<Link
+					href={PUBLIC_PAGES.HOME}
+					className={styles['header-auth__logo']}
+				>
+					<Logo
+						width={50}
+						height={50}
+					/>{' '}
+					<span>Shortly</span>
 				</Link>
 			</div>
 		</header>

@@ -1,3 +1,4 @@
+import { LogoutButton } from '@/components/settings';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function SettingsPage() {
-	return <div></div>;
+	return (
+		<div>
+			<LogoutButton />
+		</div>
+	);
 }

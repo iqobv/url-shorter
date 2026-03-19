@@ -1,14 +1,16 @@
 'use client';
 
 import {
-	flexRender,
 	getCoreRowModel,
 	RowData,
 	TableOptions,
+	Table as TableType,
 	useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import styles from './Table.module.scss';
+import TableBody from './TableBody/TableBody';
+import { TableContext } from './TableContext';
 import TableHeader from './TableHeader/TableHeader';
 
 const Table = <T extends RowData>(props: TableOptions<T>) => {
@@ -23,21 +25,17 @@ const Table = <T extends RowData>(props: TableOptions<T>) => {
 	// eslint-disable-next-line react-hooks/incompatible-library
 	const table = useReactTable(options);
 
+	const contextValue = {
+		table: table as unknown as TableType<unknown>,
+	};
+
 	return (
-		<table className={styles['table']}>
-			<TableHeader table={table} />
-			<tbody>
-				{table.getRowModel().rows.map((row) => (
-					<tr key={row.id}>
-						{row.getVisibleCells().map((cell) => (
-							<td key={cell.id}>
-								{flexRender(cell.column.columnDef.cell, cell.getContext())}
-							</td>
-						))}
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<TableContext.Provider value={contextValue}>
+			<table className={styles['table']}>
+				<TableHeader />
+				<TableBody />
+			</table>
+		</TableContext.Provider>
 	);
 };
 

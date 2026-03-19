@@ -8,8 +8,14 @@ const HeaderMain = () => {
 	return (
 		<header className={styles['header']}>
 			<div className={`${styles['header__container']} container`}>
-				<Link href={PUBLIC_PAGES.HOME} className={styles['header__logo']}>
-					<Logo width={25} height={25} />
+				<Link
+					href={PUBLIC_PAGES.HOME}
+					className={styles['header__logo']}
+				>
+					<Logo
+						width={25}
+						height={25}
+					/>
 					<span>Shortly</span>
 				</Link>
 				<AuthButtons />

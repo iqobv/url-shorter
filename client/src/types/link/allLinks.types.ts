@@ -1,4 +1,4 @@
-import { ILink } from "./link.types";
+import { ILink } from './link.types';
 
 export interface IAllLinks {
 	meta: {
