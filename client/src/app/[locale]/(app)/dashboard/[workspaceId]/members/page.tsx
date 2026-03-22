@@ -1,14 +1,13 @@
 import { MembersTable } from '@/components/dashboard/members';
 import { PRIVATE_PAGES } from '@/config';
 import { PERMISSIONS } from '@/constants';
-import { WorkspaceIdParams } from '@/types';
-import { canPerformActionServer } from '@/utils';
-import { Metadata } from 'next';
+import { TPageParams, WorkspaceIdParams } from '@/types';
+import { canPerformActionServer, generateTitle } from '@/utils';
 import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-	title: 'Members',
-};
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.dashboard.members.default');
+}
 
 export default async function MembersPage({ params }: WorkspaceIdParams) {
 	const { workspaceId } = await params;

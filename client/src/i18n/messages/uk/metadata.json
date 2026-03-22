@@ -1,0 +1,66 @@
+{
+	"pages": {
+		"public": {
+			"auth": {
+				"login": {
+					"title": "Login",
+					"description": "Sign in to your account"
+				},
+				"register": {
+					"title": "Register",
+					"description": "Create a new account"
+				}
+			}
+		},
+		"dashboard": {
+			"default": {
+				"title": "Панель керування",
+				"description": "Ваша панель керування"
+			},
+			"links": {
+				"default": {
+					"title": "Посилання",
+					"description": "Ваші посилання"
+				},
+				"linksNew": {
+					"title": "Нове посилання",
+					"description": "Створити нове посилання"
+				},
+				"linkView": {
+					"title": "Посилання",
+					"description": "Переглянути деталі посилання"
+				}
+			},
+			"roles": {
+				"default": {
+					"title": "Ролі",
+					"description": "Список ролей у робочому просторі"
+				},
+				"rolesNew": {
+					"title": "Нова роль",
+					"description": "Створити нову роль"
+				},
+				"roleView": {
+					"title": "Роль",
+					"description": "Переглянути деталі ролі"
+				}
+			},
+			"members": {
+				"default": {
+					"title": "Учасники",
+					"description": "Список учасників робочого простору"
+				},
+				"membersView": {
+					"title": "Учасник",
+					"description": "Переглянути деталі учасника"
+				}
+			},
+			"auditLog": {
+				"default": {
+					"title": "Журнал аудиту",
+					"description": "Переглянути записи журналу аудиту"
+				}
+			}
+		}
+	}
+}

@@ -7,6 +7,7 @@ import workspaceMember from './dashboard/workspaceMember.json';
 import form from './form.json';
 import header from './header.json';
 import home from './home.json';
+import metadata from './metadata.json';
 import shorten from './shorten.json';
 import zod from './zod.json';
 
@@ -18,6 +19,7 @@ const uk = {
 	header,
 	home,
 	links,
+	metadata,
 	role,
 	shorten,
 	workspaceMember,

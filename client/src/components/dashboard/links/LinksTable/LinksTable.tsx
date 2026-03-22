@@ -1,8 +1,8 @@
 'use client';
 
 import { getWorkspaceLinks } from '@/api';
-import { Table } from '@/components/ui';
-import { QUERY_KEYS } from '@/config';
+import { Button, Pagination, Table } from '@/components/ui';
+import { PRIVATE_PAGES, QUERY_KEYS } from '@/config';
 import { useWorkspaceId } from '@/hooks';
 import { useRouter } from '@/i18n';
 import { useGetUser } from '@/stores';
@@ -15,6 +15,8 @@ import {
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { MdDelete, MdOpenInNew } from 'react-icons/md';
+import styles from './LinksTable.module.scss';
 
 const LinksTable = () => {
 	const router = useRouter();
@@ -99,14 +101,64 @@ const LinksTable = () => {
 						header: t('slug'),
 						accessorKey: 'slug',
 						enableSorting: false,
+						meta: {
+							expand: true,
+						},
+						footer: () => (
+							<div className={styles['pagination-footer']}>
+								<Pagination
+									currentPage={pagination.pageIndex + 1}
+									totalPages={data?.meta?.totalPages ?? 0}
+									onPageChange={(page) => {
+										setPagination((prev) => ({
+											...prev,
+											pageIndex: page - 1,
+										}));
+									}}
+								/>
+							</div>
+						),
 					},
 					{
 						header: t('totalClicks'),
 						accessorKey: 'totalClicks',
+						cell: ({ getValue }) => (
+							<span className={styles['clicks-cell']}>{getValue()}</span>
+						),
 					},
 					{
 						header: t('uniqueClicks'),
 						accessorKey: 'uniqueClicks',
+						cell: ({ getValue }) => (
+							<span className={styles['clicks-cell']}>{getValue()}</span>
+						),
+					},
+					{
+						header: '',
+						accessorKey: 'actions',
+						cell: ({ cell }) => {
+							const linkId = cell.row.original.id;
+							return (
+								<div className={styles['clicks-cell']}>
+									<Button
+										isIcon
+										isRounded
+										variant="ghost"
+										href={PRIVATE_PAGES.LINK(workspaceId, linkId)}
+									>
+										<MdOpenInNew />
+									</Button>
+									<Button
+										isIcon
+										isRounded
+										variant="ghost"
+									>
+										<MdDelete />
+									</Button>
+								</div>
+							);
+						},
+						enableSorting: false,
 					},
 				]}
 				onPaginationChange={setPagination}

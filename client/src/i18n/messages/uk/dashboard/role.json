@@ -1,16 +1,23 @@
 {
-	"create": {
+	"form": {
 		"fields": {
 			"name": {
-				"label": "Назва ролі",
-				"placeholder": "Введіть назву ролі"
+				"label": "Role name",
+				"placeholder": "Enter role name"
 			},
 			"permissions": {
-				"label": "Дозволи"
+				"label": "Permissions"
 			}
 		},
-		"submit": "Створити Роль",
-		"selectPermissions": "Виберіть дозволи"
+		"selectPermissions": "Select a permissions",
+		"create": {
+			"submit": "Create Role",
+			"cancel": "Cancel"
+		},
+		"update": {
+			"submit": "Update Role",
+			"cancel": "Cancel"
+		}
 	},
 	"groups": {
 		"ADMIN": "Адміністратор",

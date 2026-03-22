@@ -1,6 +1,10 @@
 import { PERMISSIONS } from '@/constants';
-import { WorkspaceIdParams } from '@/types';
-import { pageCheckPermission } from '@/utils';
+import { TPageParams, WorkspaceIdParams } from '@/types';
+import { generateTitle, pageCheckPermission } from '@/utils';
+
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.dashboard.links.linkView');
+}
 
 export default async function LinkPage({ params }: WorkspaceIdParams) {
 	await pageCheckPermission({

@@ -1,9 +1,15 @@
-import { Metadata } from 'next';
+import { LinksTable } from '@/components/dashboard/links';
+import { TPageParams } from '@/types';
+import { generateTitle } from '@/utils';
 
-export const metadata: Metadata = {
-	title: 'Links',
-};
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.dashboard.links.default');
+}
 
 export default function LinksPage() {
-	return <div></div>;
+	return (
+		<div>
+			<LinksTable />
+		</div>
+	);
 }

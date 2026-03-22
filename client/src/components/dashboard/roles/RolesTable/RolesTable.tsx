@@ -3,7 +3,7 @@
 import { getRoles } from '@/api';
 import { Button } from '@/components/ui';
 import Table from '@/components/ui/Table/Table';
-import { QUERY_KEYS } from '@/config';
+import { PRIVATE_PAGES, QUERY_KEYS } from '@/config';
 import { useWorkspaceId } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { getCoreRowModel } from '@tanstack/react-table';
@@ -45,24 +45,28 @@ const RolesTable = () => {
 					{
 						header: 'Actions',
 						accessorKey: 'actions',
-						cell: () => (
-							<div className={styles['actions-cell']}>
-								<Button
-									isIcon
-									isRounded
-									variant="ghost"
-								>
-									<MdEdit />
-								</Button>
-								<Button
-									isIcon
-									isRounded
-									variant="ghost"
-								>
-									<MdDelete />
-								</Button>
-							</div>
-						),
+						cell: ({ cell }) => {
+							const roleId = cell.row.original.id;
+							return (
+								<div className={styles['actions-cell']}>
+									<Button
+										isIcon
+										isRounded
+										variant="ghost"
+										href={PRIVATE_PAGES.ROLE(workspaceId, roleId)}
+									>
+										<MdEdit />
+									</Button>
+									<Button
+										isIcon
+										isRounded
+										variant="ghost"
+									>
+										<MdDelete />
+									</Button>
+								</div>
+							);
+						},
 						enableSorting: false,
 					},
 				]}

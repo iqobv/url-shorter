@@ -1,0 +1,66 @@
+{
+	"pages": {
+		"public": {
+			"auth": {
+				"login": {
+					"title": "Login",
+					"description": "Sign in to your account"
+				},
+				"register": {
+					"title": "Register",
+					"description": "Create a new account"
+				}
+			}
+		},
+		"dashboard": {
+			"default": {
+				"title": "Dashboard",
+				"description": "Your dashboard"
+			},
+			"links": {
+				"default": {
+					"title": "Links",
+					"description": "Your links"
+				},
+				"linksNew": {
+					"title": "New Link",
+					"description": "Create a new link"
+				},
+				"linkView": {
+					"title": "Link",
+					"description": "View link details"
+				}
+			},
+			"roles": {
+				"default": {
+					"title": "Roles",
+					"description": "Workspace roles list"
+				},
+				"rolesNew": {
+					"title": "New Role",
+					"description": "Create a new role"
+				},
+				"roleView": {
+					"title": "Role",
+					"description": "View role details"
+				}
+			},
+			"members": {
+				"default": {
+					"title": "Members",
+					"description": "Workspace members list"
+				},
+				"membersView": {
+					"title": "Member",
+					"description": "View member details"
+				}
+			},
+			"auditLog": {
+				"default": {
+					"title": "Audit Log",
+					"description": "View audit log entries"
+				}
+			}
+		}
+	}
+}

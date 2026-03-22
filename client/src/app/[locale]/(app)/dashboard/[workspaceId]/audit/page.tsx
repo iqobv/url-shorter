@@ -1,11 +1,10 @@
 import { PERMISSIONS } from '@/constants';
-import { WorkspaceIdParams } from '@/types';
-import { pageCheckPermission } from '@/utils';
-import { Metadata } from 'next';
+import { TPageParams, WorkspaceIdParams } from '@/types';
+import { generateTitle, pageCheckPermission } from '@/utils';
 
-export const metadata: Metadata = {
-	title: 'Audit Log',
-};
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.dashboard.auditLog.default');
+}
 
 export default async function AuditLogPage({ params }: WorkspaceIdParams) {
 	await pageCheckPermission({

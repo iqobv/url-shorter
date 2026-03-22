@@ -1,13 +1,11 @@
 import { CreateRole } from '@/components/dashboard/roles';
 import { PERMISSIONS } from '@/constants';
-import { WorkspaceIdParams } from '@/types';
-import { pageCheckPermission } from '@/utils';
-import { Metadata } from 'next';
+import { TPageParams, WorkspaceIdParams } from '@/types';
+import { generateTitle, pageCheckPermission } from '@/utils';
 
-export const metadata: Metadata = {
-	title: 'Create Role',
-};
-
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.dashboard.roles.rolesNew');
+}
 export default async function NewRolePage({ params }: WorkspaceIdParams) {
 	await pageCheckPermission({
 		params,

@@ -1,9 +1,10 @@
 import { RegisterForm } from '@/components/auth';
-import { Metadata } from 'next';
+import { TPageParams } from '@/types';
+import { generateTitle } from '@/utils';
 
-export const metadata: Metadata = {
-	title: 'Register',
-};
+export async function generateMetadata({ params }: { params: TPageParams }) {
+	return generateTitle(params, 'metadata.pages.public.auth.register');
+}
 
 export default function RegisterPage() {
 	return <RegisterForm />;

@@ -11,6 +11,7 @@ import { useMemo } from 'react';
 import styles from './Table.module.scss';
 import TableBody from './TableBody/TableBody';
 import { TableContext } from './TableContext';
+import TableFooter from './TableFooter/TableFooter';
 import TableHeader from './TableHeader/TableHeader';
 
 const Table = <T extends RowData>(props: TableOptions<T>) => {
@@ -34,6 +35,7 @@ const Table = <T extends RowData>(props: TableOptions<T>) => {
 			<table className={styles['table']}>
 				<TableHeader />
 				<TableBody />
+				<TableFooter />
 			</table>
 		</TableContext.Provider>
 	);
