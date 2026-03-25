@@ -4,13 +4,6 @@
 		"title": "No links yet",
 		"description": "Start shortening your URLs to see them here!"
 	},
-	"columns": {
-		"slug": "Short URL",
-		"originalUrl": "Original URL",
-		"totalClicks": "Clicks",
-		"uniqueClicks": "Unique Clicks",
-		"createdAt": "Created At"
-	},
 	"sidebar": {
 		"links": {
 			"home": "Home",

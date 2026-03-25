@@ -9,12 +9,12 @@ export class AnalyticsService {
 	constructor(private readonly prismaService: PrismaService) {}
 
 	async getAnalyticsByLinkId(
+		workspaceId: string,
 		linkId: string,
-		userId: string,
 		query: AnalyticsQueryDto,
 	) {
 		const link = await this.prismaService.link.findUnique({
-			where: { id: linkId, userId },
+			where: { id: linkId, workspaceId },
 			include: {
 				clicks: {
 					where: {

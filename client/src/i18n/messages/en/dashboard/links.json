@@ -13,6 +13,14 @@
 		"createButton": "Create Link",
 		"cancelButton": "Cancel"
 	},
+	"columns": {
+		"name": "Name",
+		"slug": "Short URL",
+		"originalUrl": "Original URL",
+		"totalClicks": "Clicks",
+		"uniqueClicks": "Unique Clicks",
+		"createdAt": "Created At"
+	},
 	"errors": {
 		"originalUrl": {
 			"url": "Invalid URL format",
@@ -23,6 +31,7 @@
 			"maxLength": "Custom alias can be at most 100 characters long"
 		}
 	},
+	"copied": "Link copied!",
 	"deleteButton": "Delete Link",
 	"updateButton": "Update Link"
 }

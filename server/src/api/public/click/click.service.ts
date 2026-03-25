@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { createHash } from 'crypto';
+import { Prisma } from 'generated/prisma/client';
 import { lookup } from 'geoip-country';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { UAParser } from 'ua-parser-js';
@@ -9,14 +10,14 @@ import { CreateClickDto } from './dto';
 export class ClickService {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	async createClick(dto: CreateClickDto) {
+	async createClick(dto: CreateClickDto, tx: Prisma.TransactionClient) {
 		const { linkId, ip, userAgent, referer } = dto;
 
 		const fingerprint = createHash('sha256')
 			.update(`${ip}-${userAgent}`)
 			.digest('hex');
 
-		const existingClick = await this.prismaService.click.findFirst({
+		const existingClick = await tx.click.findFirst({
 			where: {
 				linkId,
 				fingerprint,
@@ -29,7 +30,7 @@ export class ClickService {
 
 		const geo = lookup(ip!);
 
-		return await this.prismaService.click.create({
+		return await tx.click.create({
 			data: {
 				fingerprint,
 				country: geo?.country || null,

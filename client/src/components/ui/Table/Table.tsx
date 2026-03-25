@@ -30,13 +30,19 @@ const Table = <T extends RowData>(props: TableOptions<T>) => {
 		table: table as unknown as TableType<unknown>,
 	};
 
+	const hasFooters = table
+		.getAllColumns()
+		.some((column) => column.columnDef.footer);
+
 	return (
 		<TableContext.Provider value={contextValue}>
-			<table className={styles['table']}>
-				<TableHeader />
-				<TableBody />
-				<TableFooter />
-			</table>
+			<div className={styles['table-container']}>
+				<table className={styles['table']}>
+					<TableHeader />
+					<TableBody />
+					{hasFooters && <TableFooter />}
+				</table>
+			</div>
 		</TableContext.Provider>
 	);
 };

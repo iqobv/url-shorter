@@ -37,7 +37,7 @@ const MembersTable = () => {
 						accessorKey: 'displayName',
 						enableSorting: false,
 						meta: {
-							expand: true,
+							style: { width: '99%' },
 						},
 					},
 					{

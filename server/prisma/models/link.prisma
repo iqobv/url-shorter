@@ -5,6 +5,7 @@ model Link {
   workspaceId String? @map("workspace_id")
 
   originalUrl String @map("original_url")
+  domain      String @map("domain")
 
   slug String @unique
 
@@ -15,7 +16,6 @@ model Link {
 
   claimToken String? @map("claim_token")
 
-  favicon  String? @map("favicon")
   title    String? @map("title")
   siteName String? @map("site_name")
 

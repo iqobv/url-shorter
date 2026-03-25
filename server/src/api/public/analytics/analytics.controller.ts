@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { Auth, Authorized } from 'src/libs/decorators';
+import { PERMISSIONS } from 'src/libs/constants';
+import { Permissions } from 'src/libs/decorators';
 import { AnalyticsService } from './analytics.service';
 import { AnalyticsQueryDto, GroupedClicksResponseDto } from './dto';
 
@@ -8,17 +9,17 @@ import { AnalyticsQueryDto, GroupedClicksResponseDto } from './dto';
 export class AnalyticsController {
 	constructor(private readonly analyticsService: AnalyticsService) {}
 
-	@Auth()
+	@Permissions(PERMISSIONS.LINKS.VIEW_ALL)
 	@ApiOkResponse({ type: GroupedClicksResponseDto })
-	@Get(':linkId')
+	@Get('workspace/:workspaceId/link/:linkId')
 	async getAnalyticsByLinkId(
+		@Param('workspaceId') workspaceId: string,
 		@Param('linkId') linkId: string,
-		@Authorized('id') userId: string,
 		@Query() query: AnalyticsQueryDto,
 	) {
 		return await this.analyticsService.getAnalyticsByLinkId(
+			workspaceId,
 			linkId,
-			userId,
 			query,
 		);
 	}

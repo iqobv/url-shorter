@@ -6,6 +6,7 @@ import { PRIVATE_PAGES, QUERY_KEYS } from '@/config';
 import { useWorkspaceId } from '@/hooks';
 import { useRouter } from '@/i18n';
 import { useGetUser } from '@/stores';
+import { ILink } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import {
 	getCoreRowModel,
@@ -14,9 +15,19 @@ import {
 } from '@tanstack/react-table';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MdDelete, MdOpenInNew } from 'react-icons/md';
+import LinkCell from './LinkCell/LinkCell';
 import styles from './LinksTable.module.scss';
+import LinksTableLoader from './LinksTableLoader';
+import SlugCell from './SlugCell/SlugCell';
+
+type TableLinkData = ILink | { id: string; isSkeleton: true };
+
+const SKELETON_ROWS: TableLinkData[] = Array.from({ length: 10 }, (_, id) => ({
+	id: `skeleton-${id}`,
+	isSkeleton: true,
+}));
 
 const LinksTable = () => {
 	const router = useRouter();
@@ -24,7 +35,7 @@ const LinksTable = () => {
 	const workspaceId = useWorkspaceId();
 
 	const user = useGetUser();
-	const t = useTranslations('dashboard.columns');
+	const t = useTranslations('links.columns');
 	const pageFromUrl = Number(searchParams.get('page')) || 1;
 
 	const [sorting, setSorting] = useState<SortingState>([
@@ -38,13 +49,8 @@ const LinksTable = () => {
 		pageSize: 20,
 	});
 
-	const { data } = useQuery({
-		queryKey: QUERY_KEYS.LINK.ALL(
-			user?.id || '',
-			workspaceId,
-			pagination,
-			sorting,
-		),
+	const { data, isLoading } = useQuery({
+		queryKey: QUERY_KEYS.LINK.ALL(workspaceId, pagination, sorting),
 		queryFn: () => {
 			const sortState = sorting[0];
 
@@ -55,8 +61,16 @@ const LinksTable = () => {
 				sortOrder: sortState ? (sortState.desc ? 'desc' : 'asc') : 'desc',
 			});
 		},
-		enabled: !!user,
+		enabled: !!user || !!workspaceId,
 	});
+
+	const tableData = useMemo<TableLinkData[]>(() => {
+		if (isLoading) return SKELETON_ROWS;
+		return (data?.items || []).map((item) => ({
+			...item,
+			isSkeleton: false,
+		}));
+	}, [isLoading, data]);
 
 	useEffect(() => {
 		if (!data) return;
@@ -85,9 +99,9 @@ const LinksTable = () => {
 	}, [data, pageFromUrl, router, searchParams]);
 
 	return (
-		<div>
+		<div className={styles['links-table']}>
 			<Table
-				data={data?.items || []}
+				data={tableData}
 				state={{
 					pagination,
 					sorting,
@@ -98,44 +112,63 @@ const LinksTable = () => {
 				autoResetPageIndex={false}
 				columns={[
 					{
+						header: t('name'),
+						accessorKey: 'name',
+						enableSorting: false,
+						minSize: 600,
+						meta: {
+							style: { width: '100%' },
+						},
+						cell: ({ row }) => {
+							const data = row.original;
+
+							if ('isSkeleton' in data && data.isSkeleton) {
+								return <LinksTableLoader />;
+							}
+
+							return <LinkCell data={data as ILink} />;
+						},
+					},
+					{
 						header: t('slug'),
 						accessorKey: 'slug',
 						enableSorting: false,
-						meta: {
-							expand: true,
-						},
-						footer: () => (
-							<div className={styles['pagination-footer']}>
-								<Pagination
-									currentPage={pagination.pageIndex + 1}
-									totalPages={data?.meta?.totalPages ?? 0}
-									onPageChange={(page) => {
-										setPagination((prev) => ({
-											...prev,
-											pageIndex: page - 1,
-										}));
-									}}
-								/>
-							</div>
-						),
+						minSize: 180,
+						maxSize: 180,
+						cell: ({ getValue }) => <SlugCell slug={getValue()} />,
 					},
 					{
 						header: t('totalClicks'),
 						accessorKey: 'totalClicks',
+						minSize: 120,
+						maxSize: 120,
 						cell: ({ getValue }) => (
-							<span className={styles['clicks-cell']}>{getValue()}</span>
+							<span
+								className={styles['clicks-cell']}
+								style={{ paddingLeft: '8px' }}
+							>
+								{getValue()}
+							</span>
 						),
 					},
 					{
 						header: t('uniqueClicks'),
 						accessorKey: 'uniqueClicks',
+						minSize: 180,
+						maxSize: 180,
 						cell: ({ getValue }) => (
-							<span className={styles['clicks-cell']}>{getValue()}</span>
+							<span
+								className={styles['clicks-cell']}
+								style={{ paddingLeft: '8px' }}
+							>
+								{getValue()}
+							</span>
 						),
 					},
 					{
 						header: '',
 						accessorKey: 'actions',
+						maxSize: 120,
 						cell: ({ cell }) => {
 							const linkId = cell.row.original.id;
 							return (
@@ -165,6 +198,18 @@ const LinksTable = () => {
 				onSortingChange={setSorting}
 				getCoreRowModel={getCoreRowModel()}
 			/>
+			<div className={styles['pagination-footer']}>
+				<Pagination
+					currentPage={pagination.pageIndex + 1}
+					totalPages={data?.meta?.totalPages ?? 0}
+					onPageChange={(page) => {
+						setPagination((prev) => ({
+							...prev,
+							pageIndex: page - 1,
+						}));
+					}}
+				/>
+			</div>
 		</div>
 	);
 };

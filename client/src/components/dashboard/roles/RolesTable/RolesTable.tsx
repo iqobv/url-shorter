@@ -28,7 +28,7 @@ const RolesTable = () => {
 						accessorKey: 'name',
 						enableSorting: false,
 						meta: {
-							expand: true,
+							style: { width: '99%' },
 						},
 					},
 					{

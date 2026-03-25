@@ -37,6 +37,6 @@ export class RedirectController {
 			referer,
 		});
 
-		return res.redirect(301, link.originalUrl);
+		return res.redirect(302, link.originalUrl);
 	}
 }

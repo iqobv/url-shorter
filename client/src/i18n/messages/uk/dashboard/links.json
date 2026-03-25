@@ -13,6 +13,14 @@
 		"createButton": "Створити посилання",
 		"cancelButton": "Скасувати"
 	},
+	"columns": {
+		"name": "Назва",
+		"slug": "Короткий URL",
+		"originalUrl": "Оригінальний URL",
+		"totalClicks": "Кліки",
+		"uniqueClicks": "Унікальні кліки",
+		"createdAt": "Створено"
+	},
 	"errors": {
 		"originalUrl": {
 			"url": "Невірний формат URL",
@@ -23,6 +31,7 @@
 			"maxLength": "Варіант посилання може містити не більше 100 символів"
 		}
 	},
+	"copied": "Посилання скопійовано!",
 	"deleteButton": "Видалити посилання",
 	"updateButton": "Оновити посилання"
 }

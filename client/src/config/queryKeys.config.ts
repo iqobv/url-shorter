@@ -10,17 +10,17 @@ export const QUERY_KEYS = {
 	},
 	LINK: {
 		ALL: (
-			userId: string,
 			workspaceId: string,
 			pagination: PaginationState,
 			sorting: SortingState,
-		) => ['links', userId, workspaceId, pagination, sorting],
+		) => ['links', workspaceId, pagination, sorting],
 		CLAIM_LINKS: (links?: ILinkLocal[], userId?: string) => [
 			'links',
 			links,
 			userId,
 			'claim',
 		],
+		CREATE: (workspaceId: string) => ['links', workspaceId, 'create'],
 	},
 	WORKSPACE: {
 		DEFAULT: (userId: string) => ['workspace', userId],

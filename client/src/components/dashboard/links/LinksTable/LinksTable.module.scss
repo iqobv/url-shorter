@@ -1,8 +1,17 @@
+@use '../../../../styles/mixins' as *;
+
+.links-table {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
 .clicks-cell {
 	display: flex;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
 	gap: 5px;
+	width: 100%;
 }
 
 .pagination-footer {

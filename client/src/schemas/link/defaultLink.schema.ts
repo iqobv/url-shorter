@@ -7,7 +7,7 @@ export type CreateLinkMessages = NestedKeyOf<typeof messages>;
 
 const msg = createErrorSchema<CreateLinkMessages>();
 
-export const createLinkSchema = z.object({
+export const defaultLinkSchema = z.object({
 	originalUrl: z
 		.url(msg('links.errors.originalUrl.url'))
 		.min(1, msg('links.errors.originalUrl.required')),

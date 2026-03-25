@@ -4,13 +4,7 @@
 		"title": "Посилань ще немає",
 		"description": "Почніть скорочувати ваші URL, щоб побачити їх тут!"
 	},
-	"columns": {
-		"slug": "Короткий URL",
-		"originalUrl": "Оригінальний URL",
-		"totalClicks": "Кліки",
-		"uniqueClicks": "Унікальні кліки",
-		"createdAt": "Створено"
-	},
+
 	"sidebar": {
 		"links": {
 			"home": "Головна",

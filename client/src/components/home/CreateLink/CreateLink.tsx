@@ -3,7 +3,7 @@
 import { createLink } from '@/api';
 import { Button, Input } from '@/components/ui';
 import { CreateLinkDto } from '@/dto';
-import { createLinkSchema } from '@/schemas';
+import { defaultLinkSchema } from '@/schemas';
 import { useAddLink, useGetUser } from '@/stores';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -25,7 +25,7 @@ const CreateLink = () => {
 		defaultValues: {
 			originalUrl: '',
 		},
-		resolver: zodResolver(createLinkSchema),
+		resolver: zodResolver(defaultLinkSchema),
 	});
 
 	const { mutate, isPending } = useMutation({

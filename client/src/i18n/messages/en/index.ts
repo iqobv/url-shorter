@@ -8,6 +8,7 @@ import form from './form.json';
 import header from './header.json';
 import home from './home.json';
 import metadata from './metadata.json';
+import settings from './settings.json';
 import shorten from './shorten.json';
 import zod from './zod.json';
 
@@ -21,6 +22,7 @@ const en = {
 	links,
 	metadata,
 	role,
+	settings,
 	shorten,
 	workspaceMember,
 	zod,

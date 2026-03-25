@@ -5,10 +5,12 @@ import { Button } from '@/components/ui';
 import { PUBLIC_PAGES, QUERY_KEYS } from '@/config';
 import { useLogout } from '@/stores';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
 const LogoutButton = () => {
 	const router = useRouter();
+	const t = useTranslations('settings');
 
 	const storeLogout = useLogout();
 
@@ -24,7 +26,7 @@ const LogoutButton = () => {
 
 	return (
 		<div>
-			<Button onClick={() => mutate()}>Logout</Button>
+			<Button onClick={() => mutate()}>{t('logout')}</Button>
 		</div>
 	);
 };

@@ -2,10 +2,6 @@
 	width: auto;
 	white-space: nowrap;
 
-	&--expanded {
-		width: 99%;
-	}
-
 	&__inner {
 		cursor: default;
 		display: flex;

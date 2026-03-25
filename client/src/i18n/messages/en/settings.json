@@ -1,0 +1,11 @@
+{
+	"logout": "Logout",
+	"theme": {
+		"label": "Switch Theme",
+		"names": {
+			"system": "System",
+			"light": "Light",
+			"dark": "Dark"
+		}
+	}
+}

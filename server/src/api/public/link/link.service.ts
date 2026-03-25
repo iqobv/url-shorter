@@ -115,16 +115,14 @@ export class LinkService {
 		let ogInfo: {
 			title: string | null;
 			siteName: string | null;
-			favicon: string | null;
-		} = { title: null, siteName: null, favicon: null };
+		} = { title: null, siteName: null };
 
 		try {
 			const ogData = await ogs({ url: originalUrl });
-			const { ogTitle, ogSiteName, favicon } = ogData.result;
+			const { ogTitle, ogSiteName } = ogData.result;
 			ogInfo = {
 				title: ogTitle || null,
 				siteName: ogSiteName || ogTitle || null,
-				favicon: favicon || null,
 			};
 		} catch (e) {
 			console.warn(
@@ -132,6 +130,8 @@ export class LinkService {
 				e,
 			);
 		}
+
+		const domain = new URL(originalUrl).hostname.replace('www.', '');
 
 		try {
 			return await this.prismaService.$transaction(async (tx) => {
@@ -142,6 +142,7 @@ export class LinkService {
 						claimToken: hashedClaimToken,
 						userId: userId || null,
 						workspaceId: workspaceId || defaultWorkspaceId || null,
+						domain,
 						...ogInfo,
 					},
 				});
@@ -246,19 +247,24 @@ export class LinkService {
 
 		const link = await this.getBySlugWithoutTracking(slug);
 
-		const click = await this.clickService.createClick({
-			linkId: link.id,
-			ip,
-			userAgent,
-			referer,
-		});
+		await this.prismaService.$transaction(async (tx) => {
+			const click = await this.clickService.createClick(
+				{
+					linkId: link.id,
+					ip,
+					userAgent,
+					referer,
+				},
+				tx,
+			);
 
-		await this.prismaService.link.update({
-			where: { id: link.id },
-			data: {
-				totalClicks: { increment: 1 },
-				uniqueClicks: click.isUnique ? { increment: 1 } : undefined,
-			},
+			await tx.link.update({
+				where: { id: link.id },
+				data: {
+					totalClicks: { increment: 1 },
+					uniqueClicks: click.isUnique ? { increment: 1 } : undefined,
+				},
+			});
 		});
 
 		return link;
