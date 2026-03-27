@@ -97,3 +97,21 @@ select:-webkit-autofill:focus {
 	align-items: center;
 	justify-content: center;
 }
+
+.fade-in {
+	animation-name: fade-in;
+	animation-duration: 300ms;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+	from {
+		transform: translateY(10px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

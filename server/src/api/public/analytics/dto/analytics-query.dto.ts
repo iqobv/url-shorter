@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
+import { Type } from 'class-transformer';
 import { IsDate, IsOptional } from 'class-validator';
 
 export class AnalyticsQueryDto {
@@ -7,13 +7,13 @@ export class AnalyticsQueryDto {
 		example: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
 	})
 	@IsOptional()
-	@Transform(({ value }: { value: string }) => new Date(value))
+	@Type(() => Date)
 	@IsDate()
 	fromDate?: Date;
 
 	@ApiProperty({ example: new Date().toISOString() })
 	@IsOptional()
-	@Transform(({ value }: { value: string }) => new Date(value))
+	@Type(() => Date)
 	@IsDate()
 	toDate?: Date;
 }

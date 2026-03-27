@@ -1,0 +1,11 @@
+@use '../../../../../styles/mixins' as *;
+
+.link-analytics-metrics {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+
+	@include respond-to('md') {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}

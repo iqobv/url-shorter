@@ -1,3 +1,4 @@
+import { LinkAnalytics } from '@/components/dashboard/links';
 import { PERMISSIONS } from '@/constants';
 import { TPageParams, WorkspaceIdParams } from '@/types';
 import { generateTitle, pageCheckPermission } from '@/utils';
@@ -16,5 +17,9 @@ export default async function LinkPage({ params }: WorkspaceIdParams) {
 		],
 	});
 
-	return <div></div>;
+	return (
+		<div>
+			<LinkAnalytics />
+		</div>
+	);
 }

@@ -5,6 +5,7 @@ export * from './auth/register.schema';
 export * from './link/claimLink.schema';
 export * from './link/createAuthorizedLink.schema';
 export * from './link/defaultLink.schema';
+export * from './link/linkAnalyticsQuery.schema';
 export * from './member/updateMember.schema';
 export * from './role/createRole.schema';
 export * from './role/updateRole.schema';

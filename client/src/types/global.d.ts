@@ -4,7 +4,7 @@ type Messages = typeof messages;
 
 declare module 'next-intl' {
 	interface AppConfig {
-		Messages: typeof messages;
+		Messages: Messages;
 		Locale: (typeof routing.locales)[number];
 	}
 

@@ -1,0 +1,8 @@
+@use '../../../../../../styles/mixins' as *;
+
+.link-analytics-metrics-card {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	gap: 16px;
+}

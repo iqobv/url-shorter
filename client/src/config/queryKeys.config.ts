@@ -1,3 +1,4 @@
+import { LinkAnalyticsQueryDto } from '@/dto';
 import { ILinkLocal } from '@/types';
 import { PaginationState, SortingState } from '@tanstack/react-table';
 
@@ -21,6 +22,11 @@ export const QUERY_KEYS = {
 			'claim',
 		],
 		CREATE: (workspaceId: string) => ['links', workspaceId, 'create'],
+		ANALYTICS: (
+			workspaceId: string,
+			linkId: string,
+			query: LinkAnalyticsQueryDto,
+		) => ['links', workspaceId, linkId, 'analytics', query],
 	},
 	WORKSPACE: {
 		DEFAULT: (userId: string) => ['workspace', userId],

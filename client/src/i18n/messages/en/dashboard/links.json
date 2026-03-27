@@ -31,6 +31,20 @@
 			"maxLength": "Custom alias can be at most 100 characters long"
 		}
 	},
+	"analytics": {
+		"showMore": "Show More",
+		"dates": {
+			"24Hours": "24 Hours",
+			"7Days": "7 Days",
+			"30Days": "30 Days"
+		},
+		"metrics": {
+			"clicksByCountry": "Clicks by Country",
+			"clicksByDevice": "Clicks by Device",
+			"clicksByBrowser": "Clicks by Browser",
+			"clicksByOs": "Clicks by Operating System"
+		}
+	},
 	"copied": "Link copied!",
 	"deleteButton": "Delete Link",
 	"updateButton": "Update Link"

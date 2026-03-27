@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Click } from 'generated/prisma/client';
 import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { ERRORS } from 'src/libs/constants';
-import { AnalyticsQueryDto, ClickMetricsDto, DailyAnalyticsDto } from './dto';
+import { AnalyticsQueryDto, ClickMetricsDto } from './dto';
 
 @Injectable()
 export class AnalyticsService {
@@ -13,13 +13,17 @@ export class AnalyticsService {
 		linkId: string,
 		query: AnalyticsQueryDto,
 	) {
+		const { fromDate, toDate } = query;
+
 		const link = await this.prismaService.link.findUnique({
 			where: { id: linkId, workspaceId },
 			include: {
 				clicks: {
 					where: {
-						...(query.fromDate && { clickedAt: { gte: query.fromDate } }),
-						...(query.toDate && { clickedAt: { lte: query.toDate } }),
+						clickedAt: {
+							...(fromDate && { gte: fromDate }),
+							...(toDate && { lte: toDate }),
+						},
 					},
 				},
 			},
@@ -40,66 +44,11 @@ export class AnalyticsService {
 			{} as Record<string, Record<string, ClickMetricsDto>>,
 		);
 
-		const dailyData = clicks.reduce(
-			(acc, click) => {
-				const date = click.clickedAt.toISOString().split('T')[0];
-
-				if (!acc[date]) {
-					acc[date] = {
-						total: 0,
-						unique: 0,
-						clicksByCountry: {
-							total: 0,
-							unique: 0,
-						},
-						clicksByDevice: {
-							total: 0,
-							unique: 0,
-						},
-						clicksByBrowser: {
-							total: 0,
-							unique: 0,
-						},
-						clicksByOs: {
-							total: 0,
-							unique: 0,
-						},
-						_tempClicks: [],
-					};
-				}
-
-				acc[date].total += 1;
-				if (click.isUnique) acc[date].unique += 1;
-				acc[date]._tempClicks.push(click);
-
-				return acc;
-			},
-			{} as Record<string, DailyAnalyticsDto & { _tempClicks: Click[] }>,
-		);
-
-		const daily = Object.entries(dailyData).reduce(
-			(acc, [date, data]) => {
-				const { _tempClicks, ...stats } = data;
-
-				categories.forEach((key) => {
-					const label = `clicksBy${key.charAt(0).toUpperCase() + key.slice(1)}`;
-					(stats as unknown as Record<string, Record<string, ClickMetricsDto>>)[
-						label
-					] = this.groupBy(_tempClicks, key);
-				});
-
-				acc[date] = stats as DailyAnalyticsDto;
-				return acc;
-			},
-			{} as Record<string, DailyAnalyticsDto>,
-		);
-
 		return {
 			link: rest,
 			totalClicks: clicks.length,
 			uniqueClicks: clicks.filter((click) => click.isUnique).length,
 			summary,
-			daily,
 		};
 	}
 

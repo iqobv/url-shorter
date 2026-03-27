@@ -34,19 +34,21 @@ const processQueue = (
 
 api.interceptors.response.use(
 	(response) => response,
-	async (error: AxiosError) => {
+	async (error: AxiosError<IApiErrorResponse>) => {
 		const originalRequest = error.config as InternalAxiosRequestConfig & {
 			_retry?: boolean;
 		};
 
 		const isLoginRequest = originalRequest.url?.includes('/auth/login');
 		const isRegisterRequest = originalRequest.url?.includes('/auth/register');
+		const isRefreshRequest = originalRequest.url?.includes('/auth/refresh');
 
 		if (
 			error.response?.status === 401 &&
 			!originalRequest._retry &&
 			!isLoginRequest &&
-			!isRegisterRequest
+			!isRegisterRequest &&
+			!isRefreshRequest
 		) {
 			if (isRefreshing) {
 				return new Promise((resolve, reject) => {
@@ -78,9 +80,8 @@ api.interceptors.response.use(
 						: new Error('Refresh failed'),
 				);
 
-				useUserStore.getState().logout();
-
 				if (typeof window !== 'undefined') {
+					useUserStore.getState().logout();
 					window.dispatchEvent(new Event('unauthorized'));
 				}
 				return Promise.reject(refreshError);

@@ -2,14 +2,17 @@
 
 import { getServerUserPermissions as getApiServerUserPermissions } from '@/api';
 import { PUBLIC_PAGES } from '@/config';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { cache } from 'react';
 
 export const getServerUserPermissions = cache(async (workspaceId: string) => {
+	const header = await headers();
 	const cookieStore = await cookies();
-	const cookieString = cookieStore.toString();
 	const hasRefreshToken = cookieStore.has('refreshToken');
+
+	const updateCookies = header.get('x-shorthand-cookies');
+	const cookieString = updateCookies || cookieStore.toString();
 
 	if (!hasRefreshToken) {
 		redirect(PUBLIC_PAGES.LOGIN);
