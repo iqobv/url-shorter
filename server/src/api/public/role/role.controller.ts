@@ -1,3 +1,5 @@
+import { PERMISSIONS } from '@libs/constants';
+import { Authorized, Permissions } from '@libs/decorators';
 import {
 	Body,
 	Controller,
@@ -8,8 +10,6 @@ import {
 	Post,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { Authorized, Permissions } from 'src/libs/decorators';
 import { CreateRoleDto, RoleDto, UpdateRoleDto } from './dto';
 import { RoleService } from './role.service';
 

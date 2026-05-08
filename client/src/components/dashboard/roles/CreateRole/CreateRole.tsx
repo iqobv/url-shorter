@@ -3,11 +3,7 @@
 import CreateRoleForm from './CreateRoleForm/CreateRoleForm';
 
 const CreateRole = () => {
-	return (
-		<div>
-			<CreateRoleForm />
-		</div>
-	);
+	return <CreateRoleForm />;
 };
 
 export default CreateRole;

@@ -3,10 +3,18 @@
 		"fields": {
 			"name": {
 				"label": "Role name",
-				"placeholder": "Enter role name"
+				"placeholder": "Enter role name",
+				"errors": {
+					"min": "Role name must be at least 3 characters long",
+					"max": "Role name must be at most 60 characters long"
+				}
 			},
 			"permissions": {
-				"label": "Permissions"
+				"label": "Permissions",
+				"errors": {
+					"required": "Please select at least one permission",
+					"invalid": "Invalid permissions selected"
+				}
 			}
 		},
 		"selectPermissions": "Select a permissions",

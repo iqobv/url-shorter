@@ -6,7 +6,7 @@
 	z-index: 1200;
 	background-color: var(--header-bg);
 
-	&__container {
+	.container {
 		height: $header-height;
 		display: flex;
 		align-items: center;
@@ -14,7 +14,7 @@
 		padding: 10px 16px;
 	}
 
-	&__logo {
+	.logo {
 		font-size: 1.5rem;
 		font-weight: 600;
 		color: var(--header-text);

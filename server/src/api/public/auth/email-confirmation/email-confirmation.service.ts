@@ -1,3 +1,6 @@
+import { TokenType } from '@generated/prisma/enums';
+import { MailerService } from '@infra/mailer/mailer.service';
+import { ERRORS, SUCCESS_MESSAGES } from '@libs/constants';
 import {
 	BadRequestException,
 	forwardRef,
@@ -5,9 +8,6 @@ import {
 	Injectable,
 } from '@nestjs/common';
 import type { Response } from 'express';
-import { TokenType } from 'generated/prisma/enums';
-import { MailerService } from 'src/infra/mailer/mailer.service';
-import { ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
 import { TokenService } from '../../token/token.service';
 import { UserService } from '../../user/user.service';
 import { AuthService } from '../auth.service';

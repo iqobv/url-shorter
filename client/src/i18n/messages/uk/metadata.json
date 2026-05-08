@@ -3,12 +3,12 @@
 		"public": {
 			"auth": {
 				"login": {
-					"title": "Login",
-					"description": "Sign in to your account"
+					"title": "Увійдіть",
+					"description": "Увійдіть до свого облікового запису"
 				},
 				"register": {
-					"title": "Register",
-					"description": "Create a new account"
+					"title": "Зареєструватися",
+					"description": "Створити новий обліковий запис"
 				}
 			}
 		},

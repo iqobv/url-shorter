@@ -8,4 +8,5 @@ export interface IFormField<T extends FieldValues, M extends string> {
 	type: React.HTMLInputTypeAttribute;
 	autoComplete?: React.HTMLInputAutoCompleteAttribute;
 	icon?: IconType;
+	required?: boolean;
 }

@@ -21,5 +21,5 @@ export const useWorkspace = () => {
 		},
 	});
 
-	return query;
+	return { workspaceId, ...query };
 };

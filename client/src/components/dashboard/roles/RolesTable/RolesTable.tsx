@@ -35,7 +35,7 @@ const RolesTable = () => {
 						header: 'Members',
 						accessorKey: 'members',
 						cell: (props) => (
-							<div className={styles['member-cell']}>
+							<div className={styles.cell}>
 								{props.cell.getValue()}
 								<MdPerson />
 							</div>
@@ -48,7 +48,7 @@ const RolesTable = () => {
 						cell: ({ cell }) => {
 							const roleId = cell.row.original.id;
 							return (
-								<div className={styles['actions-cell']}>
+								<div className={styles.cell}>
 									<Button
 										isIcon
 										isRounded

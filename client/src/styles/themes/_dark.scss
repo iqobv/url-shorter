@@ -5,6 +5,10 @@ html.dark {
 	--border-radius: 8px;
 	--divider: #333;
 
+	/* Card */
+	--card-bg: #1e1e1e;
+	--card-border: #333;
+
 	/* Header */
 	--header-bg: #181818;
 	--header-border-color: #333;
@@ -111,4 +115,14 @@ html.dark {
 	/* Analytics */
 	--analytics-card-bg: #1e1e1e;
 	--analytics-card-border: #333;
+
+	/* Checkbox */
+	--checkbox-bg-wrapper: #494949;
+	--checkbox-bg-wrapper-active: #333333;
+	--checkbox-border: #4f4f4f;
+	--checkbox-input-bg: #6d6d6d;
+	--checkbox-text: #fff;
+	--checkbox-border-active: #ffffff;
+	--checkbox-input-active-bg: #ffffff;
+	--checkbox-checkmark-color: #000;
 }

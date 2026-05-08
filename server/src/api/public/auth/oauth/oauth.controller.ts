@@ -1,7 +1,7 @@
+import { User } from '@generated/prisma/client';
 import { Controller, Get, Query, Req, Res } from '@nestjs/common';
 import { ApiExcludeEndpoint, ApiOperation, ApiTags } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
-import { User } from 'generated/prisma/client';
 import { GoogleAuth } from '../decorators';
 import { OauthService } from './oauth.service';
 

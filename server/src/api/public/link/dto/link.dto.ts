@@ -1,5 +1,5 @@
+import { DefaultFieldsDto } from '@libs/dto';
 import { ApiProperty } from '@nestjs/swagger';
-import { DefaultFieldsDto } from 'src/libs/dto';
 
 export class LinkDto extends DefaultFieldsDto {
 	@ApiProperty({ example: null })

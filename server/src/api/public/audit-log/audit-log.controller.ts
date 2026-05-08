@@ -1,8 +1,8 @@
+import { PERMISSIONS } from '@libs/constants';
+import { Authorized, Permissions } from '@libs/decorators';
+import { PaginationQueryDto } from '@libs/dto';
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { Authorized, Permissions } from 'src/libs/decorators';
-import { PaginationQueryDto } from 'src/libs/dto';
 import { AuditLogService } from './audit-log.service';
 
 @ApiTags('Audit Logs')

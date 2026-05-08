@@ -17,9 +17,13 @@ export type SidebarLinkName = NestedKeyOf<
 
 export interface DashboardSidebarLink extends ISidebarLink<SidebarLinkName> {
 	permission?: Permissions;
+	show?: boolean;
 }
 
-export const SIDEBAR_LINKS = (workspaceId: string): DashboardSidebarLink[] => [
+export const SIDEBAR_LINKS = (
+	workspaceId: string,
+	isPrivateWorkspace: boolean = true,
+): DashboardSidebarLink[] => [
 	{
 		name: 'home',
 		href: PRIVATE_PAGES.DASHBOARD_WORKSPACE(workspaceId),
@@ -35,12 +39,14 @@ export const SIDEBAR_LINKS = (workspaceId: string): DashboardSidebarLink[] => [
 		href: PRIVATE_PAGES.MEMBERS(workspaceId),
 		icon: MdGroup,
 		permission: PERMISSIONS.MEMBERS.VIEW,
+		show: !isPrivateWorkspace,
 	},
 	{
 		name: 'roles',
 		href: PRIVATE_PAGES.ROLES(workspaceId),
 		icon: MdShield,
 		permission: PERMISSIONS.ROLES.VIEW,
+		show: !isPrivateWorkspace,
 	},
 	{
 		name: 'audit',

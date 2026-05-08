@@ -25,12 +25,12 @@ const SidebarWorkspaces = () => {
 
 	const { data: defaultWorkspace } = useQuery({
 		queryFn: getDefaultWorkspace,
-		queryKey: QUERY_KEYS.WORKSPACE.DEFAULT(user?.id || ''),
+		queryKey: QUERY_KEYS.WORKSPACE.DEFAULT,
 	});
 
 	const { data: workspaces } = useQuery({
 		queryFn: getAllUserWorkspaces,
-		queryKey: QUERY_KEYS.WORKSPACE.ALL_WORKSPACES(user?.id || ''),
+		queryKey: QUERY_KEYS.WORKSPACE.ALL_WORKSPACES,
 	});
 
 	const { data: workspace } = useQuery({

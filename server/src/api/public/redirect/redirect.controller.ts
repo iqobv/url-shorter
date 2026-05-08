@@ -1,3 +1,4 @@
+import { DomainGuard } from '@libs/guards';
 import {
 	Controller,
 	Get,
@@ -10,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { ApiExcludeController } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
-import { DomainGuard } from 'src/libs/guards';
 import { LinkService } from '../link/link.service';
 
 @ApiExcludeController()

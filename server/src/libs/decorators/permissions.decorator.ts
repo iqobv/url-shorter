@@ -1,6 +1,6 @@
+import { JwtAuthGuard } from '@api/public/auth/guards';
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { ApiForbiddenResponse, ApiNotFoundResponse } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/api/public/auth/guards';
 import { ERRORS } from '../constants';
 import { PermissionsGuard } from '../guards/permissions.guard';
 import { Permissions as PermissionsType } from '../types';

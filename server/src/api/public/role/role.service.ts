@@ -1,19 +1,19 @@
+import { Prisma } from '@generated/prisma/client';
+import { EntityType } from '@generated/prisma/enums';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import {
+	ACTION_KEYS,
+	ERRORS,
+	PERMISSIONS,
+	SUCCESS_MESSAGES,
+} from '@libs/constants';
+import { getDiff } from '@libs/utils';
 import {
 	ConflictException,
 	ForbiddenException,
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { Prisma } from 'generated/prisma/client';
-import { EntityType } from 'generated/prisma/enums';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import {
-	ACTION_KEYS,
-	ERRORS,
-	PERMISSIONS,
-	SUCCESS_MESSAGES,
-} from 'src/libs/constants';
-import { getDiff } from 'src/libs/utils';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { CreateRoleDto, UpdateRoleDto } from './dto';
@@ -80,9 +80,11 @@ export class RoleService {
 	async createInitialRole(
 		workspaceId: string,
 		dto: CreateRoleDto,
-		tx: Prisma.TransactionClient,
+		tx?: Prisma.TransactionClient,
 	) {
-		return await tx.role.create({
+		const prisma = tx ?? this.prismaService;
+
+		return await prisma.role.create({
 			data: {
 				name: dto.name,
 				permissions: dto.permissions,

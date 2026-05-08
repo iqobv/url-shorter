@@ -4,10 +4,10 @@ import Guard from '@/components/guard/Guard';
 import { Logo } from '@/components/icons';
 import { Button, Skeleton } from '@/components/ui';
 import { PRIVATE_PAGES } from '@/config';
-import { useWorkspaceId } from '@/hooks';
+import { BREAKPOINTS } from '@/constants';
+import { useWorkspace } from '@/hooks';
 import { Link } from '@/i18n';
 import { useGetExpanded, useSetExpanded, useToggleExpanded } from '@/stores';
-import vars from '@/styles/export.module.scss';
 import { useEffect, useState } from 'react';
 import { TbLayoutSidebarRightCollapse } from 'react-icons/tb';
 import styles from './Sidebar.module.scss';
@@ -20,11 +20,11 @@ const Sidebar = () => {
 	const expanded = useGetExpanded();
 	const setExpanded = useSetExpanded();
 	const toggleExpanded = useToggleExpanded();
-	const workspaceId = useWorkspaceId();
+	const { workspaceId, data } = useWorkspace();
 	const [isMobile, setIsMobile] = useState(true);
 
 	useEffect(() => {
-		const xlBreakpoint = parseInt(vars.breakpointXl);
+		const xlBreakpoint = BREAKPOINTS.xl;
 
 		const handleResize = () => {
 			if (window.innerWidth >= xlBreakpoint) {
@@ -77,27 +77,31 @@ const Sidebar = () => {
 					<SidebarWorkspaces />
 					<nav className={styles['sidebar__nav']}>
 						<ul className={styles['sidebar__links']}>
-							{SIDEBAR_LINKS(workspaceId).map((link) => (
-								<Guard
-									key={link.name}
-									permissions={link.permission ? [link.permission] : []}
-									loader={
-										<Skeleton
-											height={41}
-											width="100%"
-											borderRadius={6}
-										/>
-									}
-								>
-									<li key={link.name}>
-										<SidebarLink
-											link={link}
-											onClick={handleClose}
-											isMobile={isMobile}
-										/>
-									</li>
-								</Guard>
-							))}
+							{SIDEBAR_LINKS(workspaceId, data?.isPersonal).map((link) => {
+								if (link.show === false) return null;
+
+								return (
+									<Guard
+										key={link.name}
+										permissions={link.permission ? [link.permission] : []}
+										loader={
+											<Skeleton
+												height={41}
+												width="100%"
+												borderRadius={6}
+											/>
+										}
+									>
+										<li key={link.name}>
+											<SidebarLink
+												link={link}
+												onClick={handleClose}
+												isMobile={isMobile}
+											/>
+										</li>
+									</Guard>
+								);
+							})}
 						</ul>
 					</nav>
 				</div>

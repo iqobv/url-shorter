@@ -1,3 +1,8 @@
+import { getCookieConfig } from '@config';
+import { User } from '@generated/prisma/client';
+import { TokenType } from '@generated/prisma/enums';
+import { MailerService } from '@infra/mailer/mailer.service';
+import { ERRORS, SUCCESS_MESSAGES } from '@libs/constants';
 import {
 	ForbiddenException,
 	Injectable,
@@ -7,13 +12,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import type { Request, Response } from 'express';
-import { User } from 'generated/prisma/client';
-import { TokenType } from 'generated/prisma/enums';
 import ms, { StringValue } from 'ms';
 import slugify from 'slugify';
-import { MailerService } from 'src/infra/mailer/mailer.service';
-import { ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
-import { parseBoolean } from 'src/libs/utils';
 import { TokenService } from '../token/token.service';
 import { UserService } from '../user/user.service';
 import { LoginDto, RegisterDto } from './dto';
@@ -214,17 +214,7 @@ export class AuthService {
 		res: Response,
 		maxAge: StringValue,
 	) {
-		res.cookie(name, value, {
-			httpOnly: true,
-			secure: parseBoolean(
-				this.configService.getOrThrow<string>('COOKIE_SECURE'),
-			),
-			sameSite: this.configService.getOrThrow<string>('COOKIE_SAME_SITE') as
-				| 'lax'
-				| 'strict'
-				| 'none',
-			maxAge: ms(maxAge),
-		});
+		res.cookie(name, value, getCookieConfig(this.configService, maxAge));
 	}
 
 	private async generateAccessToken(userId: string) {

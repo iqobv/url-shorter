@@ -1,7 +1,7 @@
+import { Click } from '@generated/prisma/client';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { ERRORS } from '@libs/constants';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Click } from 'generated/prisma/client';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ERRORS } from 'src/libs/constants';
 import { AnalyticsQueryDto, ClickMetricsDto } from './dto';
 
 @Injectable()

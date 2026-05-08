@@ -1,8 +1,8 @@
+import { Prisma } from '@generated/prisma/client';
+import { PrismaService } from '@infra/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { createHash } from 'crypto';
-import { Prisma } from 'generated/prisma/client';
 import { lookup } from 'geoip-country';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { UAParser } from 'ua-parser-js';
 import { CreateClickDto } from './dto';
 

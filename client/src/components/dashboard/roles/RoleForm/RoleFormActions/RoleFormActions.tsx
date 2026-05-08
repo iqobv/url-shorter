@@ -4,7 +4,6 @@ import { Form } from '@/components/ui';
 import { useRouter } from '@/i18n';
 import { useTranslations } from 'next-intl';
 import { ActionTranslationKeys } from '../RoleForm';
-import styles from './RoleFormActions.module.scss';
 
 interface RoleFormActionsProps {
 	actionTranslationKeys: ActionTranslationKeys;
@@ -15,7 +14,7 @@ const RoleFormActions = ({ actionTranslationKeys }: RoleFormActionsProps) => {
 	const router = useRouter();
 
 	return (
-		<Form.Actions className={styles['form-actions']}>
+		<Form.Actions>
 			<Form.Reset
 				buttonProps={{ variant: 'ghost', onClick: () => router.back() }}
 			>

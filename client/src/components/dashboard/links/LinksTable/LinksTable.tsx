@@ -99,7 +99,7 @@ const LinksTable = () => {
 	}, [data, pageFromUrl, router, searchParams]);
 
 	return (
-		<div className={styles['links-table']}>
+		<div className={styles.table}>
 			<Table
 				data={tableData}
 				state={{
@@ -144,7 +144,7 @@ const LinksTable = () => {
 						maxSize: 120,
 						cell: ({ getValue }) => (
 							<span
-								className={styles['clicks-cell']}
+								className={styles.cell}
 								style={{ paddingLeft: '8px' }}
 							>
 								{getValue()}
@@ -158,7 +158,7 @@ const LinksTable = () => {
 						maxSize: 180,
 						cell: ({ getValue }) => (
 							<span
-								className={styles['clicks-cell']}
+								className={styles.cell}
 								style={{ paddingLeft: '8px' }}
 							>
 								{getValue()}
@@ -172,7 +172,7 @@ const LinksTable = () => {
 						cell: ({ cell }) => {
 							const linkId = cell.row.original.id;
 							return (
-								<div className={styles['clicks-cell']}>
+								<div className={styles.cell}>
 									<Button
 										isIcon
 										isRounded
@@ -198,7 +198,7 @@ const LinksTable = () => {
 				onSortingChange={setSorting}
 				getCoreRowModel={getCoreRowModel()}
 			/>
-			<div className={styles['pagination-footer']}>
+			<div className={styles.footer}>
 				<Pagination
 					currentPage={pagination.pageIndex + 1}
 					totalPages={data?.meta?.totalPages ?? 0}

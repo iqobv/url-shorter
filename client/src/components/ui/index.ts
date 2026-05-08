@@ -1,3 +1,4 @@
+export { default as BackButton } from './BackButton/BackButton';
 export { default as Button } from './Button/Button';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as Dropdown } from './Dropdown/Dropdown';
@@ -5,6 +6,7 @@ export { default as Form } from './Form/Form';
 export { default as Input } from './Input/Input';
 export { default as Loader } from './Loader/Loader';
 export { default as Modal } from './Modal/Modal';
+export { default as PageTitle } from './PageTitle/PageTitle';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as Skeleton } from './Skeleton/Skeleton';
 export { default as Switchbox } from './Switchbox/Switchbox';

@@ -1,4 +1,4 @@
-import { ACTION_KEYS } from 'src/libs/constants';
+import { ACTION_KEYS } from '@libs/constants';
 import { AuditChange } from '../audit-change.types';
 
 export interface LinkAuditMetadataMap {

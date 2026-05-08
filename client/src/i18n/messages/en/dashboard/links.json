@@ -33,6 +33,7 @@
 	},
 	"analytics": {
 		"showMore": "Show More",
+		"noData": "No data available",
 		"dates": {
 			"24Hours": "24 Hours",
 			"7Days": "7 Days",

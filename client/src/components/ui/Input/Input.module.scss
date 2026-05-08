@@ -28,6 +28,18 @@
 	}
 }
 
+.label {
+	font-size: 1rem;
+	color: var(--input-label-color);
+	margin-bottom: 8px;
+
+	&.required::after {
+		content: '*';
+		color: var(--input-error-text-color);
+		margin-left: 4px;
+	}
+}
+
 .input {
 	padding: 8px 12px;
 	height: 40px;

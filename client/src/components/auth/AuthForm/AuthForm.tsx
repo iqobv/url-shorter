@@ -16,7 +16,6 @@ interface AuthFormProps<T extends FieldValues, R> {
 	schema: ZodType<T, any, any>;
 	fields: IFormField<T, string>[];
 	mutatationFn: (dto: T) => Promise<R>;
-	mutationKey: string[];
 	buttonText?: string;
 	onSuccess?: (data: R) => void;
 	bottomNode?: React.ReactNode;
@@ -26,7 +25,6 @@ const AuthForm = <T extends FieldValues, R>({
 	schema,
 	fields,
 	mutatationFn,
-	mutationKey,
 	buttonText = 'Submit',
 	onSuccess,
 	bottomNode,
@@ -46,7 +44,6 @@ const AuthForm = <T extends FieldValues, R>({
 
 	const { mutate, isPending } = useMutation({
 		mutationFn: (data: T) => mutatationFn(data),
-		mutationKey,
 		onError: (error: IApiErrorResponse) => {
 			const code = error.code || 'SERVER_ERROR';
 			const codeText = apiT(code as never);

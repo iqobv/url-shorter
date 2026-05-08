@@ -1,12 +1,12 @@
 'use client';
 
 import { register } from '@/api';
-import { PUBLIC_PAGES, QUERY_KEYS } from '@/config';
+import { PUBLIC_PAGES } from '@/config';
 import { RegisterDto } from '@/dto';
+import { useRouter } from '@/i18n';
 import { registerSchema } from '@/schemas';
 import { ICodeResponse } from '@/types';
 import { useTranslations } from 'next-intl';
-import { useRouter } from '@/i18n';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthWrapper from '../AuthWrapper/AuthWrapper';
 import BottomText from '../BottomText/BottomText';
@@ -24,7 +24,6 @@ const RegisterForm = () => {
 					fields={REGISTER_FORM_FIELDS}
 					schema={registerSchema}
 					mutatationFn={(dto) => register(dto)}
-					mutationKey={QUERY_KEYS.AUTH.REGISTER}
 					buttonText={t('submit')}
 					onSuccess={() => {
 						router.push(PUBLIC_PAGES.EMAIL_VERIFY);

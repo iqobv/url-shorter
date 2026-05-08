@@ -1,10 +1,10 @@
+import { ReservedWordService } from '@api/public/reserved-word/reserved-word.service';
 import { Injectable } from '@nestjs/common';
 import {
 	ValidationArguments,
 	ValidatorConstraint,
 	ValidatorConstraintInterface,
 } from 'class-validator';
-import { ReservedWordService } from 'src/api/public/reserved-word/reserved-word.service';
 
 @ValidatorConstraint({ name: 'isNotReserved', async: true })
 @Injectable()

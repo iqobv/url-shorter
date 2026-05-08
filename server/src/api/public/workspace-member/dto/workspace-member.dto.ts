@@ -1,7 +1,7 @@
+import { PERMISSIONS } from '@libs/constants';
+import { DefaultFieldsDto } from '@libs/dto';
+import { Permissions } from '@libs/types';
 import { ApiProperty } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { DefaultFieldsDto } from 'src/libs/dto';
-import { Permissions } from 'src/libs/types';
 import { RoleDto } from '../../role/dto';
 
 export class WorkspaceMembersDto extends DefaultFieldsDto {

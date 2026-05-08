@@ -8,7 +8,7 @@ export const QUERY_KEYS = {
 		REGISTER: ['auth', 'register'],
 		USER: ['auth', 'user'],
 		LOGOUT: ['auth', 'logout'],
-	},
+	} as const,
 	LINK: {
 		ALL: (
 			workspaceId: string,
@@ -27,12 +27,12 @@ export const QUERY_KEYS = {
 			linkId: string,
 			query: LinkAnalyticsQueryDto,
 		) => ['links', workspaceId, linkId, 'analytics', query],
-	},
+	} as const,
 	WORKSPACE: {
-		DEFAULT: (userId: string) => ['workspace', userId],
-		ALL_WORKSPACES: (userId: string) => ['workspaces', userId],
+		DEFAULT: ['workspace'],
+		ALL_WORKSPACES: ['workspaces'],
 		GET_WORKSPACE: (workspaceId: string) => ['workspace', workspaceId],
-	},
+	} as const,
 	WORKSPACE_MEMBERS: {
 		GET_BY_ID: (workspaceId: string, memberId: string) => [
 			'workspace-members',
@@ -51,7 +51,7 @@ export const QUERY_KEYS = {
 			workspaceMemberId,
 			'update',
 		],
-	},
+	} as const,
 	ROLES: {
 		ALL_ROLES: (workspaceId: string) => ['roles', workspaceId],
 		ROLE: (workspaceId: string, roleId: string) => [
@@ -66,5 +66,5 @@ export const QUERY_KEYS = {
 			roleId,
 			'update',
 		],
-	},
+	} as const,
 };

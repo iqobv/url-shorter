@@ -1,7 +1,7 @@
+import { PERMISSIONS } from '@libs/constants';
+import { DefaultFieldsDto } from '@libs/dto';
+import { Permissions } from '@libs/types';
 import { ApiProperty } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { DefaultFieldsDto } from 'src/libs/dto';
-import { Permissions } from 'src/libs/types';
 
 export class RoleDto extends DefaultFieldsDto {
 	@ApiProperty({ example: 'a426aa04-f9b2-41db-9ebb-6c0de5c4dfd8' })

@@ -1,3 +1,6 @@
+import { ERRORS } from '@libs/constants';
+import { Auth, Authorized } from '@libs/decorators';
+import { createCustomMessageDto } from '@libs/utils';
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import {
 	ApiConflictResponse,
@@ -10,9 +13,6 @@ import {
 	getSchemaPath,
 } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
-import { ERRORS } from 'src/libs/constants';
-import { Auth, Authorized } from 'src/libs/decorators';
-import { createCustomMessageDto } from 'src/libs/utils';
 import { UserSwaggerDto } from '../user/dto';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';

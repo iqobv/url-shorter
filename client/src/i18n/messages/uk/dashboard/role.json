@@ -2,21 +2,29 @@
 	"form": {
 		"fields": {
 			"name": {
-				"label": "Role name",
-				"placeholder": "Enter role name"
+				"label": "Назва ролі",
+				"placeholder": "Введіть назву ролі",
+				"errors": {
+					"min": "Назва ролі должна быть не менее 3 символов",
+					"max": "Назва ролі должна быть не более 60 символов"
+				}
 			},
 			"permissions": {
-				"label": "Permissions"
+				"label": "Дозволи",
+				"errors": {
+					"required": "Будь ласка, виберіть хоча б один дозвіл",
+					"invalid": "Вибрано недійсні дозволи"
+				}
 			}
 		},
-		"selectPermissions": "Select a permissions",
+		"selectPermissions": "Виберіть дозволи",
 		"create": {
-			"submit": "Create Role",
-			"cancel": "Cancel"
+			"submit": "Створити Роль",
+			"cancel": "Скасувати"
 		},
 		"update": {
-			"submit": "Update Role",
-			"cancel": "Cancel"
+			"submit": "Оновити Роль",
+			"cancel": "Скасувати"
 		}
 	},
 	"groups": {

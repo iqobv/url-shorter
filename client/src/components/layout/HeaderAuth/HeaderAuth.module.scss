@@ -1,6 +1,6 @@
 @use '../../../styles/mixins' as *;
 
-.header-auth {
+.header {
 	width: 100vw;
 	width: 100dvw;
 	display: flex;
@@ -12,13 +12,13 @@
 		padding-top: 60px;
 	}
 
-	&__container {
+	.container {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	&__logo {
+	.logo {
 		font-size: 32px;
 		display: flex;
 		justify-content: center;

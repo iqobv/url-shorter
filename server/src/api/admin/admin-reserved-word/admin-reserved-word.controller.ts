@@ -1,3 +1,9 @@
+import { AddReservedWordDto } from '@api/public/reserved-word/dto';
+import { ReservedWordService } from '@api/public/reserved-word/reserved-word.service';
+import { UserRole } from '@generated/prisma/enums';
+import { ERRORS, SUCCESS_MESSAGES } from '@libs/constants';
+import { Auth } from '@libs/decorators';
+import { createCustomMessageDto } from '@libs/utils';
 import { Body, Controller, Delete, Post } from '@nestjs/common';
 import {
 	ApiConflictResponse,
@@ -5,12 +11,6 @@ import {
 	ApiOperation,
 	ApiTags,
 } from '@nestjs/swagger';
-import { UserRole } from 'generated/prisma/enums';
-import { AddReservedWordDto } from 'src/api/public/reserved-word/dto';
-import { ReservedWordService } from 'src/api/public/reserved-word/reserved-word.service';
-import { ERRORS, SUCCESS_MESSAGES } from 'src/libs/constants';
-import { Auth } from 'src/libs/decorators';
-import { createCustomMessageDto } from 'src/libs/utils';
 
 @ApiTags('Admin Reserved Words')
 @Controller('admin/reserved-words')

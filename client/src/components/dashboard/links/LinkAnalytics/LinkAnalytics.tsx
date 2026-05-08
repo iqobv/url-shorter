@@ -37,21 +37,19 @@ const LinkAnalytics = () => {
 		queryKey: QUERY_KEYS.LINK.ANALYTICS(workspaceId, linkId, query),
 	});
 
-	console.log(data);
-
 	return (
-		<div className={styles['analytics']}>
+		<div className={styles.analytics}>
 			<LinkAnalyticsDatePicker
 				query={query}
 				setQuery={setQuery}
 			/>
 			{isLoading && (
-				<div className={styles['analytics__content']}>
+				<div className={styles.content}>
 					<LinkAnalyticsMetricsLoader />
 				</div>
 			)}
 			{data && (
-				<div className={`${styles['analytics__content']} fade-in`}>
+				<div className={`${styles.content} fade-in`}>
 					<LinkAnalyticsMetrics data={data.summary} />
 				</div>
 			)}

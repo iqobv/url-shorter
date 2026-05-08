@@ -1,3 +1,6 @@
+import { ERRORS } from '@libs/constants';
+import { Auth, Authorized, OptionalAuth, Permissions } from '@libs/decorators';
+import { createCustomMessageDto } from '@libs/utils';
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import {
 	ApiConflictResponse,
@@ -6,14 +9,6 @@ import {
 	ApiOkResponse,
 	ApiOperation,
 } from '@nestjs/swagger';
-import { ERRORS } from 'src/libs/constants';
-import {
-	Auth,
-	Authorized,
-	OptionalAuth,
-	Permissions,
-} from 'src/libs/decorators';
-import { createCustomMessageDto } from 'src/libs/utils';
 import {
 	BulkClaimLinksDto,
 	CreateLinkDto,

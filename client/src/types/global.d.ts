@@ -1,6 +1,6 @@
 import { messages, routing } from '@/i18n';
 
-type Messages = typeof messages;
+export type Messages = typeof messages;
 
 declare module 'next-intl' {
 	interface AppConfig {

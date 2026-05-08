@@ -12,15 +12,13 @@ const LinkAnalyticsProgressBar = ({
 	className,
 }: LinkAnalyticsProgressBarProps) => {
 	return (
-		<div className={styles['progress-bar']}>
-			<div className={styles['progress-bar__percentage']}>
+		<div className={styles.progressBar}>
+			<div className={styles.percentage}>
 				{percentage >= 1 ? percentage.toFixed(1) : '<1'}%
 			</div>
-			<div
-				className={`${styles['progress-bar__container']} ${className || ''}`.trim()}
-			>
+			<div className={`${styles.container} ${className || ''}`.trim()}>
 				<div
-					className={styles['progress-bar__fill']}
+					className={styles.fill}
 					style={{ width: `${percentage.toFixed(2)}%` }}
 				/>
 			</div>

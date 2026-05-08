@@ -1,3 +1,6 @@
+import { ERRORS, PERMISSIONS, SUCCESS_MESSAGES } from '@libs/constants';
+import { Auth, Authorized, Permissions } from '@libs/decorators';
+import { createCustomMessageDto } from '@libs/utils';
 import {
 	Body,
 	Controller,
@@ -13,9 +16,6 @@ import {
 	ApiOkResponse,
 	ApiOperation,
 } from '@nestjs/swagger';
-import { ERRORS, PERMISSIONS, SUCCESS_MESSAGES } from 'src/libs/constants';
-import { Auth, Authorized, Permissions } from 'src/libs/decorators';
-import { createCustomMessageDto } from 'src/libs/utils';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { CreateWorkspaceDto, UpdateWorkspaceDto, WorkspaceDto } from './dto';
 import { WorkspaceService } from './workspace.service';

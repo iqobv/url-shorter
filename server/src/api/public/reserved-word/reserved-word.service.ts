@@ -1,15 +1,15 @@
+import { PrismaService } from '@infra/prisma/prisma.service';
+import {
+	ERRORS,
+	STATIC_RESERVED_WORDS,
+	SUCCESS_MESSAGES,
+} from '@libs/constants';
 import {
 	ConflictException,
 	Injectable,
 	NotFoundException,
 	OnModuleInit,
 } from '@nestjs/common';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import {
-	ERRORS,
-	STATIC_RESERVED_WORDS,
-	SUCCESS_MESSAGES,
-} from 'src/libs/constants';
 import { AddReservedWordDto } from './dto';
 
 @Injectable()

@@ -2,7 +2,7 @@
 
 import { login } from '@/api';
 import { Button } from '@/components/ui';
-import { PRIVATE_PAGES, PUBLIC_PAGES, QUERY_KEYS } from '@/config';
+import { PRIVATE_PAGES, PUBLIC_PAGES } from '@/config';
 import { LoginDto } from '@/dto';
 import { useRouter } from '@/i18n';
 import { baseAuthSchema } from '@/schemas';
@@ -26,7 +26,6 @@ const LoginForm = () => {
 				<AuthForm<LoginDto, IUser>
 					fields={LOGIN_FIELDS}
 					mutatationFn={(dto) => login(dto)}
-					mutationKey={QUERY_KEYS.AUTH.LOGIN}
 					schema={baseAuthSchema}
 					buttonText={t('submit')}
 					onSuccess={() => {

@@ -10,7 +10,6 @@ import { updateWorkspaceMemberSchema } from '@/schemas';
 import { useCanPerformAction } from '@/stores';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import styles from './MemberForm.module.scss';
 
 const MemberForm = () => {
 	const { can: canEditMember, isLoaded } = useCanPerformAction([
@@ -33,24 +32,22 @@ const MemberForm = () => {
 	if (!workspaceMember) return null;
 
 	return (
-		<div className={styles['member']}>
-			<Form<UpdateWorkspaceMemberDto>
-				schema={updateWorkspaceMemberSchema}
-				defaultValues={{
-					displayName:
-						workspaceMember.displayName ||
-						workspaceMember.user.displayName ||
-						workspaceMember.user.username ||
-						'',
-					permissions: workspaceMember.permissions || [],
-					roleIds: workspaceMember.roles.map((role) => role.id) || [],
-				}}
-			>
-				<Form.Field<UpdateWorkspaceMemberDto> name="displayName">
-					<Input disabled={isLoaded && !canEditMember} />
-				</Form.Field>
-			</Form>
-		</div>
+		<Form<UpdateWorkspaceMemberDto>
+			schema={updateWorkspaceMemberSchema}
+			defaultValues={{
+				displayName:
+					workspaceMember.displayName ||
+					workspaceMember.user.displayName ||
+					workspaceMember.user.username ||
+					'',
+				permissions: workspaceMember.permissions || [],
+				roleIds: workspaceMember.roles.map((role) => role.id) || [],
+			}}
+		>
+			<Form.Field<UpdateWorkspaceMemberDto> name="displayName">
+				<Input disabled={isLoaded && !canEditMember} />
+			</Form.Field>
+		</Form>
 	);
 };
 

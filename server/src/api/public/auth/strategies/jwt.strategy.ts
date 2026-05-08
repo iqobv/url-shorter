@@ -1,9 +1,9 @@
+import { ERRORS } from '@libs/constants';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import type { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { ERRORS } from 'src/libs/constants';
 import { UserService } from '../../user/user.service';
 
 @Injectable()

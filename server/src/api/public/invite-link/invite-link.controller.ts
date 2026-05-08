@@ -1,3 +1,6 @@
+import { ERRORS, PERMISSIONS } from '@libs/constants';
+import { Auth, Authorized, Permissions } from '@libs/decorators';
+import { createCustomMessageDto } from '@libs/utils';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import {
 	ApiForbiddenResponse,
@@ -6,9 +9,6 @@ import {
 	ApiOperation,
 	ApiTags,
 } from '@nestjs/swagger';
-import { ERRORS, PERMISSIONS } from 'src/libs/constants';
-import { Auth, Authorized, Permissions } from 'src/libs/decorators';
-import { createCustomMessageDto } from 'src/libs/utils';
 import {
 	CreateInviteLinkDto,
 	InviteLinkDto,

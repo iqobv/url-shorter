@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	allowedDevOrigins: ['lvh.me'],
 };
 
 export default withNextIntl(nextConfig);

@@ -1,4 +1,4 @@
-import { Prisma } from 'generated/prisma/client';
+import { Prisma } from '@generated/prisma/client';
 
 export type MemberWithRoles = Prisma.WorkspaceMemberGetPayload<{
 	include: { roles: { include: { role: true } } };

@@ -10,8 +10,8 @@ const SidebarUser = () => {
 	const user = useGetUser();
 
 	return (
-		<div className={styles['sidebar-user']}>
-			<p className={styles['sidebar-user__username']}>{user?.username}</p>
+		<div className={styles.user}>
+			<p className={styles.username}>{user?.username}</p>
 			<Button
 				variant="ghost"
 				isIcon

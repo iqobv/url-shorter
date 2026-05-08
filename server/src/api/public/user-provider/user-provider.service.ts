@@ -1,7 +1,7 @@
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { ERRORS } from '@libs/constants';
+import { userSelect } from '@libs/prisma';
 import { ConflictException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ERRORS } from 'src/libs/constants';
-import { userSelect } from 'src/libs/prisma';
 import { CreateUserProviderDto } from './dto';
 
 @Injectable()

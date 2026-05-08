@@ -4,6 +4,7 @@ import dashboard from './dashboard/dashboard.json';
 import links from './dashboard/links.json';
 import role from './dashboard/role.json';
 import workspaceMember from './dashboard/workspaceMember.json';
+import workspaces from './dashboard/workspaces.json';
 import form from './form.json';
 import header from './header.json';
 import home from './home.json';
@@ -25,6 +26,7 @@ const uk = {
 	settings,
 	shorten,
 	workspaceMember,
+	workspaces,
 	zod,
 } as const;
 

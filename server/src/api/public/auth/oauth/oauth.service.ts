@@ -1,6 +1,6 @@
+import { User } from '@generated/prisma/client';
 import { Injectable } from '@nestjs/common';
 import type { Response } from 'express';
-import { User } from 'generated/prisma/client';
 import { UserProviderService } from '../../user-provider/user-provider.service';
 import { UserService } from '../../user/user.service';
 import { AuthService } from '../auth.service';

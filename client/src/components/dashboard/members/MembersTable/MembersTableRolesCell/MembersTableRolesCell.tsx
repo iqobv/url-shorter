@@ -50,13 +50,13 @@ const MembersTableRolesCell = ({
 	if (!roles) return null;
 
 	return (
-		<div className={styles['member-roles-cell']}>
+		<div className={styles.cell}>
 			<p>{roles.length > 0 ? roles[0]?.name : 'Role'}</p>
 			{showAdditionalRoles && (
 				<Dropdown>
 					<Dropdown.Trigger>
 						<Button
-							className={styles['additional-roles']}
+							className={styles.roles}
 							isIcon
 							variant="ghost"
 							tooltip="View All Roles"
@@ -97,7 +97,7 @@ const MembersTableRolesCell = ({
 										variant="ghost"
 										isIcon
 										isRounded
-										className={styles['member-roles-cell__add-role']}
+										className={styles.addRole}
 										tooltip="Add Role"
 									>
 										<FaPlus />
@@ -114,6 +114,7 @@ const MembersTableRolesCell = ({
 													<Checkbox
 														value={role.id}
 														label={role.name}
+														disablePadding
 													/>
 												</Form.Field>
 											</Dropdown.Item>

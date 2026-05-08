@@ -1,3 +1,4 @@
+import { PrismaService } from '@infra/prisma/prisma.service';
 import {
 	CanActivate,
 	ExecutionContext,
@@ -8,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import type { Request } from 'express';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { ERRORS, PERMISSIONS } from '../constants';
 import { PERMISSIONS_KEY } from '../decorators';
 import { calculatePermissions } from '../utils';

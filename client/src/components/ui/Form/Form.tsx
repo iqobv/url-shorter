@@ -17,12 +17,13 @@ import FormReset from './parts/FormReset/FormReset';
 import FormSubmit from './parts/FormSubmit/FormSubmit';
 import FormTitle from './parts/FormTitle/FormTitle';
 
-interface FormProps<D extends FieldValues> {
+export interface FormProps<D extends FieldValues> {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	schema: ZodType<D, any, any>;
 	children: React.ReactNode | ((methods: UseFormReturn<D>) => React.ReactNode);
 	onSubmit?: (data: D) => void;
 	defaultValues?: DefaultValues<D>;
+	values?: D;
 }
 
 const Form = <D extends FieldValues = FieldValues>({
@@ -30,10 +31,12 @@ const Form = <D extends FieldValues = FieldValues>({
 	schema,
 	onSubmit,
 	defaultValues,
+	values,
 }: FormProps<D>) => {
 	const methods = useForm<D>({
 		resolver: zodResolver(schema),
-		defaultValues: defaultValues,
+		defaultValues,
+		values,
 	});
 
 	return (

@@ -9,3 +9,4 @@ export * from './link/linkAnalyticsQuery.schema';
 export * from './member/updateMember.schema';
 export * from './role/createRole.schema';
 export * from './role/updateRole.schema';
+export * from './workspace/index';

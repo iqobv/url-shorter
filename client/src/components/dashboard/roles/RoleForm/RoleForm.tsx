@@ -57,7 +57,11 @@ const RoleForm = <T extends FieldValues>({
 			defaultValues={defaultValues}
 		>
 			{({ watch, setValue, formState: { isDirty } }) => {
-				const selectedPermissions = watch('permissions' as Path<T>);
+				const selectedPermissions =
+					(watch('permissions' as Path<T>) as Permissions[number][]) || [];
+				const selectedAdmin = selectedPermissions.includes(
+					PERMISSIONS.ADMIN.ALL as Permissions[number],
+				);
 
 				const handleCheckboxChange = (permission: Permissions[number]) => {
 					const updatedPermissions = selectedPermissions.includes(permission)
@@ -66,7 +70,7 @@ const RoleForm = <T extends FieldValues>({
 							)
 						: [...selectedPermissions, permission];
 
-					setValue('permissions' as Path<T>, updatedPermissions, {
+					setValue('permissions' as Path<T>, updatedPermissions as never, {
 						shouldValidate: true,
 						shouldDirty: true,
 					});
@@ -74,10 +78,7 @@ const RoleForm = <T extends FieldValues>({
 
 				return (
 					<>
-						<Form.Field<CreateRoleDto>
-							name="name"
-							namespace="role.form.fields"
-						>
+						<Form.Field<CreateRoleDto> name="name">
 							<Input
 								label={t('fields.name.label')}
 								placeholder={t('fields.name.placeholder')}
@@ -89,12 +90,13 @@ const RoleForm = <T extends FieldValues>({
 								key={index}
 								group={group}
 								handleCheckboxChange={handleCheckboxChange}
-								selectedPermissions={selectedPermissions}
+								selectedPermissions={selectedPermissions as string[]}
+								selectedAdmin={selectedAdmin}
 							/>
 						))}
 						{(!showActionOnDirty || isDirty) && (
 							<Form.Actions
-								className={`${styles['form-actions']} ${showActionOnDirty && isDirty ? styles['show-actions--active'] : ''}`}
+								className={`${styles.actions} ${showActionOnDirty && isDirty ? styles.active : ''}`}
 							>
 								<Form.Reset
 									buttonProps={{

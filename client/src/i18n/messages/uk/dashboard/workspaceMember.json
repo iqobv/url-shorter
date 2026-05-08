@@ -1,7 +1,7 @@
 {
 	"columns": {
-		"name": "Name",
-		"roles": "Roles",
-		"actions": "Actions"
+		"name": "Ім'я",
+		"roles": "Ролі",
+		"actions": "Дії"
 	}
 }

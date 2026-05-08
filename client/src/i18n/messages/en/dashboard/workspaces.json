@@ -1,0 +1,26 @@
+{
+	"errors": {
+		"workspaceNameRequired": "Workspace name is required",
+		"workspaceNameTooShort": "Workspace name must be at least 2 characters",
+		"workspaceNameTooLong": "Workspace name must be less than 60 characters"
+	},
+	"create": {
+		"title": "Create New Workspace",
+		"description": "Set up a new workspace to manage your URLs and analytics separately."
+	},
+	"fields": {
+		"name": {
+			"label": "Workspace Name",
+			"placeholder": "Enter workspace name"
+		},
+		"isPersonal": {
+			"label": "Personal Workspace",
+			"description": "Only you will have access to this workspace"
+		},
+		"isDefault": {
+			"label": "Set as Default",
+			"description": "This workspace will be selected by default when you log in"
+		},
+		"submit": "Create Workspace"
+	}
+}

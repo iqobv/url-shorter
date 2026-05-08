@@ -9,7 +9,7 @@ const LOADERS = Array.from({ length: 4 }, (_, i) => (
 ));
 
 const LinkAnalyticsMetricsLoader = () => {
-	return <div className={styles['link-analytics-metrics']}>{LOADERS}</div>;
+	return <div className={styles.metrics}>{LOADERS}</div>;
 };
 
 export default LinkAnalyticsMetricsLoader;

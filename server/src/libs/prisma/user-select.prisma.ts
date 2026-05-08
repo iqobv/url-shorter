@@ -1,4 +1,4 @@
-import { Prisma } from 'generated/prisma/browser';
+import { Prisma } from '@generated/prisma/browser';
 
 export const userSelect: Prisma.UserSelect = {
 	id: true,

@@ -1,7 +1,7 @@
+import { PERMISSIONS } from '@libs/constants';
+import { Authorized, Permissions } from '@libs/decorators';
 import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { Authorized, Permissions } from 'src/libs/decorators';
 import { UpdateWorkspaceMemberDto, WorkspaceMembersDto } from './dto';
 import { WorkspaceMemberService } from './workspace-member.service';
 

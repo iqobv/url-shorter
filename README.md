@@ -1,24 +1,5 @@
 # Instalation
 
-## Edit hosts file
-
-Edit hosts file to add local domains
-
-1. Run the following commands in Command Prompt as Administrator:
-
-   ```bash
-   cd C:\Windows\System32\drivers\etc
-   notepad C:\Windows\System32\drivers\etc\hosts
-   ```
-
-2. Paste the following lines at the end of the file:
-
-   ```
-   127.0.0.1 local.domain
-   127.0.0.1 s.local.domain
-   127.0.0.1 api.local.domain
-   ```
-
 ## Client instalation
 
 ```bash

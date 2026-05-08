@@ -1,6 +1,6 @@
+import { User } from '@generated/prisma/client';
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'generated/prisma/client';
 
 @Injectable()
 export class OptionalJwtAuthGuard extends AuthGuard('jwt') {

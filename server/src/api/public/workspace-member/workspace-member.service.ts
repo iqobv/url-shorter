@@ -1,19 +1,19 @@
+import { EntityType, Prisma } from '@generated/prisma/client';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import {
+	ACTION_KEYS,
+	ERRORS,
+	PERMISSIONS,
+	SUCCESS_MESSAGES,
+} from '@libs/constants';
+import { publicUserSelect } from '@libs/prisma';
+import { calculatePermissions } from '@libs/utils';
 import {
 	ConflictException,
 	ForbiddenException,
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { EntityType, Prisma } from 'generated/prisma/client';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import {
-	ACTION_KEYS,
-	ERRORS,
-	PERMISSIONS,
-	SUCCESS_MESSAGES,
-} from 'src/libs/constants';
-import { publicUserSelect } from 'src/libs/prisma';
-import { calculatePermissions } from 'src/libs/utils';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { CreateWorkspaceMemberDto, UpdateWorkspaceMemberDto } from './dto';
@@ -105,9 +105,11 @@ export class WorkspaceMemberService {
 		workspaceId: string,
 		userId: string,
 		roleId: string,
-		tx: Prisma.TransactionClient,
+		tx?: Prisma.TransactionClient,
 	) {
-		return await tx.workspaceMember.create({
+		const prisma = tx ?? this.prismaService;
+
+		return await prisma.workspaceMember.create({
 			data: {
 				workspace: { connect: { id: workspaceId } },
 				user: { connect: { id: userId } },

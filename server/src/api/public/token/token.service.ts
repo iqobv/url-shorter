@@ -1,7 +1,7 @@
+import { TokenType } from '@generated/prisma/enums';
+import { PrismaService } from '@infra/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import crypto from 'crypto';
-import { TokenType } from 'generated/prisma/enums';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
 import { CreateTokenDto } from './dto';
 
 @Injectable()

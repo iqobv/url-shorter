@@ -1,6 +1,6 @@
+import { PERMISSIONS } from '@libs/constants';
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { IsArray, IsOptional, IsString, Length, Min } from 'class-validator';
-import { PERMISSIONS } from 'src/libs/constants';
 import { CreateWorkspaceMemberDto } from './create-workspace-member.dto';
 
 export class UpdateWorkspaceMemberDto extends OmitType(

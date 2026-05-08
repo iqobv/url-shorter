@@ -1,11 +1,7 @@
-import {
-	ForbiddenException,
-	Injectable,
-	NotFoundException,
-} from '@nestjs/common';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ERRORS } from 'src/libs/constants';
-import { publicUserSelect } from 'src/libs/prisma';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { ERRORS } from '@libs/constants';
+import { publicUserSelect } from '@libs/prisma';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class WorkspaceCommonService {
@@ -48,8 +44,8 @@ export class WorkspaceCommonService {
 	async getWorkspace(workspaceId: string, userId: string) {
 		const workspace = await this.getWorkspaceById(workspaceId, userId);
 
-		if (workspace.isPersonal)
-			throw new ForbiddenException(ERRORS.WORKSPACE.PERSONAL_WORKSPACE);
+		// if (workspace.isPersonal)
+		// 	throw new ForbiddenException(ERRORS.WORKSPACE.PERSONAL_WORKSPACE);
 
 		return workspace;
 	}

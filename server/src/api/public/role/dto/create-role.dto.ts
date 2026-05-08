@@ -1,8 +1,8 @@
+import { PERMISSIONS } from '@libs/constants';
+import { IsPermissions } from '@libs/decorators';
+import { Permissions } from '@libs/types';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
-import { PERMISSIONS } from 'src/libs/constants';
-import { IsPermissions } from 'src/libs/decorators';
-import { Permissions } from 'src/libs/types';
 
 export class CreateRoleDto {
 	@ApiProperty({ example: 'Admin', description: 'Name of the role' })

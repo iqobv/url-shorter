@@ -1,5 +1,5 @@
 .switchbox {
-	&__input {
+	.input {
 		position: relative;
 		height: 1.5rem;
 		width: 2.5rem;
@@ -32,6 +32,11 @@
 		&:checked:before {
 			transform: translateX(100%);
 			background-color: var(--switchbox-active-bg-slider);
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.6;
 		}
 	}
 }

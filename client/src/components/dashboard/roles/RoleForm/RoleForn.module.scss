@@ -1,6 +1,6 @@
 @use '../../../../styles/mixins' as *;
 
-.form-actions {
+.actions {
 	flex-direction: row;
 	position: sticky;
 	bottom: 20px;
@@ -17,7 +17,7 @@
 	margin-top: 20px;
 	display: flex;
 
-	&--active {
+	&.active {
 		display: flex;
 	}
 

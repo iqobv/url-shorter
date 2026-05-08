@@ -14,7 +14,7 @@ const LinkAnalyticsMetrics = ({ data }: LinkAnalyticsMetricsProps) => {
 	const t = useTranslations('links.analytics.metrics');
 
 	return (
-		<div className={styles['link-analytics-metrics']}>
+		<div className={styles.metrics}>
 			{LINK_ANALYTICS_METRICS_LIST(data).map(({ data, title, renderLabel }) => (
 				<LinkAnalyticsMetricsCard
 					key={title}

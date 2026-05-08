@@ -1,7 +1,7 @@
+import { PERMISSIONS } from '@libs/constants';
+import { Permissions } from '@libs/decorators';
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { PERMISSIONS } from 'src/libs/constants';
-import { Permissions } from 'src/libs/decorators';
 import { AnalyticsService } from './analytics.service';
 import { AnalyticsQueryDto, GroupedClicksResponseDto } from './dto';
 

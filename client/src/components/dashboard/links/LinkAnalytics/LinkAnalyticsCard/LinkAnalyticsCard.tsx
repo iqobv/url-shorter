@@ -16,15 +16,9 @@ const LinkAnalyticsCard = ({
 	containerClassName,
 }: LinkAnalyticsCardProps) => {
 	return (
-		<div
-			className={`${styles['link-analytics-card']} ${containerClassName || ''}`}
-		>
-			<h3 className={styles['link-analytics-card__title']}>{title}</h3>
-			<div
-				className={`${styles['link-analytics-card__content']} ${className || ''}`}
-			>
-				{children}
-			</div>
+		<div className={`${styles.card} ${containerClassName || ''}`}>
+			<h3 className={styles.title}>{title}</h3>
+			<div className={`${styles.content} ${className || ''}`}>{children}</div>
 		</div>
 	);
 };

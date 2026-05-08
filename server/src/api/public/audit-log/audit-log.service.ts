@@ -1,9 +1,9 @@
+import { Prisma } from '@generated/prisma/client';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { PaginationQueryDto } from '@libs/dto';
+import { ActionKeys } from '@libs/types';
+import { paginate } from '@libs/utils';
 import { Injectable } from '@nestjs/common';
-import { Prisma } from 'generated/prisma/client';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { PaginationQueryDto } from 'src/libs/dto';
-import { ActionKeys } from 'src/libs/types';
-import { paginate } from 'src/libs/utils';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { CreateAuditLogDto } from './dto';
 

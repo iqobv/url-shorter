@@ -1,0 +1,49 @@
+.container {
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&.noPadding {
+		padding: 0;
+	}
+
+	&.centered {
+		align-items: center;
+		text-align: center;
+	}
+}
+
+.title {
+	font-size: 1rem;
+	font-weight: 400;
+
+	&:is(h1) {
+		font-size: 2.2rem;
+		font-weight: 700;
+		color: var(--foreground);
+	}
+
+	&:is(h2) {
+		font-size: 1.9rem;
+		font-weight: 600;
+		color: var(--foreground);
+	}
+
+	&:is(h3) {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--foreground);
+	}
+
+	&:is(h4) {
+		font-size: 1.25rem;
+		font-weight: 500;
+		color: var(--foreground);
+	}
+}
+
+.description {
+	font-size: 0.95rem;
+	color: var(--secondary-foreground);
+}

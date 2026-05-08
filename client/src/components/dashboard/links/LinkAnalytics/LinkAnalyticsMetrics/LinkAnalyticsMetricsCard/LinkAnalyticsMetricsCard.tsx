@@ -29,18 +29,24 @@ const LinkAnalyticsMetricsCard = ({
 
 	const progress = useCalculatePercentage(data, metricKey);
 
+	const isEmpty = Object.keys(data).length === 0;
+
 	const itemsToShow = progress.slice(0, limit);
 	const shouldShowButton = progress.length > limit;
 
 	return (
 		<LinkAnalyticsCard
 			title={title}
-			className={styles['link-analytics-metrics-card']}
+			className={styles.card}
 		>
-			<LinkAnalyticsMetricsCardContent
-				data={itemsToShow}
-				renderLabel={renderLabel}
-			/>
+			{isEmpty ? (
+				<p>{t('noData')}</p>
+			) : (
+				<LinkAnalyticsMetricsCardContent
+					data={itemsToShow}
+					renderLabel={renderLabel}
+				/>
+			)}
 			{shouldShowButton && (
 				<Modal>
 					<Modal.Trigger>

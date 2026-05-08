@@ -1,21 +1,39 @@
 'use client';
 
-import { useId } from 'react';
 import styles from './Checkbox.module.scss';
 import { CheckboxProps } from './Checkbox.types';
 
-const Checkbox = ({ label, ...rest }: CheckboxProps) => {
-	const generatedId = useId();
-	const id = rest.id || generatedId;
+const Checkbox = ({
+	label,
+	error,
+	ref,
+	disabled,
+	disablePadding,
+	...props
+}: CheckboxProps) => {
+	const wrapperClassNames = [
+		styles.wrapper,
+		error && styles.error,
+		disabled && styles.disabled,
+		disablePadding && styles.noPadding,
+	]
+		.filter(Boolean)
+		.join(' ')
+		.trim();
 
 	return (
-		<div className={styles['checkbox']}>
-			<input
-				type="checkbox"
-				{...rest}
-				id={id}
-			/>
-			{label && <label htmlFor={id}>{label}</label>}
+		<div className={wrapperClassNames}>
+			<label className={styles.container}>
+				<input
+					type="checkbox"
+					className={styles.input}
+					ref={ref}
+					disabled={disabled}
+					{...props}
+				/>
+				<span className={styles.label}>{label}</span>
+			</label>
+			{error && <p className="error-message">{error}</p>}
 		</div>
 	);
 };

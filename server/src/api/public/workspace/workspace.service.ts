@@ -1,14 +1,18 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { EntityType } from 'generated/prisma/enums';
-import { WorkspaceInclude, WorkspaceWhereInput } from 'generated/prisma/models';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
+import { Prisma } from '@generated/prisma/client';
+import { EntityType } from '@generated/prisma/enums';
+import {
+	WorkspaceInclude,
+	WorkspaceWhereInput,
+} from '@generated/prisma/models';
+import { PrismaService } from '@infra/prisma/prisma.service';
 import {
 	ACTION_KEYS,
 	ERRORS,
 	PERMISSIONS,
 	SUCCESS_MESSAGES,
-} from 'src/libs/constants';
-import { getDiff } from 'src/libs/utils';
+} from '@libs/constants';
+import { getDiff } from '@libs/utils';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { RoleService } from '../role/role.service';
 import { WorkspaceMemberService } from '../workspace-member/workspace-member.service';
@@ -23,11 +27,17 @@ export class WorkspaceService {
 		private readonly auditLogService: AuditLogService,
 	) {}
 
-	async createWorkspace(userId: string, dto: CreateWorkspaceDto) {
+	async createWorkspace(
+		userId: string,
+		dto: CreateWorkspaceDto,
+		tx?: Prisma.TransactionClient,
+	) {
 		const { name, isDefault = false, isPersonal = true } = dto;
 
+		const prisma = tx || this.prismaService;
+
 		if (isDefault) {
-			await this.prismaService.workspace.updateMany({
+			await prisma.workspace.updateMany({
 				where: {
 					ownerId: userId,
 					deletedAt: null,
@@ -39,37 +49,34 @@ export class WorkspaceService {
 
 		const allWorkspaces = await this.getAllWorkspacesByOwnerId(userId);
 
-		return await this.prismaService.$transaction(async (tx) => {
-			const workspace = await tx.workspace.create({
-				data: {
-					owner: { connect: { id: userId } },
-					name,
-					isDefault:
-						!isDefault && allWorkspaces.length === 0 ? true : isDefault,
-					isPersonal,
-				},
-			});
-
-			if (workspace) {
-				const role = await this.roleService.createInitialRole(
-					workspace.id,
-					{
-						name: 'Owner',
-						permissions: [PERMISSIONS.ADMIN.ALL],
-					},
-					tx,
-				);
-
-				await this.workspaceMemberService.createInitialWorkspaceMember(
-					workspace.id,
-					userId,
-					role.id,
-					tx,
-				);
-
-				return workspace;
-			}
+		const workspace = await prisma.workspace.create({
+			data: {
+				owner: { connect: { id: userId } },
+				name,
+				isDefault: !isDefault && allWorkspaces.length === 0 ? true : isDefault,
+				isPersonal,
+			},
 		});
+
+		if (workspace) {
+			const role = await this.roleService.createInitialRole(
+				workspace.id,
+				{
+					name: 'Owner',
+					permissions: [PERMISSIONS.ADMIN.ALL],
+				},
+				tx,
+			);
+
+			await this.workspaceMemberService.createInitialWorkspaceMember(
+				workspace.id,
+				userId,
+				role.id,
+				tx,
+			);
+
+			return workspace;
+		}
 	}
 
 	async updateWorkspace(
@@ -137,8 +144,16 @@ export class WorkspaceService {
 			},
 		});
 
-		const ownWorkspaces = workspaces.filter((w) => w.ownerId === userId);
-		const sharedWorkspaces = workspaces.filter((w) => w.ownerId !== userId);
+		const ownWorkspaces = workspaces.filter(
+			(w) => w.ownerId === userId && w.isPersonal,
+		);
+		const ownSharedWorkspaces = workspaces.filter(
+			(w) => w.ownerId === userId && !w.isPersonal,
+		);
+		const sharedWorkspaces = [
+			...ownSharedWorkspaces,
+			...workspaces.filter((w) => w.ownerId !== userId && !w.isPersonal),
+		];
 
 		return {
 			own: ownWorkspaces,

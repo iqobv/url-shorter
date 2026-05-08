@@ -1,8 +1,8 @@
+import { EntityType } from '@generated/prisma/enums';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { ACTION_KEYS, ERRORS } from '@libs/constants';
+import { publicUserSelect } from '@libs/prisma';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { EntityType } from 'generated/prisma/enums';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ACTION_KEYS, ERRORS } from 'src/libs/constants';
-import { publicUserSelect } from 'src/libs/prisma';
 import { AuditLogService } from '../audit-log/audit-log.service';
 import { WorkspaceCommonService } from '../workspace-common/workspace-common.service';
 import { WorkspaceMemberService } from '../workspace-member/workspace-member.service';

@@ -1,3 +1,6 @@
+import { EntityType } from '@generated/prisma/enums';
+import { ACTION_KEYS } from '@libs/constants';
+import type { ActionKeys, AuditMetadataMap } from '@libs/types';
 import { ApiProperty } from '@nestjs/swagger';
 import {
 	IsEnum,
@@ -6,9 +9,6 @@ import {
 	IsString,
 	IsUUID,
 } from 'class-validator';
-import { EntityType } from 'generated/prisma/enums';
-import { ACTION_KEYS } from 'src/libs/constants';
-import type { ActionKeys, AuditMetadataMap } from 'src/libs/types';
 
 const ALL_ACTION_KEYS = Object.values(ACTION_KEYS).flatMap((cat) =>
 	Object.values(cat),

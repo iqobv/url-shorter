@@ -18,7 +18,7 @@ const LinkAnalyticsDatePicker = ({
 	const t = useTranslations('links.analytics.dates');
 
 	return (
-		<div className={styles['link-analytics-date-picker']}>
+		<div className={styles.datePicker}>
 			{LINK_ANALYTICS_DATES().map(({ label, value }) => (
 				<Button
 					key={label}

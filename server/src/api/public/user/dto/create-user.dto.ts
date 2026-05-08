@@ -1,3 +1,4 @@
+import { UserRole } from '@generated/prisma/enums';
 import { ApiProperty } from '@nestjs/swagger';
 import {
 	IsBoolean,
@@ -7,8 +8,8 @@ import {
 	IsString,
 	IsStrongPassword,
 	Min,
+	MinLength,
 } from 'class-validator';
-import { UserRole } from 'generated/prisma/enums';
 
 export class CreateUserDto {
 	@ApiProperty({
@@ -37,7 +38,7 @@ export class CreateUserDto {
 		example: 'exampleuser',
 	})
 	@IsString()
-	@Min(4)
+	@MinLength(4)
 	username: string;
 
 	@ApiProperty({

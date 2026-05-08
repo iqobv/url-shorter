@@ -1,5 +1,5 @@
+import { ReservedWordModule } from '@api/public/reserved-word/reserved-word.module';
 import { Module } from '@nestjs/common';
-import { ReservedWordModule } from 'src/api/public/reserved-word/reserved-word.module';
 import { AdminReservedWordController } from './admin-reserved-word.controller';
 
 @Module({

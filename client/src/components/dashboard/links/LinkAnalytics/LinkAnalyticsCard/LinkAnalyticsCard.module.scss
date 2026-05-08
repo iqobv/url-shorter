@@ -1,4 +1,4 @@
-.link-analytics-card {
+.card {
 	background-color: var(--analytics-card-bg);
 	border: 1px solid var(--analytics-card-border);
 	border-radius: var(--border-radius);
@@ -6,8 +6,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
+}
 
-	&__content {
-		width: 100%;
-	}
+.content {
+	width: 100%;
 }

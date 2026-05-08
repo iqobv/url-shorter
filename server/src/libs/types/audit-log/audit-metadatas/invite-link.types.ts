@@ -1,4 +1,4 @@
-import { ACTION_KEYS } from 'src/libs/constants';
+import { ACTION_KEYS } from '@libs/constants';
 
 export interface InviteLinkAuditMetadataMap {
 	[ACTION_KEYS.INVITE_LINK.CREATED]: {

@@ -1,5 +1,5 @@
+import { IsNotReservedConstraint } from '@api/public/link/validators';
 import { Module } from '@nestjs/common';
-import { IsNotReservedConstraint } from 'src/api/public/link/validators';
 import { AuditLogModule } from '../audit-log/audit-log.module';
 import { ClickModule } from '../click/click.module';
 import { ReservedWordModule } from '../reserved-word/reserved-word.module';

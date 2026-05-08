@@ -5,16 +5,16 @@ import styles from './HeaderAuth.module.scss';
 
 const HeaderAuth = () => {
 	return (
-		<header className={styles['header-auth']}>
-			<div className={styles['header-auth__container']}>
+		<header className={styles.header}>
+			<div className={styles.container}>
 				<Link
 					href={PUBLIC_PAGES.HOME}
-					className={styles['header-auth__logo']}
+					className={styles.logo}
 				>
 					<Logo
 						width={50}
 						height={50}
-					/>{' '}
+					/>
 					<span>Shortly</span>
 				</Link>
 			</div>

@@ -1,18 +1,22 @@
+import { UserRole } from '@generated/prisma/enums';
+import { PrismaService } from '@infra/prisma/prisma.service';
+import { ERRORS } from '@libs/constants';
+import { userSelect } from '@libs/prisma';
 import {
 	ConflictException,
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
 import { hash, verify } from 'argon2';
-import { UserRole } from 'generated/prisma/enums';
-import { PrismaService } from 'src/infra/prisma/prisma.service';
-import { ERRORS } from 'src/libs/constants';
-import { userSelect } from 'src/libs/prisma';
+import { WorkspaceService } from '../workspace/workspace.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
 @Injectable()
 export class UserService {
-	constructor(private readonly prismaService: PrismaService) {}
+	constructor(
+		private readonly prismaService: PrismaService,
+		private readonly workspaceService: WorkspaceService,
+	) {}
 
 	async createUser(dto: CreateUserDto) {
 		const { email, password, emailVerified, username, displayName } = dto;
@@ -37,6 +41,12 @@ export class UserService {
 				displayName,
 			},
 			select: userSelect,
+		});
+
+		await this.workspaceService.createWorkspace(user.id, {
+			name: 'Default Workspace',
+			isDefault: true,
+			isPersonal: true,
 		});
 
 		return user;

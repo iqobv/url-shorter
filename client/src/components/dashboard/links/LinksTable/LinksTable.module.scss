@@ -1,12 +1,12 @@
 @use '../../../../styles/mixins' as *;
 
-.links-table {
+.table {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 }
 
-.clicks-cell {
+.cell {
 	display: flex;
 	justify-content: start;
 	align-items: center;
@@ -14,7 +14,7 @@
 	width: 100%;
 }
 
-.pagination-footer {
+.footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;

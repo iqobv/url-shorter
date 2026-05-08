@@ -14,13 +14,13 @@ const LinkAnalyticsMetricsCardContent = ({
 	renderLabel,
 }: LinkAnalyticsMetricsCardContentProps) => {
 	return (
-		<div className={styles['link-analytics-metrics-card-content']}>
+		<div className={styles.content}>
 			{data.map(({ id, percentage }) => (
 				<div
-					className={styles['link-analytics-metrics-card-content__item']}
+					className={styles.item}
 					key={id}
 				>
-					<div className={styles['link-analytics-metrics-card-content__label']}>
+					<div className={styles.label}>
 						{renderLabel ? renderLabel(id) : id}
 					</div>
 					<LinkAnalyticsProgressBar percentage={percentage} />

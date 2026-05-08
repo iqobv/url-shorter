@@ -6,11 +6,11 @@ import styles from './HeaderMain.module.scss';
 
 const HeaderMain = () => {
 	return (
-		<header className={styles['header']}>
-			<div className={`${styles['header__container']} container`}>
+		<header className={styles.header}>
+			<div className={`${styles.container} container`}>
 				<Link
 					href={PUBLIC_PAGES.HOME}
-					className={styles['header__logo']}
+					className={styles.logo}
 				>
 					<Logo
 						width={25}
